@@ -4,11 +4,16 @@ import java.lang.Math;
 
 class Partie
 {
-	
-	Partie(Window fenetre)
+	Plateau plate;
+	Partie()
 	{
         Joueur joueur1 = new Joueur("Joueur 1", "noir");
         Joueur joueur2 = new Joueur("Joueur 2", "blanc");
-        Plateau plate = new Plateau(10,10);
+        plate = new Plateau(10,10);
+    }
+
+    public Plateau getPlateau()
+    {
+        return plate;
     }
 }

@@ -5,8 +5,8 @@ class Principal
 {
 	public static void main (String [] arg)
 	{
-        Window fenetre = new Window("Jeu de pente");
+        Partie game = new Partie();
+        Window fenetre = new Window("Jeu de pente", game);
         fenetre.FenetrePente();
-        Partie game = new Partie(fenetre);
 	}
 }

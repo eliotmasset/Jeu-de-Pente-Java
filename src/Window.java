@@ -8,19 +8,22 @@ import java.lang.Math;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.html.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 class Window extends JFrame implements ActionListener
 {
-	
-	Window(String s)
+	private ZoneDessin zone;
+	Window(String s, Partie game)
 	{
         super(s);
-        setSize(600,400);
+		setSize(850,870);
         setLocationRelativeTo(null);
 		setResizable(false);
         FenetrePrincipal();
         Init_Menu();
-		
+		zone = new ZoneDessin(game);
+		setContentPane(zone);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setVisible(true);
@@ -52,7 +55,7 @@ class Window extends JFrame implements ActionListener
 		menuFichier.add(itemSave);
 		menuFichier.add(new JSeparator());
         menuFichier.add(itemQuitter);
-    }
+	}
 
     public void actionPerformed(ActionEvent evenement)
 	{

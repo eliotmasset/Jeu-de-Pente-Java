@@ -5,13 +5,13 @@ import java.lang.Math;
 class Case
 {
     int coord_X, coord_Y;
-    String statut;
+    String path;
 
     Case(int _coord_X, int _coord_Y)
     {
         coord_X = _coord_X;
         coord_Y = _coord_Y;
-        statut="Vide";
+        path="../img/case_vide.jpg";
     }
 
     public int getX()
@@ -22,6 +22,16 @@ class Case
     public int getY()
     {
         return coord_Y;
+    }
+
+    public String getPath()
+    {
+        return path;
+    }
+
+    public void setPath(String _path)
+    {
+        path=_path;
     }
 
 }
