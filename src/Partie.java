@@ -90,7 +90,7 @@ class Partie
 			ColorAdversaire="../img/case_noir.jpg";
 		while(!end)
 		{
-            if(eventMouseX+(i*(800/plate.getNbCaseX()))<25 || eventMouseX+(i*(800/plate.getNbCaseX()))>825 || eventMouseY+(j*(800/plate.getNbCaseY()))<25 || eventMouseY+(j*(800/plate.getNbCaseY()))>825)
+            if(eventMouseY+(j*(800/plate.getNbCaseY()))<=25 || eventMouseX+(i*(800/plate.getNbCaseX()))<=0 )
             {
                 end=true;
             }

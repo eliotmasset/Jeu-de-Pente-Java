@@ -16,7 +16,7 @@ class Plateau
         {
             for(int x =0;x<nbCaseX;x++)
             {
-                cases.addElement(new Case(25+(800/nbCaseX)*x,25+(800/nbCaseY)*y));
+                cases.addElement(new Case((800/nbCaseX)*x,(800/nbCaseY)*y));
             }
         }
     }
@@ -38,7 +38,7 @@ class Plateau
     
     public Case getCaseAt(int x, int y)
     {
-		return cases.elementAt((((x-25)*getNbCaseX())/800)+(((y-50)*getNbCaseY())/800)*getNbCaseY());
+		return cases.elementAt((((x)*getNbCaseX())/800)+(((y-25)*getNbCaseY())/800)*getNbCaseY());
 	}
 
 }

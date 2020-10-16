@@ -19,7 +19,7 @@ class Window extends JFrame implements ActionListener
 	Window(String s, Partie game)
 	{
         super(s);
-		setSize(850,850);
+		setSize(800,900);
         setLocationRelativeTo(null);
 		setResizable(false);
         FenetrePrincipal();
