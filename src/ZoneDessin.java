@@ -15,8 +15,10 @@ class ZoneDessin extends JPanel
 		setSize(800,800);
 	}
 	
-	public void paint(Graphics g)
+	@Override
+	public void paintComponent(Graphics g)
 	{
+		super.paintComponent(g);
 		affiche_plateau(g);
 	}
 	

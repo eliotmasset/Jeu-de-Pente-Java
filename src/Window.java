@@ -10,6 +10,8 @@ import javax.swing.text.html.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 class Window extends JFrame implements ActionListener
 {
@@ -24,10 +26,16 @@ class Window extends JFrame implements ActionListener
         Init_Menu();
 		zone = new ZoneDessin(game);
 		setContentPane(zone);
+		addMouseListener(new Evenement(game));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setVisible(true);
-    }
+	}
+	
+	public void _repaint()
+	{
+		zone.repaint();
+	}
     
     public void FenetrePrincipal()
     {}

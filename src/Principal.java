@@ -8,5 +8,6 @@ class Principal
         Partie game = new Partie();
         Window fenetre = new Window("Jeu de pente", game);
         fenetre.FenetrePente();
+        game.lancePartie(fenetre);
 	}
 }

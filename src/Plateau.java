@@ -12,9 +12,9 @@ class Plateau
         nbCaseX = _nbCaseX;
         nbCaseY = _nbCaseY;
         cases = new Vector<Case>();
-        for(int x =0;x<nbCaseX;x++)
+        for(int y =0;y<nbCaseY;y++)
         {
-            for(int y =0;y<nbCaseY;y++)
+            for(int x =0;x<nbCaseX;x++)
             {
                 cases.addElement(new Case(25+(800/nbCaseX)*x,25+(800/nbCaseY)*y));
             }
