@@ -35,5 +35,10 @@ class Plateau
     {
         return cases;
     }
+    
+    public Case getCaseAt(int x, int y)
+    {
+		return cases.elementAt((((x-25)*getNbCaseX())/800)+(((y-50)*getNbCaseY())/800)*getNbCaseY());
+	}
 
 }

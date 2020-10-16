@@ -6,11 +6,13 @@ class Joueur
 {
     String nom;
     String couleur;
+    int nbPoint;
 
     Joueur(String _nom, String _couleur)
 	{
         couleur = _couleur;
         nom = _nom;
+        nbPoint=0;
     }
 
     public String getNom()
@@ -31,6 +33,16 @@ class Joueur
     public void setCouleur(String c)
     {
         couleur=c;
+    }
+
+    public int getNbPoint()
+    {
+        return nbPoint;
+    }
+
+    public void setNbPoint(int p)
+    {
+        nbPoint=p;
     }
 
 }
