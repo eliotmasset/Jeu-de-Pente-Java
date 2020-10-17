@@ -11,7 +11,7 @@ public class Evenement implements MouseListener
     @Override
     public void mouseClicked(MouseEvent e) 
     {
-        if (e.getButton()==MouseEvent.BUTTON1 && e.getX()>=0 && e.getX()<=800 && e.getY()>=25 && e.getY()<=825)
+        if (e.getButton()==MouseEvent.BUTTON1 && e.getX()>=0 && e.getX()<=game.getFenetre().getSizeFenetre() && e.getY()>=25 && e.getY()<=game.getFenetre().getSizeFenetre()+25)
         {
             System.out.println(" x = " + e.getX() + " | y = " + e.getY());
             game.clicEvent(e.getX(),e.getY());

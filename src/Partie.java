@@ -11,12 +11,14 @@ class Partie
     String current_Joueur;
     Window fenetre;
     boolean finPartie;
+    int pointToWin;
 
-	Partie()
+	Partie(int size)
 	{
+        pointToWin=10;
         joueur1 = new Joueur("joueur 1", "noir");
         joueur2 = new Joueur("joueur 2", "blanc");
-        plate = new Plateau(19,19);
+        plate = new Plateau(19,19, size);
         estTerminee=false;
         eventMouseX=0;
         eventMouseY=0;
@@ -29,6 +31,11 @@ class Partie
             return joueur1;
         else
             return joueur2;
+    }
+
+    public Window getFenetre()
+    {
+        return fenetre;
     }
 
     public void lancePartie(Window _fenetre)
@@ -45,7 +52,7 @@ class Partie
     {
         current_Joueur=j.getNom();
         fenetre.getZoneDessin().setJoueur(j);
-        System.out.println(j.getNom() + " => " + ((((eventMouseX)*19)/800)+(((eventMouseY-25)*19)/800)*19));
+        System.out.println(j.getNom() + " => " + ((((eventMouseX)*plate.getNbCaseX())/fenetre.getSizeFenetre())+(((eventMouseY-25)*plate.getNbCaseY())/fenetre.getSizeFenetre())*plate.getNbCaseY()));
         if(j.getCouleur()=="noir" && !(eventMouseX==0 && eventMouseY==0))
             plate.getCaseAt(eventMouseX, eventMouseY).setPath("../img/case_noir.jpg");
         else if(!(eventMouseX==0 && eventMouseY==0))
@@ -61,9 +68,9 @@ class Partie
 
     private Joueur isWin()
     {
-        if(joueur1.getNbPoint()>=10)
+        if(joueur1.getNbPoint()>=pointToWin)
             return joueur1;
-        else if(joueur2.getNbPoint()>=10)
+        else if(joueur2.getNbPoint()>=pointToWin)
             return joueur2;
         else
             return null;
@@ -102,11 +109,12 @@ class Partie
 			ColorAdversaire="../img/case_noir.jpg";
 		while(!end)
 		{
-            if(eventMouseY+(j*(800/plate.getNbCaseY()))<=25 || eventMouseX+(i*(800/plate.getNbCaseX()))<=0 || eventMouseY+(j*(800/plate.getNbCaseY()))>=825)
+            if(eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))<25 || eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))<0 
+            || eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))>fenetre.getSizeFenetre()+25)
             {
                 end=true;
             }
-			else if(plate.getCaseAt(eventMouseX+(i*(800/plate.getNbCaseX())), eventMouseY+(j*(800/plate.getNbCaseY()))).getPath()==ColorAdversaire)
+			else if(plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).getPath()==ColorAdversaire)
 			{
                 if(comptSameColor==1)
                 {
@@ -119,7 +127,7 @@ class Partie
                     end=true;
                 }
 			}
-			else if (plate.getCaseAt(eventMouseX+(i*(800/plate.getNbCaseX())), eventMouseY+(j*(800/plate.getNbCaseY()))).getPath()==Color)
+			else if (plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).getPath()==Color)
 			{
                 if(compt >=2)
                 {
@@ -131,7 +139,7 @@ class Partie
                             joueur1.setNbPoint(joueur1.getNbPoint()+1);
                         else
                             joueur2.setNbPoint(joueur2.getNbPoint()+1);
-					    plate.getCaseAt(eventMouseX+(i*(800/plate.getNbCaseX())), eventMouseY+(j*(800/plate.getNbCaseY()))).setPath("../img/case_vide.jpg");
+					    plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).setPath("../img/case_vide.jpg");
                     }
                     end=true;
                 }
@@ -148,7 +156,7 @@ class Partie
                     }
                 }
             }
-			else if (plate.getCaseAt(eventMouseX+(i*(800/plate.getNbCaseX())), eventMouseY+(j*(800/plate.getNbCaseY()))).getPath()=="../img/case_vide.jpg")
+			else if (plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).getPath()=="../img/case_vide.jpg")
 			{
                 end=true;
                 if(comptSameColor>1 && !estInverse)

@@ -10,11 +10,13 @@ class ZoneDessin extends JPanel
 	Partie game;
 	JLabel joueur;
 	JLabel joueurs_score;
-	ZoneDessin(Partie _game)
+	int size;
+	ZoneDessin(Partie _game, int _size)
 	{
 		//setLayout(null);
 		game = _game;
-		setSize(800,800);
+		size=_size;
+		setSize(size,size);
 		joueur = new JLabel("Joueur 1(noir) : A toi de jouer");
 		joueurs_score = new JLabel("<html><pre>Score :<br>    joueur 1(noir)  : 0 pions capturés<br>    joueur 2(blanc) : 0 pions capturés</pre></html>");
 		bottomPanel();
@@ -25,11 +27,11 @@ class ZoneDessin extends JPanel
 		joueur.setOpaque(true);
 		Font font1 = new Font("Arial",Font.BOLD,20);
 		joueur.setFont(font1);
-		joueur.setLocation(20, 810);
+		joueur.setLocation(size/40, size+10);
 		add(joueur);
 
 		Font font2 = new Font("Arial",Font.BOLD,16);
-		joueurs_score.setLocation(400, 800);
+		joueurs_score.setLocation(size/2, size);
 		joueurs_score.setFont(font2);
 		joueurs_score.setText("<html><pre>Score :<br>    joueur 1(noir)  : " + game.getJoueur(1).getNbPoint() + 
 		" pions capturés<br>    joueur 2(blanc) : " + game.getJoueur(2).getNbPoint() + " pions capturés</pre></html>");
@@ -76,7 +78,7 @@ class ZoneDessin extends JPanel
 			{
 				e.printStackTrace();
 			}
-			g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY() , 800/game.getPlateau().getNbCaseX(), 800/game.getPlateau().getNbCaseY(), this);
+			g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
 		}
 	}
 }

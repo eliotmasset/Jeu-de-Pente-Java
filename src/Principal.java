@@ -5,8 +5,9 @@ class Principal
 {
         public static void main (String [] arg)
 	{
-                Partie game = new Partie();
-                Window fenetre = new Window("Jeu de pente", game);
+                int size=800;
+                Partie game = new Partie(size);
+                Window fenetre = new Window("Jeu de pente", game, size);
                 game.lancePartie(fenetre);
                 fenetre.setVisible(true);
 	}

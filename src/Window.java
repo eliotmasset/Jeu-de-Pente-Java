@@ -16,19 +16,27 @@ import java.awt.event.MouseEvent;
 class Window extends JFrame implements ActionListener
 {
 	ZoneDessin zone;
-	Window(String s, Partie game)
+	int size;
+
+	Window(String s, Partie game, int _size)
 	{
-        super(s);
-		setSize(800,900);
+		super(s);
+		size=_size;
+		setSize(size,size+100);
         setLocationRelativeTo(null);
 		setResizable(false);
         Init_Menu();
-		zone = new ZoneDessin(game);
+		zone = new ZoneDessin(game,size);
 		setContentPane(zone);
 		FenetrePrincipal();
 		addMouseListener(new Evenement(game));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+
+	public int getSizeFenetre()
+	{
+		return size;
 	}
 
 	public ZoneDessin getZoneDessin()

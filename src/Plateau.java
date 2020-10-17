@@ -6,9 +6,11 @@ class Plateau
 {
     int nbCaseX, nbCaseY;
     private Vector<Case> cases;
+    int size;
 
-    Plateau(int _nbCaseX, int _nbCaseY)
+    Plateau(int _nbCaseX, int _nbCaseY, int _size)
 	{
+        size=_size;
         nbCaseX = _nbCaseX;
         nbCaseY = _nbCaseY;
         cases = new Vector<Case>();
@@ -16,7 +18,7 @@ class Plateau
         {
             for(int x =0;x<nbCaseX;x++)
             {
-                cases.addElement(new Case((800/nbCaseX)*x,(800/nbCaseY)*y));
+                cases.addElement(new Case((size/nbCaseX)*x,(size/nbCaseY)*y));
             }
         }
     }
@@ -38,7 +40,7 @@ class Plateau
     
     public Case getCaseAt(int x, int y)
     {
-		return cases.elementAt((((x)*getNbCaseX())/800)+(((y-25)*getNbCaseY())/800)*getNbCaseY());
+		return cases.elementAt(((x*getNbCaseX())/size)+(((y-25)*getNbCaseY())/size)*getNbCaseY());
 	}
 
 }
