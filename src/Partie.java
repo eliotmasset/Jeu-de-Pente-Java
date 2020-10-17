@@ -23,10 +23,18 @@ class Partie
         finPartie=false;
     }
 
+    public Joueur getJoueur(int i)
+    {
+        if(i==1)
+            return joueur1;
+        else
+            return joueur2;
+    }
+
     public void lancePartie(Window _fenetre)
     {
         fenetre=_fenetre;
-        current_Joueur="joueur 1";
+        current_Joueur="joueur 2";
     }
     public Plateau getPlateau()
     {
@@ -36,7 +44,8 @@ class Partie
     public void tourdejeu(Joueur j)
     {
         current_Joueur=j.getNom();
-        System.out.println(j.getNom());
+        fenetre.getZoneDessin().setJoueur(j);
+        System.out.println(j.getNom() + " => " + ((((eventMouseX)*19)/800)+(((eventMouseY-25)*19)/800)*19));
         if(j.getCouleur()=="noir" && !(eventMouseX==0 && eventMouseY==0))
             plate.getCaseAt(eventMouseX, eventMouseY).setPath("../img/case_noir.jpg");
         else if(!(eventMouseX==0 && eventMouseY==0))
@@ -44,14 +53,17 @@ class Partie
         algo();
         fenetre._repaint();
         if(isWin()==joueur1 || isWin()==joueur2)
+        {
+            fenetre.getZoneDessin().afficheEstGagne();
             finPartie=true;
+        }
     }
 
     private Joueur isWin()
     {
-        if(joueur1.getNbPoint()>=6)
+        if(joueur1.getNbPoint()>=10)
             return joueur1;
-        else if(joueur2.getNbPoint()>=6)
+        else if(joueur2.getNbPoint()>=10)
             return joueur2;
         else
             return null;
@@ -90,7 +102,7 @@ class Partie
 			ColorAdversaire="../img/case_noir.jpg";
 		while(!end)
 		{
-            if(eventMouseY+(j*(800/plate.getNbCaseY()))<=25 || eventMouseX+(i*(800/plate.getNbCaseX()))<=0 )
+            if(eventMouseY+(j*(800/plate.getNbCaseY()))<=25 || eventMouseX+(i*(800/plate.getNbCaseX()))<=0 || eventMouseY+(j*(800/plate.getNbCaseY()))>=825)
             {
                 end=true;
             }
@@ -130,6 +142,7 @@ class Partie
                     comptSameColor++;
                     if(comptSameColor>=5)
                     {
+                        fenetre.getZoneDessin().afficheEstGagne();
                         finPartie=true;
                         end=true;
                     }

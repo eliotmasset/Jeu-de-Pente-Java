@@ -15,21 +15,25 @@ import java.awt.event.MouseEvent;
 
 class Window extends JFrame implements ActionListener
 {
-	private ZoneDessin zone;
+	ZoneDessin zone;
 	Window(String s, Partie game)
 	{
         super(s);
 		setSize(800,900);
         setLocationRelativeTo(null);
 		setResizable(false);
-        FenetrePrincipal();
         Init_Menu();
 		zone = new ZoneDessin(game);
 		setContentPane(zone);
+		FenetrePrincipal();
 		addMouseListener(new Evenement(game));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		setVisible(true);
+	}
+
+	public ZoneDessin getZoneDessin()
+	{
+		return zone;
 	}
 	
 	public void _repaint()
@@ -38,10 +42,8 @@ class Window extends JFrame implements ActionListener
 	}
     
     public void FenetrePrincipal()
-    {}
-
-    public void FenetrePente()
-    {}
+    {
+	}
 
     public void Init_Menu()
     {
