@@ -9,7 +9,7 @@ class Partie
     private int eventMouseX,eventMouseY;
     Joueur joueur1, joueur2;
     String current_Joueur;
-    Window fenetre;
+    GameWindow fenetre;
     boolean finPartie;
     int pointToWin;
 
@@ -19,10 +19,12 @@ class Partie
         joueur1 = new Joueur("joueur 1", "noir");
         joueur2 = new Joueur("joueur 2", "blanc");
         plate = new Plateau(19,19, size);
+        fenetre = new GameWindow("Jeu de pente", this, size);
         estTerminee=false;
         eventMouseX=0;
         eventMouseY=0;
         finPartie=false;
+        current_Joueur="joueur 2";
     }
 
     public Joueur getJoueur(int i)
@@ -33,16 +35,11 @@ class Partie
             return joueur2;
     }
 
-    public Window getFenetre()
+    public GameWindow getFenetre()
     {
         return fenetre;
     }
 
-    public void lancePartie(Window _fenetre)
-    {
-        fenetre=_fenetre;
-        current_Joueur="joueur 2";
-    }
     public Plateau getPlateau()
     {
         return plate;

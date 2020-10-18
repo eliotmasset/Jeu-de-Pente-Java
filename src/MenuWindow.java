@@ -13,23 +13,20 @@ import java.io.IOException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-class Window extends JFrame implements ActionListener
+class MenuWindow extends JFrame implements ActionListener
 {
-	ZoneDessin zone;
-	int size;
+    int size;
+    ZoneDessinMenu zone;
 
-	Window(String s, Partie game, int _size)
+	MenuWindow(String s, int _size)
 	{
 		super(s);
 		size=_size;
-		setSize(size,size+100);
+		setSize(size,size);
         setLocationRelativeTo(null);
-		setResizable(false);
-        Init_Menu();
-		zone = new ZoneDessin(game,size);
+        setResizable(false);
+        zone = new ZoneDessinMenu(size);
 		setContentPane(zone);
-		FenetrePrincipal();
-		addMouseListener(new Evenement(game));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
@@ -37,20 +34,6 @@ class Window extends JFrame implements ActionListener
 	public int getSizeFenetre()
 	{
 		return size;
-	}
-
-	public ZoneDessin getZoneDessin()
-	{
-		return zone;
-	}
-	
-	public void _repaint()
-	{
-		zone.repaint();
-	}
-    
-    public void FenetrePrincipal()
-    {
 	}
 
     public void Init_Menu()

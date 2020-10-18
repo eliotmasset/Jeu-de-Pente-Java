@@ -5,13 +5,13 @@ import java.util.*;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-class ZoneDessin extends JPanel
+class ZoneDessinPente extends JPanel
 {
 	Partie game;
 	JLabel joueur;
 	JLabel joueurs_score;
 	int size;
-	ZoneDessin(Partie _game, int _size)
+	ZoneDessinPente(Partie _game, int _size)
 	{
 		//setLayout(null);
 		game = _game;
