@@ -34,7 +34,7 @@ class Case
         path=_path;
     }
 
-    public static String getPath(String theme, String statu)
+    public static String getPathBy(String theme, String statu)
     {
         String ret="";
         switch(theme)
