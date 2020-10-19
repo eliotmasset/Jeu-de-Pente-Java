@@ -44,8 +44,12 @@ class Case
                     ret="../img/case_vide.jpg";
                 else if (statu=="noir")
                     ret="../img/case_noir.jpg";
-                else
+                else if (statu=="blanc")
                     ret="../img/case_blanc.jpg";
+                else if (statu=="pion_noir")
+                    ret="../img/pion_noir.jpg";
+                else
+                    ret="../img/pion_blanc.jpg";
                 break;
             default:
                 ret="../img/case_vide.jpg";

@@ -16,7 +16,8 @@ import java.awt.event.MouseEvent;
 class MenuWindow extends JFrame implements ActionListener
 {
     int size;
-    ZoneDessinMenu zone;
+	ZoneDessinMenu zone;
+	JButton lancerPartie, options, quitter;
 
 	MenuWindow(String s, int _size)
 	{
@@ -25,10 +26,38 @@ class MenuWindow extends JFrame implements ActionListener
 		setSize(size,size);
         setLocationRelativeTo(null);
         setResizable(false);
-        zone = new ZoneDessinMenu(size);
+		zone = new ZoneDessinMenu(size);
 		setContentPane(zone);
+		setButtons();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+	}
+
+	public void setButtons()
+	{
+		lancerPartie = new JButton("");
+		lancerPartie.setBounds(100, 280, 600, 80);
+		lancerPartie.setOpaque(false);
+		lancerPartie.setContentAreaFilled(false);
+		lancerPartie.setBorderPainted(false);
+		lancerPartie.addActionListener(this);
+		add(lancerPartie);
+
+		options = new JButton("");
+		options.setBounds(100, 405, 400, 80);
+		options.setOpaque(false);
+		options.setContentAreaFilled(false);
+		options.setBorderPainted(false);
+		options.addActionListener(this);
+		add(options);
+
+		quitter = new JButton("");
+		quitter.setBounds(100, 530, 300, 80);
+		quitter.setOpaque(false);
+		quitter.setContentAreaFilled(false);
+		quitter.setBorderPainted(false);
+		quitter.addActionListener(this);
+		add(quitter);
 	}
 
 	public int getSizeFenetre()
@@ -60,7 +89,19 @@ class MenuWindow extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent evenement)
 	{
-		if (evenement.getActionCommand().equals("menu_quitter"))
+		if (evenement.getSource()==lancerPartie)
+		{
+			Partie game = new Partie(size);
+		}
+		else if (evenement.getSource()==options)
+		{
+			
+		}
+		else if (evenement.getSource()==quitter)
+		{
+			System.exit(0);
+		}
+		else if (evenement.getActionCommand().equals("menu_quitter"))
 		{
 			if( JOptionPane.showConfirmDialog(null,"Voulez vous quitter ?",
 			"Quitter",
@@ -68,6 +109,7 @@ class MenuWindow extends JFrame implements ActionListener
 			{
 				System.exit(0);
 			}
-        }
+		}
+		
     }
 }

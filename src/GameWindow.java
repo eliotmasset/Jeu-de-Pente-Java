@@ -30,7 +30,7 @@ class GameWindow extends JFrame implements ActionListener
 		setContentPane(zone);
 		FenetrePrincipal();
 		addMouseListener(new Evenement(game));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 
@@ -83,7 +83,7 @@ class GameWindow extends JFrame implements ActionListener
 			"Quitter",
 			JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE) == JOptionPane.YES_OPTION )
 			{
-				System.exit(0);
+				this.dispose();
 			}
         }
     }

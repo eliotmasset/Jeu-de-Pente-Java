@@ -7,6 +7,5 @@ class Principal
 	{
                 int size=800;
                 MenuWindow w = new MenuWindow("Menu - Jeu de pente", size);
-                //Partie game = new Partie(size);
 	}
 }
