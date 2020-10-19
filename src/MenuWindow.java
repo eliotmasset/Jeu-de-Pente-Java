@@ -18,6 +18,7 @@ class MenuWindow extends JFrame implements ActionListener
     int size;
 	ZoneDessinMenu zone;
 	JButton lancerPartie, options, quitter;
+	Partie game;
 
 	MenuWindow(String s, int _size)
 	{
@@ -91,7 +92,12 @@ class MenuWindow extends JFrame implements ActionListener
 	{
 		if (evenement.getSource()==lancerPartie)
 		{
-			Partie game = new Partie(size);
+			if(game==null)
+			{
+				game = new Partie(size);
+			}
+			else if(!game.getFenetre().isVisible())
+				game = new Partie(size);
 		}
 		else if (evenement.getSource()==options)
 		{

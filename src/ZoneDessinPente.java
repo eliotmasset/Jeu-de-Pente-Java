@@ -39,7 +39,7 @@ class ZoneDessinPente extends JPanel
 		add(joueurs_score);
 	}
 
-	public void affichePionsJoueur(Graphics g)
+	public void affichePionsJoueur(Graphics2D g)
 	{
 		Image img;
 		img=null;
@@ -48,7 +48,7 @@ class ZoneDessinPente extends JPanel
 		{
 			try 
 			{
-				img = ImageIO.read(new File(game.getPlateau().getCaseAt(0, 0).getPathBy("normal","pion_blanc")));
+				img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"pion_blanc")));
 			} 
 			catch (IOException e) 
 			{
@@ -59,7 +59,7 @@ class ZoneDessinPente extends JPanel
 		{
 			try 
 			{
-				img = ImageIO.read(new File(game.getPlateau().getCaseAt(0, 0).getPathBy("normal","pion_noir")));
+				img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"pion_noir")));
 			} 
 			catch (IOException e) 
 			{
@@ -97,13 +97,14 @@ class ZoneDessinPente extends JPanel
 	@Override
 	public void paintComponent(Graphics g)
 	{
+		Graphics2D g2 = (Graphics2D) g;
 		super.paintComponent(g);
-		affiche_plateau(g);
-		affichePionsJoueur(g);
+		affiche_plateau(g2);
+		affichePionsJoueur(g2);
 		bottomPanel();
 	}
 	
-	public void affiche_plateau(Graphics g)
+	public void affiche_plateau(Graphics2D g)
 	{
 		Image img=null;
 		for(int i=0;i<game.getPlateau().getNbCaseX()*game.getPlateau().getNbCaseY();i++)
