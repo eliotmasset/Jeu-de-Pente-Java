@@ -14,20 +14,35 @@ class Partie
     int pointToWin;
     int NbSameColorToWin;
     String theme;
+    int nbCase;
 
-	Partie(int size)
+	Partie(int size, int _nbCase, int _pointToWin, int _NbSameColorToWin)
 	{
-        pointToWin=10;
-        NbSameColorToWin=5;
+        pointToWin=_pointToWin;
+        NbSameColorToWin=_NbSameColorToWin;
+        nbCase=_nbCase;
         theme="sombre";
         joueur1 = new Joueur("joueur 1", "noir");
         joueur2 = new Joueur("joueur 2", "blanc");
-        plate = new Plateau(19,19, size, theme);
+        plate = new Plateau(nbCase,nbCase, size, theme);
         fenetre = new GameWindow("Jeu de pente", this, size);
         eventMouseX=0;
         eventMouseY=0;
         finPartie=false;
         current_Joueur="joueur 2";
+    }
+
+    Partie(int size, int _nbCase, int _pointToWin)
+    {
+        this(size, _nbCase, _pointToWin, 5);
+    }
+    Partie(int size, int _nbCase)
+    {
+        this(size, _nbCase, 10);
+    }
+    Partie(int size)
+    {
+        this(size, 19);
     }
 
     public String getTheme()

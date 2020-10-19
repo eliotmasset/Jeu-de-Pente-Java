@@ -18,6 +18,8 @@ class ZoneDessinPente extends JPanel
 		size=_size;
 		setSize(size,size);
 		setBackground(new Color(255,255,255));
+		if(game.getTheme()=="sombre")
+			setBackground(new Color(0,0,0));
 		joueur = new JLabel("Joueur 1(noir) : A toi de jouer");
 		joueurs_score = new JLabel("<html><pre>Score :<br>    joueur 1(noir)  : 0 pions capturés<br>    joueur 2(blanc) : 0 pions capturés</pre></html>");
 		bottomPanel();
@@ -25,6 +27,11 @@ class ZoneDessinPente extends JPanel
 
 	public void bottomPanel()
     {
+		if(game.getTheme()=="sombre")
+		{
+			joueur.setForeground(new Color(255,255,255));
+			joueurs_score.setForeground(new Color(255,255,255));
+		}
 		joueur.setOpaque(false);
 		Font font1 = new Font("Arial",Font.BOLD,20);
 		joueur.setFont(font1);
