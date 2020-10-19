@@ -51,9 +51,9 @@ class Partie
         fenetre.getZoneDessin().setJoueur(j);
         System.out.println(j.getNom() + " => " + ((((eventMouseX)*plate.getNbCaseX())/fenetre.getSizeFenetre())+(((eventMouseY-25)*plate.getNbCaseY())/fenetre.getSizeFenetre())*plate.getNbCaseY()));
         if(j.getCouleur()=="noir" && !(eventMouseX==0 && eventMouseY==0))
-            plate.getCaseAt(eventMouseX, eventMouseY).setPath("../img/case_noir.jpg");
+            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getCaseAt(eventMouseX,eventMouseY).getPathBy("normal", "noir"));
         else if(!(eventMouseX==0 && eventMouseY==0))
-            plate.getCaseAt(eventMouseX, eventMouseY).setPath("../img/case_blanc.jpg");
+            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getCaseAt(eventMouseX,eventMouseY).getPathBy("normal", "blanc"));
         algo();
         fenetre._repaint();
         if(isWin()==joueur1 || isWin()==joueur2)
@@ -101,9 +101,9 @@ class Partie
         int compt=0;
         int comptSameColor=1;
 		if(Color=="../img/case_noir.jpg")
-			ColorAdversaire="../img/case_blanc.jpg";
+			ColorAdversaire=plate.getCaseAt(eventMouseX,eventMouseY).getPathBy("normal", "blanc");
 		else
-			ColorAdversaire="../img/case_noir.jpg";
+			ColorAdversaire=plate.getCaseAt(eventMouseX,eventMouseY).getPathBy("normal", "noir");
 		while(!end)
 		{
             if(eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))<25 || eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))<0 
@@ -136,7 +136,7 @@ class Partie
                             joueur1.setNbPoint(joueur1.getNbPoint()+1);
                         else
                             joueur2.setNbPoint(joueur2.getNbPoint()+1);
-					    plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).setPath("../img/case_vide.jpg");
+					    plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).setPath(plate.getCaseAt(eventMouseX,eventMouseY).getPathBy("normal", "vide"));
                     }
                     end=true;
                 }
@@ -153,7 +153,7 @@ class Partie
                     }
                 }
             }
-			else if (plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).getPath()=="../img/case_vide.jpg")
+			else if (plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).getPath()==plate.getCaseAt(eventMouseX,eventMouseY).getPathBy("normal", "vide"))
 			{
                 end=true;
                 if(comptSameColor>1 && !estInverse)
@@ -176,11 +176,11 @@ class Partie
         if(finPartie)
         {}
         else if(current_Joueur=="joueur 1" 
-        && plate.getCaseAt(eventMouseX, eventMouseY).getPath()=="../img/case_vide.jpg")
+        && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getCaseAt(eventMouseX,eventMouseY).getPathBy("normal", "vide"))
         {
             tourdejeu(joueur2);
         }
-        else if (plate.getCaseAt(eventMouseX, eventMouseY).getPath()=="../img/case_vide.jpg")
+        else if (plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getCaseAt(eventMouseX,eventMouseY).getPathBy("normal", "vide"))
         {
             tourdejeu(joueur1);
         }
