@@ -6,6 +6,7 @@ class Case
 {
     int coord_X, coord_Y;
     String path;
+    Color color;
 
     Case(int _coord_X, int _coord_Y)
     {
@@ -32,6 +33,16 @@ class Case
     public void setPath(String _path)
     {
         path=_path;
+    }
+
+    public Color getColor() 
+    {
+        return color;
+    }
+
+    public void setColor(Color _color)
+    {
+        color=_color;
     }
 
 }
