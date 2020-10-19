@@ -34,4 +34,24 @@ class Case
         path=_path;
     }
 
+    public static String getPath(String theme, String statu)
+    {
+        String ret="";
+        switch(theme)
+        {
+            case "normal":
+                if(statu=="vide") 
+                    ret="../img/case_vide.jpg";
+                else if (statu=="noir")
+                    ret="../img/case_noir.jpg";
+                else
+                    ret="../img/case_blanc.jpg";
+                break;
+            default:
+                ret="../img/case_vide.jpg";
+                break;
+        }
+        return ret;
+    }
+
 }
