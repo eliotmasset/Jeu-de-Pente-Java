@@ -22,6 +22,7 @@ class MenuWindow extends JFrame implements ActionListener
 	Partie game;
 	String paramPartie[];
 	String themes[];
+	private MouseAdapter mouseListener;
 
 	MenuWindow(String s, int _size)
 	{
@@ -48,29 +49,87 @@ class MenuWindow extends JFrame implements ActionListener
 
 	public void setButtons()
 	{
+
 		lancerPartie = new JButton("");
-		lancerPartie.setBounds(100, 280, 600, 80);
+		lancerPartie.setBounds(80, 280, 600, 80);
 		lancerPartie.setOpaque(false);
 		lancerPartie.setContentAreaFilled(false);
 		lancerPartie.setBorderPainted(false);
+		lancerPartie.setFocusPainted(false);
 		lancerPartie.addActionListener(this);
 		add(lancerPartie);
 
 		options = new JButton("");
-		options.setBounds(100, 405, 400, 80);
+		options.setBounds(80, 405, 400, 80);
 		options.setOpaque(false);
 		options.setContentAreaFilled(false);
 		options.setBorderPainted(false);
+		options.setFocusPainted(false);
 		options.addActionListener(this);
 		add(options);
 
 		quitter = new JButton("");
-		quitter.setBounds(100, 530, 300, 80);
+		quitter.setBounds(80, 530, 300, 80);
 		quitter.setOpaque(false);
 		quitter.setContentAreaFilled(false);
 		quitter.setBorderPainted(false);
+		quitter.setFocusPainted(false);
 		quitter.addActionListener(this);
 		add(quitter);
+
+		mouseListener = new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent evenement) 
+			{
+				if (evenement.getSource()==lancerPartie)
+				{
+					try {
+						Image img = ImageIO.read(new File("../img/select.png"));
+						lancerPartie.setIcon(new ImageIcon(img));
+						lancerPartie.setHorizontalAlignment(SwingConstants.LEFT);
+					} catch (IOException ex) {
+					}
+				}
+				if (evenement.getSource()==options)
+				{
+					try {
+						Image img = ImageIO.read(new File("../img/select.png"));
+						options.setIcon(new ImageIcon(img));
+						options.setHorizontalAlignment(SwingConstants.LEFT);
+					} catch (IOException ex) {
+					}
+				}
+				else if (evenement.getSource()==quitter)
+				{
+					try {
+						Image img = ImageIO.read(new File("../img/select.png"));
+						quitter.setIcon(new ImageIcon(img));
+						quitter.setHorizontalAlignment(SwingConstants.LEFT);
+					} catch (IOException ex) {
+					}
+				}
+			}
+
+			@Override
+			public void mouseExited(MouseEvent evenement) 
+			{
+				if (evenement.getSource()==lancerPartie)
+				{
+					lancerPartie.setIcon(null);
+				}
+				else if (evenement.getSource()==options)
+				{
+					options.setIcon(null);
+				}
+				else if (evenement.getSource()==quitter)
+				{
+					quitter.setIcon(null);
+				}
+			}
+		};
+		lancerPartie.addMouseListener(mouseListener);
+		options.addMouseListener(mouseListener);
+		quitter.addMouseListener(mouseListener);
 	}
 
 	public int getSizeFenetre()
@@ -109,6 +168,28 @@ class MenuWindow extends JFrame implements ActionListener
 		menuFichier.add(new JSeparator());
         menuFichier.add(itemQuitter);
 	}
+
+	/*public void mouseEntered(MouseEvent evenement) 
+	{
+		if (evenement.getSource()==lancerPartie)
+		{
+			System.out.println("<- Image icon activate");
+			try {
+				Image img = ImageIO.read(getClass().getResource("/icon.png"));
+				lancerPartie.setIcon(new ImageIcon(img));
+			} catch (IOException ex) {
+			}
+		}
+	}
+
+	public void mouseExited(MouseEvent evenement) 
+	{
+		if (evenement.getSource()==lancerPartie)
+		{
+			System.out.println("<- Image icon desctivate");
+			lancerPartie.setIcon(null);
+		}
+	}*/
 
     public void actionPerformed(ActionEvent evenement)
 	{
@@ -163,8 +244,7 @@ class MenuWindow extends JFrame implements ActionListener
 			{
 				System.exit(0);
 			}
-		}
-		
+		}	
 	}
 
 }
