@@ -20,7 +20,7 @@ class Plateau
         {
             for(int x =0;x<nbCaseX;x++)
             {
-                cases.addElement(new Case((size/nbCaseX)*x,(size/nbCaseY)*y,getPathBy(themePlate, "vide")));
+                cases.addElement(new Case((x*size)/nbCaseX,(y*size)/nbCaseY,getPathBy(themePlate, "vide")));
             }
         }
     }
