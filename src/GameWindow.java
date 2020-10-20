@@ -16,11 +16,13 @@ import java.awt.event.MouseEvent;
 class GameWindow extends JFrame implements ActionListener
 {
 	ZoneDessinPente zone;
+	Partie game;
 	int size;
 
-	GameWindow(String s, Partie game, int _size)
+	GameWindow(String s, Partie _game, int _size)
 	{
 		super(s);
+		game=_game;
 		size=_size;
 		setSize(size,size+100);
         setLocationRelativeTo(null);
@@ -72,7 +74,14 @@ class GameWindow extends JFrame implements ActionListener
 		menuFichier.add(itemCharger);
 		menuFichier.add(itemSave);
 		menuFichier.add(new JSeparator());
-        menuFichier.add(itemQuitter);
+		menuFichier.add(itemQuitter);
+		
+		JMenu menuEdit = new JMenu("Edit");
+		JMenuItem itemTheme =new JMenuItem("Choisir theme");
+		itemTheme.setActionCommand("menu_theme");
+		itemTheme.addActionListener(this);
+		menuEdit.add(itemTheme);
+		menuBar.add(menuEdit);
 	}
 
     public void actionPerformed(ActionEvent evenement)
@@ -85,6 +94,21 @@ class GameWindow extends JFrame implements ActionListener
 			{
 				this.dispose();
 			}
-        }
+		}
+		else if (evenement.getActionCommand().equals("menu_theme"))
+		{
+			String rep=(String)JOptionPane.showInputDialog(
+				null,
+				"Veuillez choisir le theme :\n",
+				"Choix du theme",
+				JOptionPane.QUESTION_MESSAGE,
+				null,
+				game.getThemes(),
+				game.getThemesAt(0));
+			if(rep != null)
+			{
+				game.setTheme(rep);
+			}
+		}
     }
 }

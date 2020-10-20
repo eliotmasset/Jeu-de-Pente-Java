@@ -15,13 +15,16 @@ class Partie
     int NbSameColorToWin;
     String theme;
     int nbCase;
+    String[] themes;
+    
 
-	Partie(int size, int _nbCase, int _pointToWin, int _NbSameColorToWin)
+	Partie(String[] _themes,int size, int _nbCase, int _pointToWin, int _NbSameColorToWin, String _theme)
 	{
+        themes=_themes;
         pointToWin=_pointToWin;
         NbSameColorToWin=_NbSameColorToWin;
         nbCase=_nbCase;
-        theme="sombre";
+        theme=_theme;
         joueur1 = new Joueur("joueur 1", "noir");
         joueur2 = new Joueur("joueur 2", "blanc");
         plate = new Plateau(nbCase,nbCase, size, theme);
@@ -32,22 +35,30 @@ class Partie
         current_Joueur="joueur 2";
     }
 
-    Partie(int size, int _nbCase, int _pointToWin)
-    {
-        this(size, _nbCase, _pointToWin, 5);
-    }
-    Partie(int size, int _nbCase)
-    {
-        this(size, _nbCase, 10);
-    }
-    Partie(int size)
-    {
-        this(size, 19);
-    }
-
     public String getTheme()
     {
         return theme;
+    }
+
+    public String[] getThemes()
+    {
+        return themes;
+    }
+
+    public String getThemesAt(int index)
+    {
+        return themes[index];
+    }
+
+    public void setTheme(String _theme)
+    {
+        theme=_theme;
+        plate.setThemePlate(theme);
+        for(Case c : plate.getCases())
+        {
+            c.setPath(plate.getPathBy(theme, plate.getStatuBy(c.getPath())));
+        }
+        fenetre.repaint();
     }
 
     public Joueur getJoueur(int i)
@@ -87,11 +98,10 @@ class Partie
     {
         current_Joueur=j.getNom();
         fenetre.getZoneDessin().setJoueur(j);
-        System.out.println(j.getNom() + " => " + ((((eventMouseX)*plate.getNbCaseX())/fenetre.getSizeFenetre())+(((eventMouseY-decalMenu)*plate.getNbCaseY())/fenetre.getSizeFenetre())*plate.getNbCaseY()));
         if(j.getCouleur()=="noir" && !(eventMouseX==0 && eventMouseY==0))
-            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "noir"));
+            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
         else if(!(eventMouseX==0 && eventMouseY==0))
-            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "blanc"));
+            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
         algo();
         fenetre._repaint();
         if(isWin()==joueur1 || isWin()==joueur2)
@@ -127,13 +137,13 @@ class Partie
     {
 		String ColorAdversaire;
 		String Color=plate.getCaseAt(eventMouseX, eventMouseY).getPath();
-		if(Color==plate.getPathBy(theme, "noir"))
-			ColorAdversaire=plate.getPathBy(theme, "blanc");
+		if(Color==plate.getPathBy(theme, "sombre"))
+			ColorAdversaire=plate.getPathBy(theme, "clair");
 		else
-            ColorAdversaire=plate.getPathBy(theme, "noir");
+            ColorAdversaire=plate.getPathBy(theme, "sombre");
         
-        if(eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))<decalMenu || eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))<0 
-        || eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))>fenetre.getSizeFenetre()+decalMenu)
+        if(eventMouseY+(3*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))<decalMenu || eventMouseX+(3*i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))<0 
+        || eventMouseX+(3*i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(3*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))>fenetre.getSizeFenetre()+decalMenu)
         {}
         else 
         {

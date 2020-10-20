@@ -20,6 +20,8 @@ class ZoneDessinPente extends JPanel
 		setBackground(new Color(255,255,255));
 		if(game.getTheme()=="sombre")
 			setBackground(new Color(0,0,0));
+		else if(game.getTheme()=="clair")
+			setBackground(new Color(255,255,255));
 		joueur = new JLabel("Joueur 1(noir) : A toi de jouer");
 		joueurs_score = new JLabel("<html><pre>Score :<br>    joueur 1(noir)  : 0 pions capturés<br>    joueur 2(blanc) : 0 pions capturés</pre></html>");
 		bottomPanel();
@@ -27,10 +29,20 @@ class ZoneDessinPente extends JPanel
 
 	public void bottomPanel()
     {
+		setBackground(new Color(255,255,255));
+		if(game.getTheme()=="sombre")
+			setBackground(new Color(0,0,0));
+		else if(game.getTheme()=="clair")
+			setBackground(new Color(255,255,255));
 		if(game.getTheme()=="sombre")
 		{
 			joueur.setForeground(new Color(255,255,255));
 			joueurs_score.setForeground(new Color(255,255,255));
+		}
+		else if(game.getTheme()=="clair")
+		{
+			joueur.setForeground(new Color(150,199,199));
+			joueurs_score.setForeground(new Color(150,199,199));
 		}
 		joueur.setOpaque(false);
 		Font font1 = new Font("Arial",Font.BOLD,20);
@@ -55,7 +67,10 @@ class ZoneDessinPente extends JPanel
 		{
 			try 
 			{
-				img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"pion_blanc")));
+				if(game.isFinish())
+					img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"pion_sombre")));
+				else
+					img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"pion_clair")));
 			} 
 			catch (IOException e) 
 			{
@@ -66,14 +81,17 @@ class ZoneDessinPente extends JPanel
 		{
 			try 
 			{
-				img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"pion_noir")));
+				if(game.isFinish())
+					img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"pion_clair")));
+				else
+					img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"pion_sombre")));
 			} 
 			catch (IOException e) 
 			{
 				e.printStackTrace();
 			}
 		}
-		g.drawImage(img, game.getFenetre().getSizeFenetre()/10 , (game.getFenetre().getSizeFenetre()*100)/96 , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+		g.drawImage(img, game.getFenetre().getSizeFenetre()/10 , (game.getFenetre().getSizeFenetre()*100)/96 , 50, 50, this);
 	}
 
 	public void setJoueur(Joueur j)
@@ -92,10 +110,14 @@ class ZoneDessinPente extends JPanel
 	public void afficheEstGagne()
 	{
 		if(joueur.getText()=="Joueur 1(noir) : A toi de jouer")
+		{
 			joueur.setText("Joueur 2(blanc) a gagné");
+		}
 		else
+		{
 			joueur.setText("Joueur 1(noir) a gagné");
-			joueurs_score.setText("<html><pre>Score :<br>  joueur 1(noir)  : " + game.getJoueur(1).getNbPoint() + 
+		}
+		joueurs_score.setText("<html><pre>Score :<br>  joueur 1(noir)  : " + game.getJoueur(1).getNbPoint() + 
 			"/"+game.getNbPointToWin()+" pions capturés<br>  joueur 2(blanc) : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
 		add(joueurs_score);
 		add(joueur);

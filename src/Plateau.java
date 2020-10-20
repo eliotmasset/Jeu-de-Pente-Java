@@ -25,6 +25,11 @@ class Plateau
         }
     }
 
+    public void setThemePlate(String _themePlate)
+    {
+        themePlate=_themePlate;
+    }
+
     public int getNbCaseX()
     {
         return nbCaseX;
@@ -56,16 +61,16 @@ class Plateau
                     case "vide":
                         ret="../img/case_vide.jpg";
                         break;
-                    case "noir":
+                    case "sombre":
                         ret="../img/case_noir.jpg";
                         break;
-                    case "blanc":
+                    case "clair":
                         ret="../img/case_blanc.jpg";
                         break;
-                    case "pion_noir":
+                    case "pion_sombre":
                         ret="../img/pion_noir.jpg";
                         break;
-                    case "pion_blanc":
+                    case "pion_clair":
                         ret="../img/pion_blanc.jpg";
                         break;
                     default:
@@ -77,17 +82,38 @@ class Plateau
                     case "vide":
                         ret="../img/theme_sombre_case_vide.jpg";
                         break;
-                    case "noir":
-                        ret="../img/theme_sombre_case_noir.jpg";
+                    case "sombre":
+                        ret="../img/theme_sombre_case_sombre.jpg";
                         break;
-                    case "blanc":
-                        ret="../img/theme_sombre_case_blanc.jpg";
+                    case "clair":
+                        ret="../img/theme_sombre_case_clair.jpg";
                         break;
-                    case "pion_noir":
-                        ret="../img/theme_sombre_pion_noir.jpg";
+                    case "pion_sombre":
+                        ret="../img/theme_sombre_pion_sombre.jpg";
                         break;
-                    case "pion_blanc":
-                        ret="../img/theme_sombre_pion_blanc.jpg";
+                    case "pion_clair":
+                        ret="../img/theme_sombre_pion_clair.jpg";
+                        break;
+                    default:
+                }
+                break;
+            case "clair":
+                switch(statu)
+                {
+                    case "vide":
+                        ret="../img/theme_clair_case_vide.jpg";
+                        break;
+                    case "sombre":
+                        ret="../img/theme_clair_case_sombre.jpg";
+                        break;
+                    case "clair":
+                        ret="../img/theme_clair_case_clair.jpg";
+                        break;
+                    case "pion_sombre":
+                        ret="../img/theme_clair_pion_sombre.jpg";
+                        break;
+                    case "pion_clair":
+                        ret="../img/theme_clair_pion_clair.jpg";
                         break;
                     default:
                 }
@@ -96,6 +122,18 @@ class Plateau
                 ret="../img/case_vide.jpg";
                 break;
         }
+        return ret;
+    }
+
+    public static String getStatuBy(String path)
+    {
+        String ret="";
+        if(path=="../img/theme_clair_case_vide.jpg" || path=="../img/theme_sombre_case_vide.jpg" || path=="../img/case_vide.jpg")
+            ret="vide";
+        else if(path=="../img/theme_clair_case_clair.jpg" || path=="../img/theme_sombre_case_clair.jpg" || path=="../img/case_blanc.jpg")
+            ret="clair";
+        else
+            ret="sombre";
         return ret;
     }
 
