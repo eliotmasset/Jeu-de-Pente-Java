@@ -11,6 +11,7 @@ class ZoneDessinPente extends JPanel
 	JLabel joueur;
 	JLabel joueurs_score;
 	int size;
+
 	ZoneDessinPente(Partie _game, int _size)
 	{
 		//setLayout(null);
@@ -29,20 +30,29 @@ class ZoneDessinPente extends JPanel
 
 	public void bottomPanel()
     {
-		setBackground(new Color(255,255,255));
-		if(game.getTheme()=="sombre")
-			setBackground(new Color(0,0,0));
-		else if(game.getTheme()=="clair")
-			setBackground(new Color(255,255,255));
 		if(game.getTheme()=="sombre")
 		{
 			joueur.setForeground(new Color(255,255,255));
 			joueurs_score.setForeground(new Color(255,255,255));
+			setBackground(new Color(0,0,0));
+			game.getJoueur(1).setCouleur("noir");
+			game.getJoueur(2).setCouleur("gris");
 		}
 		else if(game.getTheme()=="clair")
 		{
 			joueur.setForeground(new Color(150,199,199));
 			joueurs_score.setForeground(new Color(150,199,199));
+			setBackground(new Color(255,255,255));
+			game.getJoueur(1).setCouleur("bleu");
+			game.getJoueur(2).setCouleur("blanc");
+		}
+		else if(game.getTheme()=="normal")
+		{
+			setBackground(new Color(255,255,255));
+			joueur.setForeground(new Color(0,0,0));
+			joueurs_score.setForeground(new Color(0,0,0));
+			game.getJoueur(1).setCouleur("noir");
+			game.getJoueur(2).setCouleur("blanc");
 		}
 		joueur.setOpaque(false);
 		Font font1 = new Font("Arial",Font.BOLD,20);
@@ -53,9 +63,18 @@ class ZoneDessinPente extends JPanel
 		Font font2 = new Font("Arial",Font.BOLD,16);
 		joueurs_score.setLocation((size/40)*19, size);
 		joueurs_score.setFont(font2);
-		joueurs_score.setText("<html><pre>Score :<br>  joueur 1(noir)  : " + game.getJoueur(1).getNbPoint() + 
-		"/"+game.getNbPointToWin()+" pions capturés<br>  joueur 2(blanc) : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
+		joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 
+		"/"+game.getNbPointToWin()+" pions capturés<br>  "+game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
 		add(joueurs_score);
+
+		if(game.getCurrentJoueur()==game.getJoueur(1).getNom())
+		{
+			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer");
+		}
+		else
+		{
+			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer");
+		}
 	}
 
 	public void affichePionsJoueur(Graphics2D g)
@@ -63,7 +82,7 @@ class ZoneDessinPente extends JPanel
 		Image img;
 		img=null;
 
-		if(game.getCurrentJoueur()=="joueur 1")
+		if(game.getCurrentJoueur()==game.getJoueur(1).getNom())
 		{
 			try 
 			{
@@ -94,31 +113,18 @@ class ZoneDessinPente extends JPanel
 		g.drawImage(img, game.getFenetre().getSizeFenetre()/10 , (game.getFenetre().getSizeFenetre()*100)/96 , 50, 50, this);
 	}
 
-	public void setJoueur(Joueur j)
-	{
-		Image img;
-		if(j.getNom()=="joueur 1")
-		{
-			joueur.setText("Joueur 2(blanc) : A toi de jouer");
-		}
-		else
-		{
-			joueur.setText("Joueur 1(noir) : A toi de jouer");
-		}
-	}
-
 	public void afficheEstGagne()
 	{
-		if(joueur.getText()=="Joueur 1(noir) : A toi de jouer")
+		if(joueur.getText()==game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer")
 		{
-			joueur.setText("Joueur 2(blanc) a gagné");
+			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") a gagné");
 		}
 		else
 		{
-			joueur.setText("Joueur 1(noir) a gagné");
+			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") a gagné");
 		}
-		joueurs_score.setText("<html><pre>Score :<br>  joueur 1(noir)  : " + game.getJoueur(1).getNbPoint() + 
-			"/"+game.getNbPointToWin()+" pions capturés<br>  joueur 2(blanc) : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
+		joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 
+			"/"+game.getNbPointToWin()+" pions capturés<br>  "+game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
 		add(joueurs_score);
 		add(joueur);
 	}
@@ -146,7 +152,14 @@ class ZoneDessinPente extends JPanel
 			{
 				e.printStackTrace();
 			}
-			g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+			if(i%(game.getPlateau().getNbCaseX())>=(game.getPlateau().getNbCaseX()/2)+1 && i>=(game.getPlateau().getNbCaseX()*game.getPlateau().getNbCaseY()/2)+game.getPlateau().getNbCaseY())
+				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX()-1, game.getPlateau().getCases().elementAt(i).getY()-1, size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+			else if(i%(game.getPlateau().getNbCaseX())>=(game.getPlateau().getNbCaseX()/2)+1)
+				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX()-1 , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+			else if(i>=(game.getPlateau().getNbCaseX()*game.getPlateau().getNbCaseY()/2)+1)
+				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY()-1 , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+			else
+				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
 		}
 	}
 }

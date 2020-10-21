@@ -78,9 +78,18 @@ class GameWindow extends JFrame implements ActionListener
 		
 		JMenu menuEdit = new JMenu("Edit");
 		JMenuItem itemTheme =new JMenuItem("Choisir theme");
+		JMenuItem itemNameJoueur1 =new JMenuItem("Choisir le nom du joueur 1");
+		JMenuItem itemNameJoueur2 =new JMenuItem("Choisir le nom du joueur 2");
 		itemTheme.setActionCommand("menu_theme");
+		itemNameJoueur1.setActionCommand("menu_name_joueur_1");
+		itemNameJoueur2.setActionCommand("menu_name_joueur_2");
 		itemTheme.addActionListener(this);
+		itemNameJoueur1.addActionListener(this);
+		itemNameJoueur2.addActionListener(this);
 		menuEdit.add(itemTheme);
+		menuEdit.add(new JSeparator());
+		menuEdit.add(itemNameJoueur1);
+		menuEdit.add(itemNameJoueur2);
 		menuBar.add(menuEdit);
 	}
 
@@ -94,6 +103,50 @@ class GameWindow extends JFrame implements ActionListener
 			{
 				this.dispose();
 			}
+		}
+		else if (evenement.getActionCommand().equals("menu_name_joueur_1"))
+		{
+			boolean end=false;
+			
+			do
+			{
+				end=true;
+				String s = (String)JOptionPane.showInputDialog(
+   						null,
+   						"Veuillez Indiquez le nom du joueur 1 :  (9 caractères max)",
+   						"Changer le nom du joueur 1",
+   						JOptionPane.QUESTION_MESSAGE,
+  						null,
+   						null, // c'est ouvert !!!
+						   game.getJoueur(1).getNom()); // valeur initiale
+				if (s!=null && (s.length() > 0) && (s.length() < 10)) 
+					game.getJoueur(1).setNom(s);
+				else if (s!=null)
+				{
+					end=false;
+				}
+			}while(!end);
+		}
+		else if (evenement.getActionCommand().equals("menu_name_joueur_2"))
+		{
+			boolean end=false;
+			do
+			{
+				end=true;
+				String s = (String)JOptionPane.showInputDialog(
+   							null,
+   							"Veuillez Indiquez le nom du joueur 2 :  (9 caractères max)",
+   							"Changer le nom du joueur 2",
+   							JOptionPane.QUESTION_MESSAGE,
+  							null,
+   							null, // c'est ouvert !!!
+							   game.getJoueur(2).getNom()); // valeur initiale
+				if (s!=null && (s.length() > 0) && (s.length() < 10)) 
+					game.getJoueur(2).setNom(s);
+				else if (s!=null)
+					end=false;
+			}while(!end);
+				
 		}
 		else if (evenement.getActionCommand().equals("menu_theme"))
 		{

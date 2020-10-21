@@ -60,7 +60,7 @@ class MenuWindow extends JFrame implements ActionListener
 		add(lancerPartie);
 
 		options = new JButton("");
-		options.setBounds(80, 405, 400, 80);
+		options.setBounds(80, 415, 400, 80);
 		options.setOpaque(false);
 		options.setContentAreaFilled(false);
 		options.setBorderPainted(false);
@@ -69,7 +69,7 @@ class MenuWindow extends JFrame implements ActionListener
 		add(options);
 
 		quitter = new JButton("");
-		quitter.setBounds(80, 530, 300, 80);
+		quitter.setBounds(80, 550, 300, 80);
 		quitter.setOpaque(false);
 		quitter.setContentAreaFilled(false);
 		quitter.setBorderPainted(false);

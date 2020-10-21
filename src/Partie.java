@@ -32,7 +32,7 @@ class Partie
         eventMouseX=0;
         eventMouseY=0;
         finPartie=false;
-        current_Joueur="joueur 2";
+        current_Joueur=joueur2.getNom();
     }
 
     public String getTheme()
@@ -97,8 +97,7 @@ class Partie
     private void tourdejeu(Joueur j)
     {
         current_Joueur=j.getNom();
-        fenetre.getZoneDessin().setJoueur(j);
-        if(j.getCouleur()=="noir" && !(eventMouseX==0 && eventMouseY==0))
+        if(j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
         else if(!(eventMouseX==0 && eventMouseY==0))
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
@@ -153,7 +152,7 @@ class Partie
             {
                 plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).setPath(plate.getPathBy(theme, "vide"));
                 plate.getCaseAt(eventMouseX+(2*i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(2*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).setPath(plate.getPathBy(theme, "vide"));
-                if(current_Joueur=="joueur 1")
+                if(current_Joueur==joueur1.getNom())
                     joueur1.setNbPoint(joueur1.getNbPoint()+2);
                 else
                     joueur2.setNbPoint(joueur2.getNbPoint()+2);
@@ -194,7 +193,7 @@ class Partie
         {
             fenetre.dispose();
         }
-        else if(current_Joueur=="joueur 1"
+        else if(current_Joueur==joueur1.getNom()
         && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))
         {
             tourdejeu(joueur2);
