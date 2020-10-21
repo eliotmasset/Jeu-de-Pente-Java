@@ -2,8 +2,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
 public class Evenement implements MouseListener
-{
-    Partie game;
+{  
+    private Partie game;
 
     public Evenement(Partie _game)
     {

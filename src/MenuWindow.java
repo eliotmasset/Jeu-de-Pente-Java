@@ -16,12 +16,12 @@ import java.awt.event.MouseEvent;
 
 class MenuWindow extends JFrame implements ActionListener
 {
-    int size;
-	ZoneDessinMenu zone;
-	JButton lancerPartie, options, quitter;
-	Partie game;
-	String paramPartie[];
-	String themes[];
+    private int size;
+	private ZoneDessinMenu zone;
+	private JButton lancerPartie, options, quitter;
+	private Partie game;
+	private String paramPartie[];
+	private String themes[];
 	private MouseAdapter mouseListener;
 
 	MenuWindow(String s, int _size)

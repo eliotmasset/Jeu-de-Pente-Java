@@ -4,8 +4,8 @@ import java.lang.Math;
 
 class Case
 {
-    int coord_X, coord_Y;
-    String path;
+    private int coord_X, coord_Y;
+    private String path;
 
     Case(int _coord_X, int _coord_Y, String _path)
     {

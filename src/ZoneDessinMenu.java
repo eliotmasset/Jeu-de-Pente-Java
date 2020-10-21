@@ -7,7 +7,7 @@ import java.io.IOException;
 
 class ZoneDessinMenu extends JPanel
 {
-	int size;
+	private int size;
     
 	ZoneDessinMenu(int _size)
 	{

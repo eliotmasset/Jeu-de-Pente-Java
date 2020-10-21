@@ -4,9 +4,9 @@ import java.lang.Math;
 
 class Joueur
 {
-    String nom;
-    String couleur;
-    int nbPoint;
+    private String nom;
+    private String couleur;
+    private int nbPoint;
 
     Joueur(String _nom, String _couleur)
 	{

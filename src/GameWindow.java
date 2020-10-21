@@ -15,9 +15,9 @@ import java.awt.event.MouseEvent;
 
 class GameWindow extends JFrame implements ActionListener
 {
-	ZoneDessinPente zone;
-	Partie game;
-	int size;
+	private ZoneDessinPente zone;
+	private Partie game;
+	private int size;
 
 	GameWindow(String s, Partie _game, int _size)
 	{

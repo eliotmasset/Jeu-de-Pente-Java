@@ -7,10 +7,10 @@ import java.io.IOException;
 
 class ZoneDessinPente extends JPanel
 {
-	Partie game;
-	JLabel joueur;
-	JLabel joueurs_score;
-	int size;
+	private Partie game;
+	private JLabel joueur;
+	private JLabel joueurs_score;
+	private int size;
 
 	ZoneDessinPente(Partie _game, int _size)
 	{

@@ -4,10 +4,10 @@ import java.lang.Math;
 
 class Plateau
 {
-    int nbCaseX, nbCaseY;
+    private int nbCaseX, nbCaseY;
     private Vector<Case> cases;
-    int size;
-    String themePlate;
+    private int size;
+    private String themePlate;
 
     Plateau(int _nbCaseX, int _nbCaseY, int _size, String _themePlate)
 	{

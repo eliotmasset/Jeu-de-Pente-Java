@@ -3,19 +3,19 @@ import javax.swing.*;
 import java.lang.Math;
 
 class Partie
-{
-    Plateau plate;
+{  
+    private Plateau plate;
     private int eventMouseX,eventMouseY;
-    final int decalMenu=25;
-    Joueur joueur1, joueur2;
-    String current_Joueur;
-    GameWindow fenetre;
-    boolean finPartie;
-    int pointToWin;
-    int NbSameColorToWin;
-    String theme;
-    int nbCase;
-    String[] themes;
+    private final int decalMenu=25;
+    private Joueur joueur1, joueur2;
+    private String current_Joueur;
+    private GameWindow fenetre;
+    private boolean finPartie;
+    private int pointToWin;
+    private int NbSameColorToWin;
+    private String theme;
+    private int nbCase;
+    private String[] themes;
     
 
 	Partie(String[] _themes,int size, int _nbCase, int _pointToWin, int _NbSameColorToWin, String _theme)
