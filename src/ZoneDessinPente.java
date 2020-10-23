@@ -71,7 +71,7 @@ class ZoneDessinPente extends JPanel
 		{
 			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer");
 		}
-		else
+		else if(game.getCurrentJoueur()==game.getJoueur(2).getNom())
 		{
 			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer");
 		}
@@ -96,7 +96,7 @@ class ZoneDessinPente extends JPanel
 				e.printStackTrace();
 			}
 		}
-		else
+		else if(game.getCurrentJoueur()==game.getJoueur(2).getNom())
 		{
 			try 
 			{
@@ -119,7 +119,7 @@ class ZoneDessinPente extends JPanel
 		{
 			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") a gagné");
 		}
-		else
+		else if(joueur.getText()==game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer")
 		{
 			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") a gagné");
 		}
@@ -161,5 +161,19 @@ class ZoneDessinPente extends JPanel
 			else
 				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
 		}
+		if(game.getNbTour()==0)
+        {
+			g.setColor(new Color(255,0,0));
+			g.drawRect(size/2-((size/game.getPlateau().getNbCaseX())*3)/2, size/2-((size/game.getPlateau().getNbCaseY())*3)/2, size/game.getPlateau().getNbCaseX()*3, size/game.getPlateau().getNbCaseY()*3);
+			g.setColor(new Color(255,0,0,20));
+			g.fillRect(size/2-((size/game.getPlateau().getNbCaseX())*3)/2, size/2-((size/game.getPlateau().getNbCaseY())*3)/2, size/game.getPlateau().getNbCaseX()*3, size/game.getPlateau().getNbCaseY()*3);
+		}
+		else if(game.getNbTour()==1)
+        {
+			g.setColor(new Color(0,255,0));
+			g.drawRect(size/2-((size/game.getPlateau().getNbCaseX())*7)/2, size/2-((size/game.getPlateau().getNbCaseY())*7)/2, size/game.getPlateau().getNbCaseX()*7, size/game.getPlateau().getNbCaseY()*7);
+			g.setColor(new Color(0,255,0,20));
+			g.fillRect(size/2-((size/game.getPlateau().getNbCaseX())*7)/2, size/2-((size/game.getPlateau().getNbCaseY())*7)/2, size/game.getPlateau().getNbCaseX()*7, size/game.getPlateau().getNbCaseY()*7);
+        }
 	}
 }

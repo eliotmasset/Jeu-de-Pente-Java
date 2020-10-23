@@ -1,0 +1,3 @@
+a    |    1
+Eliot    |    5
+joueur 2    |    2

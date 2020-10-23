@@ -1,5 +1,7 @@
 import java.util.*;
 import javax.swing.*;
+
+import java.io.*;
 import java.lang.Math;
 
 class Partie
@@ -16,6 +18,7 @@ class Partie
     private String theme;
     private int nbCase;
     private String[] themes;
+    private int nbTour;
     
 
 	Partie(String[] _themes,int size, int _nbCase, int _pointToWin, int _NbSameColorToWin, String _theme)
@@ -25,6 +28,7 @@ class Partie
         NbSameColorToWin=_NbSameColorToWin;
         nbCase=_nbCase;
         theme=_theme;
+        nbTour=0;
         joueur1 = new Joueur("joueur 1", "noir");
         joueur2 = new Joueur("joueur 2", "blanc");
         plate = new Plateau(nbCase,nbCase, size, theme);
@@ -33,6 +37,7 @@ class Partie
         eventMouseY=0;
         finPartie=false;
         current_Joueur=joueur2.getNom();
+        plate.getCaseAt(fenetre.getSizeFenetre()/2, fenetre.getSizeFenetre()/2+25).setPath(plate.getPathBy(theme, "clair"));
     }
 
     public String getTheme()
@@ -84,6 +89,11 @@ class Partie
         return current_Joueur;
     }
 
+    public void setCurrentJoueur(String c)
+    {
+        current_Joueur=c;
+    }
+
     public int getNbPointToWin()
     {
         return pointToWin;
@@ -94,15 +104,55 @@ class Partie
         return finPartie;
     }
 
+    public int getNbTour()
+    {
+        return nbTour;
+    }
+
     private void tourdejeu(Joueur j)
     {
+        nbTour++;
         current_Joueur=j.getNom();
-        if(j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
+        if(nbTour==1 && (eventMouseX<=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*3)/2)
+        && (eventMouseX>=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*3)/2)
+        && (eventMouseY<=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*3)/2+25)
+        && (eventMouseY>=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*3)/2+25))
+        {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
-        else if(!(eventMouseX==0 && eventMouseY==0))
+            algo();
+            fenetre._repaint();
+        }
+        else if(nbTour==2 && (eventMouseX<=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
+        && (eventMouseX>=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
+        && (eventMouseY<=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25)
+        && (eventMouseY>=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25))
+        {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
-        algo();
-        fenetre._repaint();
+            algo();
+            fenetre._repaint();
+        }
+        else if(nbTour!=1 && nbTour!=2 && j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
+        {
+            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
+            algo();
+            fenetre._repaint();
+        }
+        else if(nbTour!=1 && nbTour!=2 && j==joueur2 && !(eventMouseX==0 && eventMouseY==0))
+        {
+            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
+            algo();
+            fenetre._repaint();
+        }
+        else if(nbTour==1)
+        {
+            current_Joueur=joueur2.getNom();
+            nbTour=0;
+        }
+        else if(nbTour==2)
+        {
+            current_Joueur=joueur1.getNom();
+            nbTour=1;
+        }
         if(isWin()==joueur1 || isWin()==joueur2)
         {
             fenetre.getZoneDessin().afficheEstGagne();
@@ -154,7 +204,7 @@ class Partie
                 plate.getCaseAt(eventMouseX+(2*i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(2*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).setPath(plate.getPathBy(theme, "vide"));
                 if(current_Joueur==joueur1.getNom())
                     joueur1.setNbPoint(joueur1.getNbPoint()+2);
-                else
+                else if(current_Joueur==joueur2.getNom())
                     joueur2.setNbPoint(joueur2.getNbPoint()+2);
             }
         }
@@ -185,22 +235,79 @@ class Partie
         }
     }
 
+    public void saveScorePlayer(Joueur j)
+    {
+        File file = new File("ScoreBoard.txt");
+        File fileTemp = new File("ScoreBoardTemp.txt");
+        if(!file.exists())
+        {
+            try
+            {
+                file.createNewFile();
+            }catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+            
+        }
+        try
+        {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(fileTemp));
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String reader= br.readLine();
+            boolean trouve=false;
+            while(reader!=null)
+            {
+                if(j.getNom().equalsIgnoreCase(reader.substring(0,j.getNom().length())))
+                {
+                    trouve=true;
+                    reader=reader.replaceAll(j.getNom()+"    |    "+reader.substring(j.getNom().length()+9, reader.length()),j.getNom()+"    |    "+String.valueOf(Integer.parseInt(reader.substring(j.getNom().length()+9, reader.length()))+1));
+                    reader=reader.substring(0,reader.length()/2);
+                }
+                bw.write(reader+"\n");
+                bw.flush();
+                reader = br.readLine();
+            }
+            if(!trouve)
+                bw.write(j.getNom()+"    |    1\n");
+            bw.close();
+            file.delete();
+            fileTemp.renameTo(file);
+            br.close();
+            
+        }
+        catch(IOException ioe)
+        {
+            System.err.println("IOException:" + ioe.getMessage());
+        }
+        
+    }
+
     public void clicEvent(int x,int y)
     {
         this.eventMouseX=x;
         this.eventMouseY=y;
         if(finPartie)
         {
+            if(current_Joueur==joueur1.getNom())
+                saveScorePlayer(joueur1);
+            else if(current_Joueur==joueur2.getNom())
+                saveScorePlayer(joueur2);
             fenetre.dispose();
         }
-        else if(current_Joueur==joueur1.getNom()
+        else if(nbTour==0)
+        {
+            tourdejeu(joueur1);
+        }
+        else if(current_Joueur==joueur2.getNom()
+        && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))
+        {
+            tourdejeu(joueur1);
+        }
+        else if (current_Joueur==joueur1.getNom()
         && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))
         {
             tourdejeu(joueur2);
-        }
-        else if (plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))
-        {
-            tourdejeu(joueur1);
         }
     }
 

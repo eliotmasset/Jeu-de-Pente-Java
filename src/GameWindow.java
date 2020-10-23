@@ -107,7 +107,6 @@ class GameWindow extends JFrame implements ActionListener
 		else if (evenement.getActionCommand().equals("menu_name_joueur_1"))
 		{
 			boolean end=false;
-			
 			do
 			{
 				end=true;
@@ -119,12 +118,13 @@ class GameWindow extends JFrame implements ActionListener
   						null,
    						null, // c'est ouvert !!!
 						   game.getJoueur(1).getNom()); // valeur initiale
-				if (s!=null && (s.length() > 0) && (s.length() < 10)) 
-					game.getJoueur(1).setNom(s);
-				else if (s!=null)
+				if (s!=null && (s.length() > 0) && (s.length() < 10))
 				{
-					end=false;
+					game.getJoueur(1).setNom(s);
+					game.setCurrentJoueur(s);
 				}
+				else if (s!=null)
+					end=false;
 			}while(!end);
 		}
 		else if (evenement.getActionCommand().equals("menu_name_joueur_2"))
@@ -141,12 +141,14 @@ class GameWindow extends JFrame implements ActionListener
   							null,
    							null, // c'est ouvert !!!
 							   game.getJoueur(2).getNom()); // valeur initiale
-				if (s!=null && (s.length() > 0) && (s.length() < 10)) 
+				if (s!=null && (s.length() > 0) && (s.length() < 10))
+				{
 					game.getJoueur(2).setNom(s);
+					game.setCurrentJoueur(s);
+				}
 				else if (s!=null)
 					end=false;
 			}while(!end);
-				
 		}
 		else if (evenement.getActionCommand().equals("menu_theme"))
 		{
