@@ -169,28 +169,6 @@ class MenuWindow extends JFrame implements ActionListener
         menuFichier.add(itemQuitter);
 	}
 
-	/*public void mouseEntered(MouseEvent evenement) 
-	{
-		if (evenement.getSource()==lancerPartie)
-		{
-			System.out.println("<- Image icon activate");
-			try {
-				Image img = ImageIO.read(getClass().getResource("/icon.png"));
-				lancerPartie.setIcon(new ImageIcon(img));
-			} catch (IOException ex) {
-			}
-		}
-	}
-
-	public void mouseExited(MouseEvent evenement) 
-	{
-		if (evenement.getSource()==lancerPartie)
-		{
-			System.out.println("<- Image icon desctivate");
-			lancerPartie.setIcon(null);
-		}
-	}*/
-
     public void actionPerformed(ActionEvent evenement)
 	{
 		if (evenement.getSource()==lancerPartie)
@@ -208,7 +186,7 @@ class MenuWindow extends JFrame implements ActionListener
 			JLabel lab0 = new JLabel("Theme : ");
 			JPanel panel = new JPanel(new GridLayout(0, 1));
 			JLabel lab1 = new JLabel("Nombre de Case : ");
-			JSpinner nbCase = new JSpinner(new SpinnerNumberModel(19,8,25,1));
+			JSpinner nbCase = new JSpinner(new SpinnerNumberModel(19,8,25,2));
 			JLabel lab2 = new JLabel("Objectif de point : ");
 			JSpinner pointToWin = new JSpinner(new SpinnerNumberModel(10,2,100,2));
 			JLabel lab3 = new JLabel("Objectif de pions à aligner : ");

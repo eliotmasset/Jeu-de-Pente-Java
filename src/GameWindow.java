@@ -15,6 +15,7 @@ import java.awt.event.MouseEvent;
 
 class GameWindow extends JFrame implements ActionListener
 {
+	private ScoreBoardWindow w;
 	private ZoneDessinPente zone;
 	private Partie game;
 	private int size;
@@ -91,6 +92,14 @@ class GameWindow extends JFrame implements ActionListener
 		menuEdit.add(itemNameJoueur1);
 		menuEdit.add(itemNameJoueur2);
 		menuBar.add(menuEdit);
+
+
+		JMenu menuInfo = new JMenu("Informations");
+		JMenuItem itemScoreBoard =new JMenuItem("ScoreBoard");
+		itemScoreBoard.setActionCommand("menu_score_board");
+		itemScoreBoard.addActionListener(this);
+		menuInfo.add(itemScoreBoard);
+		menuBar.add(menuInfo);
 	}
 
     public void actionPerformed(ActionEvent evenement)
@@ -164,6 +173,11 @@ class GameWindow extends JFrame implements ActionListener
 			{
 				game.setTheme(rep);
 			}
+		}
+		else if (evenement.getActionCommand().equals("menu_score_board"))
+		{
+			if(w==null || !w.isShowing())
+				w = new ScoreBoardWindow("ScoreBoard",size);
 		}
     }
 }

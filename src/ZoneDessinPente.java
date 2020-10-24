@@ -11,18 +11,15 @@ class ZoneDessinPente extends JPanel
 	private JLabel joueur;
 	private JLabel joueurs_score;
 	private int size;
+	private boolean finPartie;
 
 	ZoneDessinPente(Partie _game, int _size)
 	{
 		//setLayout(null);
+		finPartie = false;
 		game = _game;
 		size=_size;
 		setSize(size,size);
-		setBackground(new Color(255,255,255));
-		if(game.getTheme()=="sombre")
-			setBackground(new Color(0,0,0));
-		else if(game.getTheme()=="clair")
-			setBackground(new Color(255,255,255));
 		joueur = new JLabel("Joueur 1(noir) : A toi de jouer");
 		joueurs_score = new JLabel("<html><pre>Score :<br>    joueur 1(noir)  : 0 pions capturés<br>    joueur 2(blanc) : 0 pions capturés</pre></html>");
 		bottomPanel();
@@ -67,13 +64,29 @@ class ZoneDessinPente extends JPanel
 		"/"+game.getNbPointToWin()+" pions capturés<br>  "+game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
 		add(joueurs_score);
 
-		if(game.getCurrentJoueur()==game.getJoueur(1).getNom())
+		if(game.getCurrentJoueur()==game.getJoueur(1).getNom() && !finPartie)
 		{
 			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer");
 		}
-		else if(game.getCurrentJoueur()==game.getJoueur(2).getNom())
+		else if(game.getCurrentJoueur()==game.getJoueur(2).getNom() && !finPartie)
 		{
 			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer");
+		}
+		else if(joueur.getText().equals(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer"))
+		{
+			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") a gagné");
+			joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 
+			"/"+game.getNbPointToWin()+" pions capturés<br>  "+game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
+		}
+		else if(joueur.getText().equals(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer"))
+		{
+			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") a gagné");
+			joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 
+			"/"+game.getNbPointToWin()+" pions capturés<br>  "+game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
+		}
+		else
+		{
+			System.out.println(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer"+" == \n"+joueur.getText()+"<");
 		}
 	}
 
@@ -115,18 +128,8 @@ class ZoneDessinPente extends JPanel
 
 	public void afficheEstGagne()
 	{
-		if(joueur.getText()==game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer")
-		{
-			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") a gagné");
-		}
-		else if(joueur.getText()==game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer")
-		{
-			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") a gagné");
-		}
-		joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 
-			"/"+game.getNbPointToWin()+" pions capturés<br>  "+game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
-		add(joueurs_score);
-		add(joueur);
+		finPartie=true;
+
 	}
 	
 	@Override
@@ -161,18 +164,11 @@ class ZoneDessinPente extends JPanel
 			else
 				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
 		}
-		if(game.getNbTour()==0)
+		if(game.getNbTour()==1)
         {
 			g.setColor(new Color(255,0,0));
-			g.drawRect(size/2-((size/game.getPlateau().getNbCaseX())*3)/2, size/2-((size/game.getPlateau().getNbCaseY())*3)/2, size/game.getPlateau().getNbCaseX()*3, size/game.getPlateau().getNbCaseY()*3);
-			g.setColor(new Color(255,0,0,20));
-			g.fillRect(size/2-((size/game.getPlateau().getNbCaseX())*3)/2, size/2-((size/game.getPlateau().getNbCaseY())*3)/2, size/game.getPlateau().getNbCaseX()*3, size/game.getPlateau().getNbCaseY()*3);
-		}
-		else if(game.getNbTour()==1)
-        {
-			g.setColor(new Color(0,255,0));
 			g.drawRect(size/2-((size/game.getPlateau().getNbCaseX())*7)/2, size/2-((size/game.getPlateau().getNbCaseY())*7)/2, size/game.getPlateau().getNbCaseX()*7, size/game.getPlateau().getNbCaseY()*7);
-			g.setColor(new Color(0,255,0,20));
+			g.setColor(new Color(255,0,0,20));
 			g.fillRect(size/2-((size/game.getPlateau().getNbCaseX())*7)/2, size/2-((size/game.getPlateau().getNbCaseY())*7)/2, size/game.getPlateau().getNbCaseX()*7, size/game.getPlateau().getNbCaseY()*7);
         }
 	}

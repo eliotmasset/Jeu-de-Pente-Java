@@ -23,7 +23,7 @@ class ZoneDessinMenu extends JPanel
         affiche_Menu(g);
     }
     
-    public void affiche_Menu(Graphics g)
+    private void affiche_Menu(Graphics g)
 	{
 		Image img=null;
 		try 

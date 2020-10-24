@@ -113,40 +113,26 @@ class Partie
     {
         nbTour++;
         current_Joueur=j.getNom();
-        if(nbTour==1 && (eventMouseX<=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*3)/2)
-        && (eventMouseX>=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*3)/2)
-        && (eventMouseY<=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*3)/2+25)
-        && (eventMouseY>=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*3)/2+25))
-        {
-            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
-            algo();
-            fenetre._repaint();
-        }
-        else if(nbTour==2 && (eventMouseX<=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
-        && (eventMouseX>=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
-        && (eventMouseY<=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25)
-        && (eventMouseY>=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25))
+        if(nbTour==2 && ((eventMouseX>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
+        || (eventMouseX<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
+        || (eventMouseY>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25)
+        || (eventMouseY<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25)))
         {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
             algo();
             fenetre._repaint();
         }
-        else if(nbTour!=1 && nbTour!=2 && j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
+        else if(nbTour!=2 && j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
         {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
             algo();
             fenetre._repaint();
         }
-        else if(nbTour!=1 && nbTour!=2 && j==joueur2 && !(eventMouseX==0 && eventMouseY==0))
+        else if(nbTour!=2 && j==joueur2 && !(eventMouseX==0 && eventMouseY==0))
         {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
             algo();
             fenetre._repaint();
-        }
-        else if(nbTour==1)
-        {
-            current_Joueur=joueur2.getNom();
-            nbTour=0;
         }
         else if(nbTour==2)
         {
@@ -155,6 +141,7 @@ class Partie
         }
         if(isWin()==joueur1 || isWin()==joueur2)
         {
+            System.out.println("LA");
             fenetre.getZoneDessin().afficheEstGagne();
             finPartie=true;
         }
@@ -228,6 +215,7 @@ class Partie
                     suite=false;
                 if(nbPions>=NbSameColorToWin)
                 {
+                    System.out.println("CLAP");
                     fenetre.getZoneDessin().afficheEstGagne();
                     finPartie=true;
                 }
