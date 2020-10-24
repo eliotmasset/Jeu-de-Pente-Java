@@ -13,6 +13,7 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.sound.sampled.*;
 
 class MenuWindow extends JFrame implements ActionListener
 {
@@ -23,6 +24,12 @@ class MenuWindow extends JFrame implements ActionListener
 	private String paramPartie[];
 	private String themes[];
 	private MouseAdapter mouseListener;
+
+	private final int BUFFER_SIZE = 128000;
+    private File soundFile;
+    private AudioInputStream audioStream;
+    private AudioFormat audioFormat;
+	private SourceDataLine sourceLine;
 
 	MenuWindow(String s, int _size)
 	{
@@ -45,6 +52,7 @@ class MenuWindow extends JFrame implements ActionListener
 		setButtons();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+        playSong();
 	}
 
 	public void setButtons()
@@ -168,6 +176,39 @@ class MenuWindow extends JFrame implements ActionListener
 		menuFichier.add(new JSeparator());
         menuFichier.add(itemQuitter);
 	}
+
+	public void playSong()
+    {
+        try {
+            soundFile = new File("../son/start.wav");
+            audioStream = AudioSystem.getAudioInputStream(soundFile);
+            audioFormat = audioStream.getFormat();
+            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
+            sourceLine = (SourceDataLine) AudioSystem.getLine(info);
+            sourceLine.open(audioFormat);
+			sourceLine.start();
+			int nBytesRead = 0;
+           	byte[] abData = new byte[BUFFER_SIZE];
+           	while (nBytesRead != -1 && (game==null || !game.getFenetre().isVisible())) {
+               	try {
+                   	nBytesRead = audioStream.read(abData, 0, abData.length);
+               	} catch (IOException e) {
+                   	e.printStackTrace();
+               	}
+               	if (nBytesRead >= 0) {
+                   	@SuppressWarnings("unused")
+                   	int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
+               	}
+           	}
+
+           	sourceLine.drain();
+           	sourceLine.close();
+        }
+        catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            throw new RuntimeException(e);
+		 }
+		 playSong();
+    }
 
     public void actionPerformed(ActionEvent evenement)
 	{
