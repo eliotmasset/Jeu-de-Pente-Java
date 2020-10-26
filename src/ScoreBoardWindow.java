@@ -17,7 +17,7 @@ class ScoreBoardWindow extends JFrame// implements ActionListener
     private int size;
     private zoneDessinScoreBoard zone;
 
-	ScoreBoardWindow(String s, int _size)
+	ScoreBoardWindow(int _size)
 	{
 		size=_size;
 		setSize(size,size);

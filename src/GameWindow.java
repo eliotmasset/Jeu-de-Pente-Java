@@ -130,7 +130,6 @@ class GameWindow extends JFrame implements ActionListener
 				if (s!=null && (s.length() > 0) && (s.length() < 10))
 				{
 					game.getJoueur(1).setNom(s);
-					game.setCurrentJoueur(s);
 				}
 				else if (s!=null)
 					end=false;
@@ -153,7 +152,6 @@ class GameWindow extends JFrame implements ActionListener
 				if (s!=null && (s.length() > 0) && (s.length() < 10))
 				{
 					game.getJoueur(2).setNom(s);
-					game.setCurrentJoueur(s);
 				}
 				else if (s!=null)
 					end=false;
@@ -177,7 +175,7 @@ class GameWindow extends JFrame implements ActionListener
 		else if (evenement.getActionCommand().equals("menu_score_board"))
 		{
 			if(w==null || !w.isShowing())
-				w = new ScoreBoardWindow("ScoreBoard",size);
+				w = new ScoreBoardWindow(size);
 		}
     }
 }

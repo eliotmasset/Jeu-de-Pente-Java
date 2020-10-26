@@ -52,12 +52,12 @@ class ZoneDessinPente extends JPanel
 			game.getJoueur(2).setCouleur("blanc");
 		}
 		joueur.setOpaque(false);
-		Font font1 = new Font("Arial",Font.BOLD,20);
+		Font font1 = new Font("Arial",Font.BOLD,size/40);
 		joueur.setFont(font1);
-		joueur.setLocation(size/40, size+10);
+		joueur.setLocation(size/40, size);
 		add(joueur);
 
-		Font font2 = new Font("Arial",Font.BOLD,16);
+		Font font2 = new Font("Arial",Font.BOLD,size/50);
 		joueurs_score.setLocation((size/40)*19, size);
 		joueurs_score.setFont(font2);
 		joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 
@@ -83,10 +83,6 @@ class ZoneDessinPente extends JPanel
 			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") a gagné");
 			joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 
 			"/"+game.getNbPointToWin()+" pions capturés<br>  "+game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
-		}
-		else
-		{
-			System.out.println(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer"+" == \n"+joueur.getText()+"<");
 		}
 	}
 
@@ -123,7 +119,7 @@ class ZoneDessinPente extends JPanel
 				e.printStackTrace();
 			}
 		}
-		g.drawImage(img, game.getFenetre().getSizeFenetre()/10 , (game.getFenetre().getSizeFenetre()*100)/96 , 50, 50, this);
+		g.drawImage(img, size/40, size+joueur.getHeight() , game.getFenetre().getSizeFenetre()/20, game.getFenetre().getSizeFenetre()/20, this);
 	}
 
 	public void afficheEstGagne()
@@ -156,13 +152,13 @@ class ZoneDessinPente extends JPanel
 				e.printStackTrace();
 			}
 			if(i%(game.getPlateau().getNbCaseX())>=(game.getPlateau().getNbCaseX()/2)+1 && i>=(game.getPlateau().getNbCaseX()*game.getPlateau().getNbCaseY()/2)+game.getPlateau().getNbCaseY())
-				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX()-1, game.getPlateau().getCases().elementAt(i).getY()-1, size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX()-1, game.getPlateau().getCases().elementAt(i).getY()-1, size/game.getPlateau().getNbCaseX()+1, size/game.getPlateau().getNbCaseY()+1, this);
 			else if(i%(game.getPlateau().getNbCaseX())>=(game.getPlateau().getNbCaseX()/2)+1)
-				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX()-1 , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX()-1 , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX()+1, size/game.getPlateau().getNbCaseY()+1, this);
 			else if(i>=(game.getPlateau().getNbCaseX()*game.getPlateau().getNbCaseY()/2)+1)
-				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY()-1 , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY()-1 , size/game.getPlateau().getNbCaseX()+1, size/game.getPlateau().getNbCaseY()+1, this);
 			else
-				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX(), size/game.getPlateau().getNbCaseY(), this);
+				g.drawImage(img, game.getPlateau().getCases().elementAt(i).getX() , game.getPlateau().getCases().elementAt(i).getY() , size/game.getPlateau().getNbCaseX()+1, size/game.getPlateau().getNbCaseY()+1, this);
 		}
 		if(game.getNbTour()==1)
         {

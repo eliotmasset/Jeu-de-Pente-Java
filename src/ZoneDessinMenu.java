@@ -28,12 +28,12 @@ class ZoneDessinMenu extends JPanel
 		Image img=null;
 		try 
 		{
-			img = ImageIO.read(new File("../img/Menu-Pente.png"));
+			img = ImageIO.read(new File("../img/Menu-Pente.jpg"));
 		} 
 		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
-        g.drawImage(img,0,0,this);
+        g.drawImage(img,0,0,size,size,this);
 	}
 }

@@ -46,6 +46,26 @@ class Partie
         return theme;
     }
 
+    public String getPathByTheme(String Theme)
+    {
+        String rep="";
+        switch(Theme)
+        {
+            case "normal":
+                rep="../son/partie1.wav";
+                break;
+            case "sombre":
+                rep="../son/partie1.wav";
+                break;
+            case "clair":
+                rep="../son/partie1.wav";
+                break;
+            default:
+                break;
+        }
+        return rep;
+    }
+
     public String[] getThemes()
     {
         return themes;
@@ -135,14 +155,8 @@ class Partie
             algo();
             fenetre._repaint();
         }
-        else if(nbTour==2)
-        {
-            current_Joueur=joueur1.getNom();
-            nbTour=1;
-        }
         if(isWin()==joueur1 || isWin()==joueur2)
         {
-            System.out.println("LA");
             fenetre.getZoneDessin().afficheEstGagne();
             finPartie=true;
         }
@@ -216,7 +230,6 @@ class Partie
                     suite=false;
                 if(nbPions>=NbSameColorToWin)
                 {
-                    System.out.println("CLAP");
                     fenetre.getZoneDessin().afficheEstGagne();
                     finPartie=true;
                 }

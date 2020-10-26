@@ -19,7 +19,8 @@ class MenuWindow extends JFrame implements ActionListener
 {
     private int size;
 	private ZoneDessinMenu zone;
-	private JButton lancerPartie, options, quitter;
+	private ScoreBoardWindow sc;
+	private JButton lancerPartie, scoreboard, options, quitter;
 	private Partie game;
 	private String paramPartie[];
 	private String themes[];
@@ -52,14 +53,14 @@ class MenuWindow extends JFrame implements ActionListener
 		setButtons();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-        playSong();
+        playSong("../son/start.wav");
 	}
 
 	public void setButtons()
 	{
 
 		lancerPartie = new JButton("");
-		lancerPartie.setBounds(80, 280, 600, 80);
+		lancerPartie.setBounds(size/8, (23*size)/64, (3*size)/4, size/10);
 		lancerPartie.setOpaque(false);
 		lancerPartie.setContentAreaFilled(false);
 		lancerPartie.setBorderPainted(false);
@@ -67,8 +68,17 @@ class MenuWindow extends JFrame implements ActionListener
 		lancerPartie.addActionListener(this);
 		add(lancerPartie);
 
+		scoreboard = new JButton("");
+		scoreboard.setBounds(size/8, (59*size)/128, size/2, size/10);
+		scoreboard.setOpaque(false);
+		scoreboard.setContentAreaFilled(false);
+		scoreboard.setBorderPainted(false);
+		scoreboard.setFocusPainted(false);
+		scoreboard.addActionListener(this);
+		add(scoreboard);
+
 		options = new JButton("");
-		options.setBounds(80, 415, 400, 80);
+		options.setBounds(size/8, (73*size)/128, size/2, size/10);
 		options.setOpaque(false);
 		options.setContentAreaFilled(false);
 		options.setBorderPainted(false);
@@ -77,7 +87,7 @@ class MenuWindow extends JFrame implements ActionListener
 		add(options);
 
 		quitter = new JButton("");
-		quitter.setBounds(80, 550, 300, 80);
+		quitter.setBounds(size/3, (87*size)/128, (5*size)/12, size/10);
 		quitter.setOpaque(false);
 		quitter.setContentAreaFilled(false);
 		quitter.setBorderPainted(false);
@@ -98,6 +108,15 @@ class MenuWindow extends JFrame implements ActionListener
 					} catch (IOException ex) {
 					}
 				}
+				if (evenement.getSource()==scoreboard)
+				{
+					try {
+						Image img = ImageIO.read(new File("../img/select.png"));
+						scoreboard.setIcon(new ImageIcon(img));
+						scoreboard.setHorizontalAlignment(SwingConstants.LEFT);
+					} catch (IOException ex) {
+					}
+				}
 				if (evenement.getSource()==options)
 				{
 					try {
@@ -107,7 +126,7 @@ class MenuWindow extends JFrame implements ActionListener
 					} catch (IOException ex) {
 					}
 				}
-				else if (evenement.getSource()==quitter)
+				if (evenement.getSource()==quitter)
 				{
 					try {
 						Image img = ImageIO.read(new File("../img/select.png"));
@@ -125,17 +144,22 @@ class MenuWindow extends JFrame implements ActionListener
 				{
 					lancerPartie.setIcon(null);
 				}
-				else if (evenement.getSource()==options)
+				if (evenement.getSource()==scoreboard)
+				{
+					scoreboard.setIcon(null);
+				}
+				if (evenement.getSource()==options)
 				{
 					options.setIcon(null);
 				}
-				else if (evenement.getSource()==quitter)
+				if (evenement.getSource()==quitter)
 				{
 					quitter.setIcon(null);
 				}
 			}
 		};
 		lancerPartie.addMouseListener(mouseListener);
+		scoreboard.addMouseListener(mouseListener);
 		options.addMouseListener(mouseListener);
 		quitter.addMouseListener(mouseListener);
 	}
@@ -177,10 +201,10 @@ class MenuWindow extends JFrame implements ActionListener
         menuFichier.add(itemQuitter);
 	}
 
-	public void playSong()
+	public void playSong(String path)
     {
         try {
-            soundFile = new File("../son/start.wav");
+            soundFile = new File(path);
             audioStream = AudioSystem.getAudioInputStream(soundFile);
             audioFormat = audioStream.getFormat();
             DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
@@ -188,26 +212,45 @@ class MenuWindow extends JFrame implements ActionListener
             sourceLine.open(audioFormat);
 			sourceLine.start();
 			int nBytesRead = 0;
-           	byte[] abData = new byte[BUFFER_SIZE];
-           	while (nBytesRead != -1 && (game==null || !game.getFenetre().isVisible())) {
-               	try {
-                   	nBytesRead = audioStream.read(abData, 0, abData.length);
-               	} catch (IOException e) {
-                   	e.printStackTrace();
-               	}
-               	if (nBytesRead >= 0) {
-                   	@SuppressWarnings("unused")
-                   	int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
-               	}
-           	}
-
+			   byte[] abData = new byte[BUFFER_SIZE];
+			if(game==null || !game.getFenetre().isVisible())
+			{
+				while (nBytesRead != -1 && (game==null || !game.getFenetre().isVisible())) {
+					try {
+						nBytesRead = audioStream.read(abData, 0, abData.length);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					if (nBytesRead >= 0) {
+						@SuppressWarnings("unused")
+						int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
+					}
+				}
+			}
+			else
+			{
+				while (nBytesRead != -1 && path==game.getPathByTheme(game.getTheme()) && game!=null && game.getFenetre().isVisible()) {
+					try {
+						nBytesRead = audioStream.read(abData, 0, abData.length);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					if (nBytesRead >= 0) {
+						@SuppressWarnings("unused")
+						int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
+					}
+				}
+			}
            	sourceLine.drain();
            	sourceLine.close();
         }
         catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
             throw new RuntimeException(e);
 		 }
-		 playSong();
+		 if(game==null || !game.getFenetre().isVisible())
+		 	playSong("../son/start.wav");
+		 else
+		 	playSong(game.getPathByTheme(game.getTheme()));
     }
 
     public void actionPerformed(ActionEvent evenement)
@@ -220,6 +263,10 @@ class MenuWindow extends JFrame implements ActionListener
 			}
 			else if(!game.getFenetre().isVisible())
 				game = new Partie(themes,size,Integer.parseInt(paramPartie[0]),Integer.parseInt(paramPartie[1]),Integer.parseInt(paramPartie[2]),paramPartie[3]);
+		}
+		if (evenement.getSource()==scoreboard)
+		{
+			sc = new ScoreBoardWindow(size);
 		}
 		else if (evenement.getSource()==options)
 		{
