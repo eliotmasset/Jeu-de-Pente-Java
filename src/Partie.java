@@ -46,7 +46,7 @@ class Partie
         return theme;
     }
 
-    public String getPathByTheme(String Theme)
+    public static String getPathByTheme(String Theme)
     {
         String rep="";
         switch(Theme)

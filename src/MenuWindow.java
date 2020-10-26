@@ -11,158 +11,32 @@ import javax.swing.text.html.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.imageio.ImageIO;
 import java.io.IOException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.sound.sampled.*;
 
-class MenuWindow extends JFrame implements ActionListener
+class MenuWindow extends JFrame
 {
     private int size;
 	private ZoneDessinMenu zone;
-	private ScoreBoardWindow sc;
-	private JButton lancerPartie, scoreboard, options, quitter;
-	private Partie game;
-	private String paramPartie[];
-	private String themes[];
-	private MouseAdapter mouseListener;
-
-	private final int BUFFER_SIZE = 128000;
-    private File soundFile;
-    private AudioInputStream audioStream;
-    private AudioFormat audioFormat;
-	private SourceDataLine sourceLine;
+	private Sons son;
 
 	MenuWindow(String s, int _size)
 	{
 		super(s);
-		paramPartie = new String[4];
-		paramPartie[0]="19";
-		paramPartie[1]="10";
-		paramPartie[2]="5";
-		paramPartie[3]="normal";
-		themes = new String[3];
-        themes[0]="normal";
-        themes[1]="sombre";
-        themes[2]="clair";
 		size=_size;
 		setSize(size,size);
         setLocationRelativeTo(null);
-        setResizable(false);
-		zone = new ZoneDessinMenu(size);
+		setResizable(false);
+		son = new Sons();
+		son.setPath("../son/start.wav");
+		Thread thread = new Thread(son);
+		thread.start();
+		zone = new ZoneDessinMenu(size,son);
 		setContentPane(zone);
-		setButtons();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-        playSong("../son/start.wav");
 	}
 
-	public void setButtons()
-	{
-
-		lancerPartie = new JButton("");
-		lancerPartie.setBounds(size/8, (23*size)/64, (3*size)/4, size/10);
-		lancerPartie.setOpaque(false);
-		lancerPartie.setContentAreaFilled(false);
-		lancerPartie.setBorderPainted(false);
-		lancerPartie.setFocusPainted(false);
-		lancerPartie.addActionListener(this);
-		add(lancerPartie);
-
-		scoreboard = new JButton("");
-		scoreboard.setBounds(size/8, (59*size)/128, size/2, size/10);
-		scoreboard.setOpaque(false);
-		scoreboard.setContentAreaFilled(false);
-		scoreboard.setBorderPainted(false);
-		scoreboard.setFocusPainted(false);
-		scoreboard.addActionListener(this);
-		add(scoreboard);
-
-		options = new JButton("");
-		options.setBounds(size/8, (73*size)/128, size/2, size/10);
-		options.setOpaque(false);
-		options.setContentAreaFilled(false);
-		options.setBorderPainted(false);
-		options.setFocusPainted(false);
-		options.addActionListener(this);
-		add(options);
-
-		quitter = new JButton("");
-		quitter.setBounds(size/3, (87*size)/128, (5*size)/12, size/10);
-		quitter.setOpaque(false);
-		quitter.setContentAreaFilled(false);
-		quitter.setBorderPainted(false);
-		quitter.setFocusPainted(false);
-		quitter.addActionListener(this);
-		add(quitter);
-
-		mouseListener = new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent evenement) 
-			{
-				if (evenement.getSource()==lancerPartie)
-				{
-					try {
-						Image img = ImageIO.read(new File("../img/select.png"));
-						lancerPartie.setIcon(new ImageIcon(img));
-						lancerPartie.setHorizontalAlignment(SwingConstants.LEFT);
-					} catch (IOException ex) {
-					}
-				}
-				if (evenement.getSource()==scoreboard)
-				{
-					try {
-						Image img = ImageIO.read(new File("../img/select.png"));
-						scoreboard.setIcon(new ImageIcon(img));
-						scoreboard.setHorizontalAlignment(SwingConstants.LEFT);
-					} catch (IOException ex) {
-					}
-				}
-				if (evenement.getSource()==options)
-				{
-					try {
-						Image img = ImageIO.read(new File("../img/select.png"));
-						options.setIcon(new ImageIcon(img));
-						options.setHorizontalAlignment(SwingConstants.LEFT);
-					} catch (IOException ex) {
-					}
-				}
-				if (evenement.getSource()==quitter)
-				{
-					try {
-						Image img = ImageIO.read(new File("../img/select.png"));
-						quitter.setIcon(new ImageIcon(img));
-						quitter.setHorizontalAlignment(SwingConstants.LEFT);
-					} catch (IOException ex) {
-					}
-				}
-			}
-
-			@Override
-			public void mouseExited(MouseEvent evenement) 
-			{
-				if (evenement.getSource()==lancerPartie)
-				{
-					lancerPartie.setIcon(null);
-				}
-				if (evenement.getSource()==scoreboard)
-				{
-					scoreboard.setIcon(null);
-				}
-				if (evenement.getSource()==options)
-				{
-					options.setIcon(null);
-				}
-				if (evenement.getSource()==quitter)
-				{
-					quitter.setIcon(null);
-				}
-			}
-		};
-		lancerPartie.addMouseListener(mouseListener);
-		scoreboard.addMouseListener(mouseListener);
-		options.addMouseListener(mouseListener);
-		quitter.addMouseListener(mouseListener);
-	}
+	
 
 	public int getSizeFenetre()
 	{
@@ -171,146 +45,12 @@ class MenuWindow extends JFrame implements ActionListener
 
 	public String[] getThemes()
     {
-        return themes;
+        return zone.getThemes();
     }
 
     public String getThemesAt(int index)
     {
-        return themes[index];
+        return zone.getThemesAt(index);
     }
-
-    public void Init_Menu()
-    {
-        JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu menuFichier = new JMenu("Fichier");
-		menuBar.add(menuFichier);
-		JMenuItem itemCharger =new JMenuItem("Charger");
-		JMenuItem itemSave =new JMenuItem("Sauvegarder");
-		JMenuItem itemQuitter =new JMenuItem("Quitter");
-		//itemCharger.setActionCommand("menu_charger");
-		//itemCharger.addActionListener(this);
-		//itemSave.setActionCommand("menu_sauvegarder");
-		//itemSave.addActionListener(this);
-		itemQuitter.setActionCommand("menu_quitter");
-		itemQuitter.addActionListener(this);
-		menuFichier.add(itemCharger);
-		menuFichier.add(itemSave);
-		menuFichier.add(new JSeparator());
-        menuFichier.add(itemQuitter);
-	}
-
-	public void playSong(String path)
-    {
-        try {
-            soundFile = new File(path);
-            audioStream = AudioSystem.getAudioInputStream(soundFile);
-            audioFormat = audioStream.getFormat();
-            DataLine.Info info = new DataLine.Info(SourceDataLine.class, audioFormat);
-            sourceLine = (SourceDataLine) AudioSystem.getLine(info);
-            sourceLine.open(audioFormat);
-			sourceLine.start();
-			int nBytesRead = 0;
-			   byte[] abData = new byte[BUFFER_SIZE];
-			if(game==null || !game.getFenetre().isVisible())
-			{
-				while (nBytesRead != -1 && (game==null || !game.getFenetre().isVisible())) {
-					try {
-						nBytesRead = audioStream.read(abData, 0, abData.length);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					if (nBytesRead >= 0) {
-						@SuppressWarnings("unused")
-						int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
-					}
-				}
-			}
-			else
-			{
-				while (nBytesRead != -1 && path==game.getPathByTheme(game.getTheme()) && game!=null && game.getFenetre().isVisible()) {
-					try {
-						nBytesRead = audioStream.read(abData, 0, abData.length);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-					if (nBytesRead >= 0) {
-						@SuppressWarnings("unused")
-						int nBytesWritten = sourceLine.write(abData, 0, nBytesRead);
-					}
-				}
-			}
-           	sourceLine.drain();
-           	sourceLine.close();
-        }
-        catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
-            throw new RuntimeException(e);
-		 }
-		 if(game==null || !game.getFenetre().isVisible())
-		 	playSong("../son/start.wav");
-		 else
-		 	playSong(game.getPathByTheme(game.getTheme()));
-    }
-
-    public void actionPerformed(ActionEvent evenement)
-	{
-		if (evenement.getSource()==lancerPartie)
-		{
-			if(game==null)
-			{
-				game = new Partie(themes,size,Integer.parseInt(paramPartie[0]),Integer.parseInt(paramPartie[1]),Integer.parseInt(paramPartie[2]),paramPartie[3]);
-			}
-			else if(!game.getFenetre().isVisible())
-				game = new Partie(themes,size,Integer.parseInt(paramPartie[0]),Integer.parseInt(paramPartie[1]),Integer.parseInt(paramPartie[2]),paramPartie[3]);
-		}
-		if (evenement.getSource()==scoreboard)
-		{
-			sc = new ScoreBoardWindow(size);
-		}
-		else if (evenement.getSource()==options)
-		{
-			JComboBox<String> themes = new JComboBox<>(getThemes());
-			JLabel lab0 = new JLabel("Theme : ");
-			JPanel panel = new JPanel(new GridLayout(0, 1));
-			JLabel lab1 = new JLabel("Nombre de Case : ");
-			JSpinner nbCase = new JSpinner(new SpinnerNumberModel(19,8,25,2));
-			JLabel lab2 = new JLabel("Objectif de point : ");
-			JSpinner pointToWin = new JSpinner(new SpinnerNumberModel(10,2,100,2));
-			JLabel lab3 = new JLabel("Objectif de pions à aligner : ");
-			JSpinner nbSameColorToWin = new JSpinner(new SpinnerNumberModel(5,4,10,1));
-			panel.add(lab0);
-			panel.add(themes);
-			panel.add(lab1);
-			panel.add(nbCase);
-			panel.add(lab2);
-			panel.add(pointToWin);
-			panel.add(lab3);
-			panel.add(nbSameColorToWin);
-    		int result = JOptionPane.showConfirmDialog(null, panel, "Options", 
-    			JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE); 
-    		if (result == JOptionPane.OK_OPTION) { 
-				paramPartie[0]=String.valueOf(nbCase.getValue());
-				paramPartie[1]=String.valueOf(pointToWin.getValue());
-				paramPartie[2]=String.valueOf(nbSameColorToWin.getValue());
-    		  	paramPartie[3]=(String)themes.getSelectedItem();
-    		} else { 
-    		  	
-    		}
-		}
-		else if (evenement.getSource()==quitter)
-		{
-			System.exit(0);
-		}
-		else if (evenement.getActionCommand().equals("menu_quitter"))
-		{
-			if( JOptionPane.showConfirmDialog(null,"Voulez vous quitter ?",
-			"Quitter",
-			JOptionPane.YES_NO_OPTION,JOptionPane.ERROR_MESSAGE) == JOptionPane.YES_OPTION )
-			{
-				System.exit(0);
-			}
-		}	
-	}
 
 }
