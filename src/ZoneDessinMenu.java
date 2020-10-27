@@ -25,15 +25,17 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		setLayout(null);
 		size=_size;
 		setSize(size,size);
-		paramPartie = new String[4];
+		paramPartie = new String[5];
 		paramPartie[0]="19";
 		paramPartie[1]="10";
 		paramPartie[2]="5";
 		paramPartie[3]="normal";
-		themes = new String[3];
+		paramPartie[4]=String.valueOf(size);
+		themes = new String[4];
         themes[0]="normal";
         themes[1]="sombre";
-        themes[2]="clair";
+		themes[2]="clair";
+		themes[3]="halloween";
 		setButtons();
 	}
 
@@ -193,10 +195,10 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 				son.setPath(game.getPathByTheme(paramPartie[3],0));
 			if(game==null)
 			{
-				game = new Partie(themes,size,Integer.parseInt(paramPartie[0]),Integer.parseInt(paramPartie[1]),Integer.parseInt(paramPartie[2]),paramPartie[3]);
+				game = new Partie(themes,Integer.parseInt(paramPartie[4]),Integer.parseInt(paramPartie[0]),Integer.parseInt(paramPartie[1]),Integer.parseInt(paramPartie[2]),paramPartie[3],son);
 			}
 			else if(!game.getFenetre().isVisible())
-				game = new Partie(themes,size,Integer.parseInt(paramPartie[0]),Integer.parseInt(paramPartie[1]),Integer.parseInt(paramPartie[2]),paramPartie[3]);
+				game = new Partie(themes,Integer.parseInt(paramPartie[4]),Integer.parseInt(paramPartie[0]),Integer.parseInt(paramPartie[1]),Integer.parseInt(paramPartie[2]),paramPartie[3],son);
 		}
 		if (evenement.getSource()==scoreboard)
 		{
@@ -213,6 +215,8 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 			JSpinner pointToWin = new JSpinner(new SpinnerNumberModel(10,2,100,2));
 			JLabel lab3 = new JLabel("Objectif de pions à aligner : ");
 			JSpinner nbSameColorToWin = new JSpinner(new SpinnerNumberModel(5,4,10,1));
+			JLabel lab4 = new JLabel("Taille de la fenetre de jeu : ");
+			JSpinner tailleFenetre = new JSpinner(new SpinnerNumberModel(800,400,1200,100));
 			panel.add(lab0);
 			panel.add(themes);
 			panel.add(lab1);
@@ -221,13 +225,16 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 			panel.add(pointToWin);
 			panel.add(lab3);
 			panel.add(nbSameColorToWin);
+			panel.add(lab4);
+			panel.add(tailleFenetre);
     		int result = JOptionPane.showConfirmDialog(null, panel, "Options", 
     			JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE); 
     		if (result == JOptionPane.OK_OPTION) { 
 				paramPartie[0]=String.valueOf(nbCase.getValue());
 				paramPartie[1]=String.valueOf(pointToWin.getValue());
 				paramPartie[2]=String.valueOf(nbSameColorToWin.getValue());
-    		  	paramPartie[3]=(String)themes.getSelectedItem();
+				paramPartie[3]=(String)themes.getSelectedItem();
+				paramPartie[4]=String.valueOf(tailleFenetre.getValue());
     		} else { 
     		  	
     		}

@@ -20,17 +20,18 @@ class Partie
     private int nbCase;
     private String[] themes;
     private int nbTour;
-    private Sons bruit1,bruit2;
+    private Sons bruit1,bruit2,son;
     private boolean capture;
     
 
-	Partie(String[] _themes,int size, int _nbCase, int _pointToWin, int _NbSameColorToWin, String _theme)
+	Partie(String[] _themes,int size, int _nbCase, int _pointToWin, int _NbSameColorToWin, String _theme, Sons _son)
 	{
         themes=_themes;
         pointToWin=_pointToWin;
         NbSameColorToWin=_NbSameColorToWin;
         nbCase=_nbCase;
         theme=_theme;
+        son=_son;
         nbTour=0;
         joueur1 = new Joueur("joueur 1", "noir");
         joueur2 = new Joueur("joueur 2", "blanc");
@@ -47,6 +48,11 @@ class Partie
         bruit2.setLoop(false);
         current_Joueur=joueur2.getNom();
         plate.getCaseAt(fenetre.getSizeFenetre()/2, fenetre.getSizeFenetre()/2+25).setPath(plate.getPathBy(theme, "clair"));
+    }
+
+    public Sons getSons()
+    {
+        return son;
     }
 
     public String getTheme()
@@ -78,6 +84,14 @@ class Partie
             case "clair":
                 if(index==0)
                     rep="../son/partie1.wav";
+                else if(index==1)
+                    rep="../son/bruitage1.wav";
+                else if(index==2)
+                    rep="../son/bruitage2.wav";
+                break;
+            case "halloween":
+                if(index==0)
+                    rep="../son/halloween.wav";
                 else if(index==1)
                     rep="../son/bruitage1.wav";
                 else if(index==2)
@@ -157,22 +171,13 @@ class Partie
     {
         nbTour++;
         current_Joueur=j.getNom();
-        if(nbTour==2 && ((eventMouseX>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
-        || (eventMouseX<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
-        || (eventMouseY>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25)
-        || (eventMouseY<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25)))
-        {
-            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
-            algo();
-            fenetre._repaint();
-        }
-        else if(nbTour!=2 && j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
+        if(j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
         {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
             algo();
             fenetre._repaint();
         }
-        else if(nbTour!=2 && j==joueur2 && !(eventMouseX==0 && eventMouseY==0))
+        else if(j==joueur2 && !(eventMouseX==0 && eventMouseY==0))
         {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
             algo();
@@ -332,6 +337,15 @@ class Partie
         else if(nbTour==0)
         {
             tourdejeu(joueur1);
+        }
+        else if(nbTour==1)
+        {
+            if((eventMouseX>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
+            || (eventMouseX<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
+            || (eventMouseY>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25)
+            || (eventMouseY<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25))
+                tourdejeu(joueur2);
+
         }
         else if(current_Joueur==joueur2.getNom()
         && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))

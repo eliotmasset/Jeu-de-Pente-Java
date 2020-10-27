@@ -1,4 +1,4 @@
 a    |    1
 Eliot    |    4
-joueur 2    |    12
-joueur 1    |    1
+joueur 2    |    14
+joueur 1    |    2

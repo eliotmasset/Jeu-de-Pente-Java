@@ -50,6 +50,14 @@ class ZoneDessinPente extends JPanel
 			game.getJoueur(1).setCouleur("noir");
 			game.getJoueur(2).setCouleur("blanc");
 		}
+		else if(game.getTheme()=="halloween")
+		{
+			setBackground(new Color(0,0,0));
+			joueur.setForeground(new Color(210,76,0));
+			joueurs_score.setForeground(new Color(210,76,0));
+			game.getJoueur(1).setCouleur("citrouille");
+			game.getJoueur(2).setCouleur("fantome");
+		}
 		joueur.setOpaque(false);
 		Font font1 = new Font("Arial",Font.BOLD,size/40);
 		joueur.setFont(font1);
@@ -169,7 +177,10 @@ class ZoneDessinPente extends JPanel
 		{
 			try 
 			{
-				img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"fin")));
+				if(game.getCurrentJoueur()==game.getJoueur(1).getNom())
+					img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"fin_sombre")));
+				else
+					img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"fin_clair")));
 			} 
 			catch (IOException e) 
 			{

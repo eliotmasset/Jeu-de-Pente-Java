@@ -73,7 +73,10 @@ class Plateau
                     case "pion_clair":
                         ret="../img/pion_blanc.jpg";
                         break;
-                    case "fin":
+                    case "fin_sombre":
+                        ret="../img/image_fin.jpg";
+                        break;
+                    case "fin_clair":
                         ret="../img/image_fin.jpg";
                         break;
                     default:
@@ -97,7 +100,10 @@ class Plateau
                     case "pion_clair":
                         ret="../img/theme_sombre_pion_clair.jpg";
                         break;
-                    case "fin":
+                    case "fin_sombre":
+                        ret="../img/image_fin.jpg";
+                        break;
+                    case "fin_clair":
                         ret="../img/image_fin.jpg";
                         break;
                     default:
@@ -121,8 +127,38 @@ class Plateau
                     case "pion_clair":
                         ret="../img/theme_clair_pion_clair.jpg";
                         break;
-                    case "fin":
+                    case "fin_sombre":
                         ret="../img/image_fin.jpg";
+                        break;
+                    case "fin_clair":
+                        ret="../img/image_fin.jpg";
+                        break;
+                    default:
+                }
+                break;
+            case "halloween":
+                switch(statu)
+                {
+                    case "vide":
+                        ret="../img/theme_halloween_case_vide.png";
+                        break;
+                    case "sombre":
+                        ret="../img/theme_halloween_case_sombre.png";
+                        break;
+                    case "clair":
+                        ret="../img/theme_halloween_case_clair.png";
+                        break;
+                    case "pion_sombre":
+                        ret="../img/theme_halloween_case_sombre.png";
+                        break;
+                    case "pion_clair":
+                        ret="../img/theme_halloween_case_clair.png";
+                        break;
+                    case "fin_sombre":
+                        ret="../img/image_fin_citrouille.jpg";
+                        break;
+                    case "fin_clair":
+                        ret="../img/image_fin_fantome.jpg";
                         break;
                     default:
                 }
@@ -137,9 +173,9 @@ class Plateau
     public static String getStatuBy(String path)
     {
         String ret="";
-        if(path=="../img/theme_clair_case_vide.jpg" || path=="../img/theme_sombre_case_vide.jpg" || path=="../img/case_vide.jpg")
+        if(path==getPathBy("normal", "vide") || path==getPathBy("sombre", "vide") || path==getPathBy("clair", "vide") || path==getPathBy("halloween", "vide"))
             ret="vide";
-        else if(path=="../img/theme_clair_case_clair.jpg" || path=="../img/theme_sombre_case_clair.jpg" || path=="../img/case_blanc.jpg")
+        else if(path==getPathBy("normal", "clair") || path==getPathBy("sombre", "clair") || path==getPathBy("clair", "clair") || path==getPathBy("halloween", "clair"))
             ret="clair";
         else
             ret="sombre";

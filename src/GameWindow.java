@@ -161,6 +161,7 @@ class GameWindow extends JFrame implements ActionListener
 			if(rep != null)
 			{
 				game.setTheme(rep);
+				game.getSons().setPath(game.getPathByTheme(rep, 0));
 			}
 		}
 		else if (evenement.getActionCommand().equals("menu_score_board"))
