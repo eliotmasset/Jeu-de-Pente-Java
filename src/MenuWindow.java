@@ -4,13 +4,6 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.io.*;
 import java.text.*;
-import java.awt.event.*;
-import java.lang.Math;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.html.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.imageio.ImageIO;
-import java.io.IOException;
 import javax.sound.sampled.*;
 
 class MenuWindow extends JFrame

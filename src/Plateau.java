@@ -73,6 +73,9 @@ class Plateau
                     case "pion_clair":
                         ret="../img/pion_blanc.jpg";
                         break;
+                    case "fin":
+                        ret="../img/image_fin.jpg";
+                        break;
                     default:
                 }
                 break;
@@ -94,6 +97,9 @@ class Plateau
                     case "pion_clair":
                         ret="../img/theme_sombre_pion_clair.jpg";
                         break;
+                    case "fin":
+                        ret="../img/image_fin.jpg";
+                        break;
                     default:
                 }
                 break;
@@ -114,6 +120,9 @@ class Plateau
                         break;
                     case "pion_clair":
                         ret="../img/theme_clair_pion_clair.jpg";
+                        break;
+                    case "fin":
+                        ret="../img/image_fin.jpg";
                         break;
                     default:
                 }

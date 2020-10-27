@@ -20,6 +20,8 @@ class Partie
     private int nbCase;
     private String[] themes;
     private int nbTour;
+    private Sons bruit1,bruit2;
+    private boolean capture;
     
 
 	Partie(String[] _themes,int size, int _nbCase, int _pointToWin, int _NbSameColorToWin, String _theme)
@@ -37,6 +39,12 @@ class Partie
         eventMouseX=0;
         eventMouseY=0;
         finPartie=false;
+        bruit1 = new Sons();
+        bruit1.setPath(getPathByTheme(theme, 2));
+        bruit1.setLoop(false);
+        bruit2 = new Sons();
+        bruit2.setPath(getPathByTheme(theme, 1));
+        bruit2.setLoop(false);
         current_Joueur=joueur2.getNom();
         plate.getCaseAt(fenetre.getSizeFenetre()/2, fenetre.getSizeFenetre()/2+25).setPath(plate.getPathBy(theme, "clair"));
     }
@@ -46,19 +54,34 @@ class Partie
         return theme;
     }
 
-    public static String getPathByTheme(String Theme)
+    public static String getPathByTheme(String Theme, int index)
     {
         String rep="";
         switch(Theme)
         {
             case "normal":
-                rep="../son/partie1.wav";
+                if(index==0)
+                    rep="../son/partie1.wav";
+                else if(index==1)
+                    rep="../son/bruitage1.wav";
+                else if(index==2)
+                    rep="../son/bruitage2.wav";
                 break;
             case "sombre":
-                rep="../son/partie1.wav";
+                if(index==0)
+                    rep="../son/partie1.wav";
+                else if(index==1)
+                    rep="../son/bruitage1.wav";
+                else if(index==2)
+                    rep="../son/bruitage2.wav";
                 break;
             case "clair":
-                rep="../son/partie1.wav";
+                if(index==0)
+                    rep="../son/partie1.wav";
+                else if(index==1)
+                    rep="../son/bruitage1.wav";
+                else if(index==2)
+                    rep="../son/bruitage2.wav";
                 break;
             default:
                 break;
@@ -174,6 +197,7 @@ class Partie
 
     private void algo()
     {
+        capture=false;
 		for(int i=-1;i<=1;i++)
 		{
 			for(int j=-1;j<=1;j++)
@@ -181,7 +205,13 @@ class Partie
                 if(!(i==0 && j==0))
                     vecteur(i,j);
 			}
-		}
+        }
+        Thread th;
+        if(capture)
+            th = new Thread(bruit2);
+        else
+            th = new Thread(bruit1);
+        th.start();
     }
     
     private void vecteur(int i, int j)
@@ -208,6 +238,7 @@ class Partie
                     joueur1.setNbPoint(joueur1.getNbPoint()+2);
                 else if(current_Joueur==joueur2.getNom())
                     joueur2.setNbPoint(joueur2.getNbPoint()+2);
+                capture=true;
             }
         }
         boolean suite=false;
@@ -232,6 +263,7 @@ class Partie
                 {
                     fenetre.getZoneDessin().afficheEstGagne();
                     finPartie=true;
+                    capture=true;
                 }
             }
         }

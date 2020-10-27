@@ -15,7 +15,6 @@ class ZoneDessinPente extends JPanel
 
 	ZoneDessinPente(Partie _game, int _size)
 	{
-		//setLayout(null);
 		finPartie = false;
 		game = _game;
 		size=_size;
@@ -125,7 +124,6 @@ class ZoneDessinPente extends JPanel
 	public void afficheEstGagne()
 	{
 		finPartie=true;
-
 	}
 	
 	@Override
@@ -166,6 +164,18 @@ class ZoneDessinPente extends JPanel
 			g.drawRect(size/2-((size/game.getPlateau().getNbCaseX())*7)/2, size/2-((size/game.getPlateau().getNbCaseY())*7)/2, size/game.getPlateau().getNbCaseX()*7, size/game.getPlateau().getNbCaseY()*7);
 			g.setColor(new Color(255,0,0,20));
 			g.fillRect(size/2-((size/game.getPlateau().getNbCaseX())*7)/2, size/2-((size/game.getPlateau().getNbCaseY())*7)/2, size/game.getPlateau().getNbCaseX()*7, size/game.getPlateau().getNbCaseY()*7);
-        }
+		}
+		if(finPartie)
+		{
+			try 
+			{
+				img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"fin")));
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+			g.drawImage(img, 0, 0, size, size, this);
+		}
 	}
 }

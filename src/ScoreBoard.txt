@@ -1,3 +1,4 @@
 a    |    1
-Eliot    |    5
-joueur 2    |    9
+Eliot    |    4
+joueur 2    |    12
+joueur 1    |    1

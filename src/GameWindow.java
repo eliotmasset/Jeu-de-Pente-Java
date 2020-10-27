@@ -63,18 +63,9 @@ class GameWindow extends JFrame implements ActionListener
 		
 		JMenu menuFichier = new JMenu("Fichier");
 		menuBar.add(menuFichier);
-		JMenuItem itemCharger =new JMenuItem("Charger");
-		JMenuItem itemSave =new JMenuItem("Sauvegarder");
 		JMenuItem itemQuitter =new JMenuItem("Quitter");
-		//itemCharger.setActionCommand("menu_charger");
-		//itemCharger.addActionListener(this);
-		//itemSave.setActionCommand("menu_sauvegarder");
-		//itemSave.addActionListener(this);
 		itemQuitter.setActionCommand("menu_quitter");
 		itemQuitter.addActionListener(this);
-		menuFichier.add(itemCharger);
-		menuFichier.add(itemSave);
-		menuFichier.add(new JSeparator());
 		menuFichier.add(itemQuitter);
 		
 		JMenu menuEdit = new JMenu("Edit");
@@ -125,8 +116,8 @@ class GameWindow extends JFrame implements ActionListener
    						"Changer le nom du joueur 1",
    						JOptionPane.QUESTION_MESSAGE,
   						null,
-   						null, // c'est ouvert !!!
-						   game.getJoueur(1).getNom()); // valeur initiale
+   						null,
+						   game.getJoueur(1).getNom());
 				if (s!=null && (s.length() > 0) && (s.length() < 10))
 				{
 					game.getJoueur(1).setNom(s);

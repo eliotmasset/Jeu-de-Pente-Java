@@ -12,6 +12,7 @@ public class Sons implements Runnable
         private AudioFormat audioFormat;
         private SourceDataLine sourceLine;
         private String path;
+        private boolean loop=true;
 
         @Override
         public void run() {
@@ -23,6 +24,11 @@ public class Sons implements Runnable
         public void setPath(String s)
         {
                 path=s;
+        }
+
+        public void setLoop(boolean _loop)
+        {
+                loop=_loop;
         }
 
         public void playSong()
@@ -55,7 +61,8 @@ public class Sons implements Runnable
                 catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
                     throw new RuntimeException(e);
                          }
-                playSong();
+                if(loop)
+                        playSong();
             }
         
 }
