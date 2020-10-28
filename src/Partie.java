@@ -23,7 +23,7 @@ class Partie
     /**
 	* décalage liée à la présence du menu
     */
-    private final int decalMenu=25;
+    private final int decalMenu=0;
     /**
     * joueur 1 et 2
     * @see Joueur
@@ -112,7 +112,7 @@ class Partie
         bruit2.setPath(getPathByTheme(theme, 1));
         bruit2.setLoop(false);
         current_Joueur=joueur2.getNom();
-        plate.getCaseAt(fenetre.getSizeFenetre()/2, fenetre.getSizeFenetre()/2+25).setPath(plate.getPathBy(theme, "clair"));
+        plate.getCaseAt(fenetre.getSizeFenetre()/2, fenetre.getSizeFenetre()/2+decalMenu).setPath(plate.getPathBy(theme, "clair"));
     }
 
     /**
@@ -131,6 +131,15 @@ class Partie
     public String getTheme()
     {
         return theme;
+    }
+
+    /**
+    * Getter sur le decalage du menu
+	* @return le decalage du menu
+    */
+    public int getDecalMenu()
+    {
+        return decalMenu;
     }
 
     /**
@@ -529,18 +538,18 @@ class Partie
         {
             if((eventMouseX>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
             || (eventMouseX<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
-            || (eventMouseY>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25)
-            || (eventMouseY<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+25))
+            || (eventMouseY>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+decalMenu)
+            || (eventMouseY<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2+decalMenu))
                 tourdejeu(joueur2);
 
         }
         else if(current_Joueur==joueur2.getNom()
-        && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))
+        && plate.getCaseAt(eventMouseX, eventMouseY-decalMenu).getPath()==plate.getPathBy(theme, "vide"))
         {
             tourdejeu(joueur1);
         }
         else if (current_Joueur==joueur1.getNom()
-        && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))
+        && plate.getCaseAt(eventMouseX, eventMouseY-decalMenu).getPath()==plate.getPathBy(theme, "vide"))
         {
             tourdejeu(joueur2);
         }

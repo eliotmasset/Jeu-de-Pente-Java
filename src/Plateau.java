@@ -95,7 +95,7 @@ class Plateau
     */
     public Case getCaseAt(int x, int y)
     {
-		return cases.elementAt(((x*getNbCaseX())/size)+(((y-25)*getNbCaseY())/size)*getNbCaseY());
+		return cases.elementAt(((x*getNbCaseX())/size)+(((y)*getNbCaseY())/size)*getNbCaseY());
     }
     
     /**
