@@ -6,7 +6,7 @@ import java.io.*;
 
 /**
  * Classe pour lancer des sons sur des threads différents
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 public class Sons implements Runnable
@@ -89,7 +89,7 @@ public class Sons implements Runnable
 
         /**
         * getter sur le volume
-	* @retrun le volume
+	* @return le volume
         */
         public float getVolume()
         {

@@ -3,7 +3,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * Classe de gestion des evenements
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 public class Evenement implements MouseListener

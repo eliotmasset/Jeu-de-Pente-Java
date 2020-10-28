@@ -3,7 +3,7 @@ import java.lang.Math;
 
 /**
  * Classe Principal
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class Principal

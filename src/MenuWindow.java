@@ -8,7 +8,7 @@ import javax.sound.sampled.*;
 
 /**
  * Classe de la fenetre du menu (JFrame)
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class MenuWindow extends JFrame
@@ -71,7 +71,8 @@ class MenuWindow extends JFrame
     }
 
 	/**
-    * getter sur le X theme
+	* getter sur le X theme
+	* @param index int qui stoque l'index
     * @return un theme choisi celon l'index
     */
     public String getThemesAt(int index)

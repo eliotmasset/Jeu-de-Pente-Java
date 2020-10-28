@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * Classe de la fenetre de jeu
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class GameWindow extends JFrame implements ActionListener

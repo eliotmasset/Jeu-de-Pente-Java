@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /**
  * Classe de la zone de dessin de la fenetre de jeu
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class ZoneDessinPente extends JPanel
@@ -136,17 +136,17 @@ class ZoneDessinPente extends JPanel
 		{
 			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer");
 		}
-		else if(game.getCurrentJoueur()==game.getJoueur(2).getNom() && !finPartie)
+		else if (game.getCurrentJoueur()==game.getJoueur(2).getNom() && !finPartie)
 		{
 			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer");
 		}
-		else if(joueur.getText().equals(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer"))
+		else if (joueur.getText().equals(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : A toi de jouer"))
 		{
 			joueur.setText(game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") a gagné");
 			joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 
 			"/"+game.getNbPointToWin()+" pions capturés<br>  "+game.getJoueur(2).getNom()+"("+game.getJoueur(2).getCouleur()+") : " + game.getJoueur(2).getNbPoint() + "/"+game.getNbPointToWin()+" pions capturés</pre></html>");
 		}
-		else if(joueur.getText().equals(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer"))
+		else if (joueur.getText().equals(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") : A toi de jouer"))
 		{
 			joueur.setText(game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+") a gagné");
 			joueurs_score.setText("<html><pre>Score :<br>  "+game.getJoueur(1).getNom()+"("+game.getJoueur(1).getCouleur()+")  : " + game.getJoueur(1).getNbPoint() + 

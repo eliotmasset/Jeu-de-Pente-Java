@@ -6,7 +6,7 @@ import java.lang.Math;
 
 /**
  * Classe d'une partie
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class Partie
@@ -135,6 +135,8 @@ class Partie
 
     /**
     * Getter sur le chemin d'un son en fonction du theme et d'un index
+    * @param Theme String qui stoque le theme
+    * @param index String qui stoque l'index
 	* @return le chemin d'un son
     */
     public static String getPathByTheme(String Theme, int index)

@@ -11,7 +11,7 @@ import java.awt.event.*;
 
 /**
  * Classe de la zone de dessin du menu
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class ZoneDessinMenu extends JPanel implements ActionListener
@@ -93,7 +93,8 @@ class ZoneDessinMenu extends JPanel implements ActionListener
     }
 
 	/**
-    * getter sur le X theme
+	* getter sur le X theme
+	* @param index int qui stoque l'index
     * @return un theme choisi celon l'index
     */
     public String getThemesAt(int index)
@@ -144,7 +145,6 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 
 	/**
     * Met en place les boutons
-    * @param g Graphics qui permet de dessiner les boutons
     */
 	private void setButtons()
 	{

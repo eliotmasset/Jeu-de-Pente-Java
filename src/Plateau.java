@@ -4,7 +4,7 @@ import java.lang.Math;
 
 /**
  * Classe d'un plateau
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class Plateau
@@ -32,7 +32,7 @@ class Plateau
 	* @param _nbCaseX qui stoque le nombre de case sur l'axe X
     * @param _nbCaseY qui stoque le nombre de case sur l'axe Y
     * @param _size qui stoque la taille du plateau
-    * @param _themeplate qui stoque le thee du plateau
+    * @param _themePlate qui stoque le thee du plateau
     */
     Plateau(int _nbCaseX, int _nbCaseY, int _size, String _themePlate)
 	{
@@ -88,6 +88,8 @@ class Plateau
     
     /**
     * Getter sur la Case à l'index X
+    * @param x coordonnée X de la souris
+    * @param y coordonnée Y de la souris
     * @return une case
     * @see Case
     */
@@ -98,6 +100,8 @@ class Plateau
     
     /**
     * Getter sur le chemin vers une image en fonction du theme et d'un index
+    * @param theme String qui stoque le theme
+    * @param statu String qui stoque le status
 	* @return le chemin vers une image
     */
     public static String getPathBy(String theme, String statu)
@@ -330,6 +334,7 @@ class Plateau
 
     /**
     * Getter sur le status d'une case en fonction de son chemin
+    * @param path qui stoque le chemin vers une image de case
 	* @return le status d'une case
     */
     public static String getStatuBy(String path)

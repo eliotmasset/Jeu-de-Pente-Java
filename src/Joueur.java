@@ -5,7 +5,7 @@ import java.lang.Math;
 
 /**
  * Classe d'un joueur
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class Joueur
@@ -64,7 +64,7 @@ class Joueur
 
     /**
     * Setter sur la couleur du joueur
-	* @param n String qui stoque la couleur du joueur
+	* @param c String qui stoque la couleur du joueur
     */
     public void setCouleur(String c)
     {
@@ -82,7 +82,7 @@ class Joueur
 
     /**
     * Setter sur le nombre de points du joueur
-	* @param n String qui stoque le nombre de points du joueur
+	* @param p String qui stoque le nombre de points du joueur
     */
     public void setNbPoint(int p)
     {

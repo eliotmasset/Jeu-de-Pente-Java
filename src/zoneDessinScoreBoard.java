@@ -7,7 +7,7 @@ import java.util.regex.*;
 
 /**
  * Classe de la zone de dessin du scoreboard
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class zoneDessinScoreBoard extends JPanel

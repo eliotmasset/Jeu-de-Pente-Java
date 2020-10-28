@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  * Classe de la fenetre de ScoreBoard
- * @author Eliot Masset & Amimri Anouar
+ * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
 class ScoreBoardWindow extends JFrame// implements ActionListener
