@@ -195,39 +195,13 @@ class ZoneDessinMenu extends JPanel implements ActionListener
             @Override
             public void mouseEntered(MouseEvent evenement) 
 			{
-				if (evenement.getSource()==lancerPartie)
+				if (evenement.getSource()==lancerPartie || evenement.getSource()==scoreboard || evenement.getSource()==options || evenement.getSource()==quitter)
 				{
 					try {
+						JButton temp = (JButton)evenement.getSource();
 						Image img = ImageIO.read(new File("../img/select.png"));
-						lancerPartie.setIcon(new ImageIcon(img));
-						lancerPartie.setHorizontalAlignment(SwingConstants.LEFT);
-					} catch (IOException ex) {
-					}
-				}
-				if (evenement.getSource()==scoreboard)
-				{
-					try {
-						Image img = ImageIO.read(new File("../img/select.png"));
-						scoreboard.setIcon(new ImageIcon(img));
-						scoreboard.setHorizontalAlignment(SwingConstants.LEFT);
-					} catch (IOException ex) {
-					}
-				}
-				if (evenement.getSource()==options)
-				{
-					try {
-						Image img = ImageIO.read(new File("../img/select.png"));
-						options.setIcon(new ImageIcon(img));
-						options.setHorizontalAlignment(SwingConstants.LEFT);
-					} catch (IOException ex) {
-					}
-				}
-				if (evenement.getSource()==quitter)
-				{
-					try {
-						Image img = ImageIO.read(new File("../img/select.png"));
-						quitter.setIcon(new ImageIcon(img));
-						quitter.setHorizontalAlignment(SwingConstants.LEFT);
+						temp.setIcon(new ImageIcon(img));
+						temp.setHorizontalAlignment(SwingConstants.LEFT);
 					} catch (IOException ex) {
 					}
 				}
@@ -296,7 +270,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 			JSpinner nbSameColorToWin = new JSpinner(new SpinnerNumberModel(Integer.parseInt(paramPartie[2]),4,10,1));
 			JLabel lab4 = new JLabel("Taille de la fenetre de jeu : ");
 			JSpinner tailleFenetre = new JSpinner(new SpinnerNumberModel(Integer.parseInt(paramPartie[4]),400,1200,100));
-			JLabel lab5 = new JLabel("Son : ");
+			JLabel lab5 = new JLabel("Volume : ");
 			JSlider choixson = new JSlider(JSlider.HORIZONTAL,0, 100, (int)(Math.round(son.getVolume())));
 			panel.add(lab0);
 			panel.add(themes);
