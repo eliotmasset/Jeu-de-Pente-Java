@@ -348,6 +348,7 @@ class Partie
         }
         if(isWin()==joueur1 || isWin()==joueur2)
         {
+            System.out.println("la");
             fenetre.getZoneDessin().afficheEstGagne();
             finPartie=true;
         }
@@ -408,12 +409,12 @@ class Partie
         {}
         else 
         {
-            if(plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).getPath()==ColorAdversaire
-                && plate.getCaseAt(eventMouseX+(2*i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(2*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).getPath()==ColorAdversaire
-                && plate.getCaseAt(eventMouseX+(3*i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(3*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).getPath()==Color)
+            if(plate.getCaseAt(eventMouseX+(i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX())), eventMouseY+(j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))).getPath()==ColorAdversaire
+                && plate.getCaseAt(eventMouseX+(2*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX())), eventMouseY+(2*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))).getPath()==ColorAdversaire
+                && plate.getCaseAt(eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX())), eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))).getPath()==Color)
             {
-                plate.getCaseAt(eventMouseX+(i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).setPath(plate.getPathBy(theme, "vide"));
-                plate.getCaseAt(eventMouseX+(2*i*(fenetre.getSizeFenetre()/plate.getNbCaseX())), eventMouseY+(2*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))).setPath(plate.getPathBy(theme, "vide"));
+                plate.getCaseAt(eventMouseX+(i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX())), eventMouseY+(j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))).setPath(plate.getPathBy(theme, "vide"));
+                plate.getCaseAt(eventMouseX+(2*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX())), eventMouseY+(2*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))).setPath(plate.getPathBy(theme, "vide"));
                 if(current_Joueur==joueur1.getNom())
                     joueur1.setNbPoint(joueur1.getNbPoint()+2);
                 else if(current_Joueur==joueur2.getNom())
