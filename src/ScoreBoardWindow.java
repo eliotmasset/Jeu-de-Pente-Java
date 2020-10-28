@@ -12,11 +12,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
+/**
+ * Classe de la fenetre de ScoreBoard
+ * @author Eliot Masset & Amimri Anouar
+ * @version 1.0
+ */
 class ScoreBoardWindow extends JFrame// implements ActionListener
 {
-    private int size;
+	/**
+    * taille de la fenetre
+    */
+	private int size;
+	/**
+    * zone de dessin du scoreboard
+    */
     private zoneDessinScoreBoard zone;
 
+	/**
+    * Constructeur de la fenetre du scoreboard
+	* @param _size int qui stoque la taille de la fenetre
+    */
 	ScoreBoardWindow(int _size)
 	{
 		size=_size;

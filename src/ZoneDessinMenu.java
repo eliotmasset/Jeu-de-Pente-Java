@@ -8,19 +8,59 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.*;
 
+
+/**
+ * Classe de la zone de dessin du menu
+ * @author Eliot Masset & Amimri Anouar
+ * @version 1.0
+ */
 class ZoneDessinMenu extends JPanel implements ActionListener
 {
+	/**
+    * Taille de la fenetre
+    */
 	private int size;
+	/**
+	* musique de fond
+	* @see Sons
+    */
 	private Sons son;
+	/**
+    * boutons du menu
+    */
 	private JButton lancerPartie, scoreboard, options, quitter;
+	/**
+    * listener des actions de la souris
+    */
 	private MouseAdapter mouseListener;
+	/**
+	* Fenetre du ScoreBoard
+	* @see ScoreBoardWindow
+    */
 	private ScoreBoardWindow sc;
+	/**
+	* Partie de pente
+	* @see Partie
+    */
 	private Partie game;
-	private String paramPartie[];
-	private String themes[];
-    
-	ZoneDessinMenu(int _size, Sons _son)
+	/**
+    * paramètres de partie et liste des themes existant
+    */
+	private String paramPartie[],themes[];
+	/**
+    * fenetre du menu
+    */
+	private MenuWindow mw;
+	
+	/**
+    * Constructeur de la zone de dessin
+	* @param _size int qui stoque la taille de la fenetre
+	* @param _son qui permet de lancer des sons
+	* @param _mw Fenetre du menu
+    */
+	ZoneDessinMenu(int _size, Sons _son, MenuWindow _mw)
 	{
+		mw=_mw;
 		son=_son;
 		setLayout(null);
 		size=_size;
@@ -43,16 +83,28 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		setButtons();
 	}
 
+	/**
+    * Getter sur la liste des thèmes
+	* @return la liste des thèmes
+    */
 	public String[] getThemes()
     {
         return themes;
     }
 
+	/**
+    * getter sur le X theme
+    * @return un theme choisi celon l'index
+    */
     public String getThemesAt(int index)
     {
         return themes[index];
     }
 	
+	/**
+    * fonction qui rafraichi la fenetre 
+    * @param g Graphics qui permet de dessiner la fenetre
+    */
 	@Override
 	public void paintComponent(Graphics g)
 	{
@@ -61,14 +113,21 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		reloadSong();
 	}
 
-	public void reloadSong()
+	/**
+    * Met à jour la musique de fond
+    */
+	private void reloadSong()
 	{
 		if(game==null || !game.getFenetre().isVisible())
 			son.setPath("../son/start.wav");
 		else
 			son.setPath(game.getPathByTheme(paramPartie[3],0));
 	}
-    
+	
+	/**
+    * Affiche le menu
+    * @param g Graphics qui permet de dessiner le menu
+    */
     private void affiche_Menu(Graphics g)
 	{
 		Image img=null;
@@ -83,9 +142,19 @@ class ZoneDessinMenu extends JPanel implements ActionListener
         g.drawImage(img,0,0,size,size,this);
 	}
 
-	public void setButtons()
+	/**
+    * Met en place les boutons
+    * @param g Graphics qui permet de dessiner les boutons
+    */
+	private void setButtons()
 	{
-
+		if(lancerPartie!=null)
+		{
+			remove(lancerPartie);
+			remove(options);
+			remove(scoreboard);
+			remove(quitter);
+		}
 		lancerPartie = new JButton("");
 		lancerPartie.setBounds(size/8, (23*size)/64, (3*size)/4, size/10);
 		lancerPartie.setOpaque(false);
@@ -191,6 +260,10 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		quitter.addMouseListener(mouseListener);
 	}
 
+	/**
+    * fonction qui detecte un evenement sur la fenetre
+    * @param evenement ActionEvent qui stoque l'évenement capté
+    */
 	public void actionPerformed(ActionEvent evenement)
 	{
 		if (evenement.getSource()==lancerPartie)
@@ -212,16 +285,19 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		else if (evenement.getSource()==options)
 		{
 			JComboBox<String> themes = new JComboBox<>(getThemes());
+			themes.setSelectedItem(paramPartie[3]);;
 			JLabel lab0 = new JLabel("Theme : ");
 			JPanel panel = new JPanel(new GridLayout(0, 1));
 			JLabel lab1 = new JLabel("Nombre de Case : ");
-			JSpinner nbCase = new JSpinner(new SpinnerNumberModel(19,8,25,2));
+			JSpinner nbCase = new JSpinner(new SpinnerNumberModel(Integer.parseInt(paramPartie[0]),8,25,2));
 			JLabel lab2 = new JLabel("Objectif de point : ");
-			JSpinner pointToWin = new JSpinner(new SpinnerNumberModel(10,2,100,2));
+			JSpinner pointToWin = new JSpinner(new SpinnerNumberModel(Integer.parseInt(paramPartie[1]),2,100,2));
 			JLabel lab3 = new JLabel("Objectif de pions à aligner : ");
-			JSpinner nbSameColorToWin = new JSpinner(new SpinnerNumberModel(5,4,10,1));
+			JSpinner nbSameColorToWin = new JSpinner(new SpinnerNumberModel(Integer.parseInt(paramPartie[2]),4,10,1));
 			JLabel lab4 = new JLabel("Taille de la fenetre de jeu : ");
-			JSpinner tailleFenetre = new JSpinner(new SpinnerNumberModel(800,400,1200,100));
+			JSpinner tailleFenetre = new JSpinner(new SpinnerNumberModel(Integer.parseInt(paramPartie[4]),400,1200,100));
+			JLabel lab5 = new JLabel("Son : ");
+			JSpinner choixson = new JSpinner(new SpinnerNumberModel((int)(Math.round(son.getVolume())),0,100,1));
 			panel.add(lab0);
 			panel.add(themes);
 			panel.add(lab1);
@@ -232,6 +308,8 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 			panel.add(nbSameColorToWin);
 			panel.add(lab4);
 			panel.add(tailleFenetre);
+			panel.add(lab5);
+			panel.add(choixson);
     		int result = JOptionPane.showConfirmDialog(null, panel, "Options", 
     			JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE); 
     		if (result == JOptionPane.OK_OPTION) { 
@@ -240,9 +318,14 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 				paramPartie[2]=String.valueOf(nbSameColorToWin.getValue());
 				paramPartie[3]=(String)themes.getSelectedItem();
 				paramPartie[4]=String.valueOf(tailleFenetre.getValue());
+				son.setVolume((float)Integer.parseInt(String.valueOf(choixson.getValue())));
     		} else { 
     		  	
-    		}
+			}
+			size=Integer.parseInt(String.valueOf(tailleFenetre.getValue()));
+			setSize(size,size);
+			mw.setSize(size,size);
+			setButtons();
 		}
 		else if (evenement.getSource()==quitter)
 		{

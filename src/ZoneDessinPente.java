@@ -5,14 +5,40 @@ import java.util.*;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
+/**
+ * Classe de la zone de dessin de la fenetre de jeu
+ * @author Eliot Masset & Amimri Anouar
+ * @version 1.0
+ */
 class ZoneDessinPente extends JPanel
 {
+	/**
+    * Partie en jeu
+    */
 	private Partie game;
+	/**
+    * Texte qui affiche le tour de jeu
+    */
 	private JLabel joueur;
+	/**
+    * Texte qui affiche les scores des joueurs
+    */
 	private JLabel joueurs_score;
+	/**
+    * taille de la fenetre
+    */
 	private int size;
+	/**
+    * boolean pour savoir si la partie est terminee
+    */
 	private boolean finPartie;
 
+	/**
+	* Constructeur de la zone de dession du jeu de pente
+	* @param _game Partie qui stoque la partie en cours
+	* @see Partie
+	* @param _size int qui stoque la taille de la fenetre
+    */
 	ZoneDessinPente(Partie _game, int _size)
 	{
 		finPartie = false;
@@ -24,7 +50,10 @@ class ZoneDessinPente extends JPanel
 		bottomPanel();
 	}
 
-	public void bottomPanel()
+	/**
+    * Affiche la partie basse de l'affichage (Informations de jeu)
+    */
+	private void bottomPanel()
     {
 		if(game.getTheme()=="sombre")
 		{
@@ -125,6 +154,10 @@ class ZoneDessinPente extends JPanel
 		}
 	}
 
+	/**
+	* Affiche les pions des joueurs à leurs positions
+	* @param g Graphics2D qui permet de dessiner sur la fenetre
+    */
 	public void affichePionsJoueur(Graphics2D g)
 	{
 		Image img;
@@ -161,11 +194,18 @@ class ZoneDessinPente extends JPanel
 		g.drawImage(img, size/40, size+joueur.getHeight() , game.getFenetre().getSizeFenetre()/20, game.getFenetre().getSizeFenetre()/20, this);
 	}
 
+	/**
+	* indique que la partie est terminer au programme
+    */
 	public void afficheEstGagne()
 	{
 		finPartie=true;
 	}
 	
+	/**
+	* fonction qui met à jour l'affichage
+	* @param g Graphics qui permet de dessiner sur la fenetre
+    */
 	@Override
 	public void paintComponent(Graphics g)
 	{
@@ -176,6 +216,10 @@ class ZoneDessinPente extends JPanel
 		bottomPanel();
 	}
 	
+	/**
+	* Affiche le plateau
+	* @param g Graphics2D qui permet de dessiner sur la fenetre
+    */
 	public void affiche_plateau(Graphics2D g)
 	{
 		Image img=null;

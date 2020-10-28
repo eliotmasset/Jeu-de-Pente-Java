@@ -2,13 +2,38 @@ import java.util.*;
 import javax.swing.*;
 import java.lang.Math;
 
+/**
+ * Classe d'un plateau
+ * @author Eliot Masset & Amimri Anouar
+ * @version 1.0
+ */
 class Plateau
 {
+    /**
+    * nombre de case sur l'axe X et l'axe Y
+    */
     private int nbCaseX, nbCaseY;
+    /**
+    * vecteurs stoquant des cases
+    * @see Case
+    */
     private Vector<Case> cases;
+    /**
+    * taille du plateau
+    */
     private int size;
+    /**
+    * theme du plateau
+    */
     private String themePlate;
 
+    /**
+    * Constructeur d'une partie
+	* @param _nbCaseX qui stoque le nombre de case sur l'axe X
+    * @param _nbCaseY qui stoque le nombre de case sur l'axe Y
+    * @param _size qui stoque la taille du plateau
+    * @param _themeplate qui stoque le thee du plateau
+    */
     Plateau(int _nbCaseX, int _nbCaseY, int _size, String _themePlate)
 	{
         size=_size;
@@ -25,31 +50,56 @@ class Plateau
         }
     }
 
+    /**
+    * Setter sur le theme du plateau
+	* @param _themePlate String qui stoque le theme du plateau
+    */
     public void setThemePlate(String _themePlate)
     {
         themePlate=_themePlate;
     }
 
+    /**
+    * Getter sur le nombre de case sur l'axe X
+	* @return le nombre de case sur l'axe X
+    */
     public int getNbCaseX()
     {
         return nbCaseX;
     }
 
+    /**
+    * Getter sur le nombre de case sur l'axe Y
+	* @return le nombre de case sur l'axe Y
+    */
     public int getNbCaseY()
     {
         return nbCaseY;
     }
 
+    /**
+    * Getter sur le vecteurs de cases
+	* @return le vecteur de cases
+    */
     public Vector<Case> getCases()
     {
         return cases;
     }
     
+    /**
+    * Getter sur la Case à l'index X
+    * @return une case
+    * @see Case
+    */
     public Case getCaseAt(int x, int y)
     {
 		return cases.elementAt(((x*getNbCaseX())/size)+(((y-25)*getNbCaseY())/size)*getNbCaseY());
     }
     
+    /**
+    * Getter sur le chemin vers une image en fonction du theme et d'un index
+	* @return le chemin vers une image
+    */
     public static String getPathBy(String theme, String statu)
     {
         String ret="";
@@ -278,6 +328,10 @@ class Plateau
         return ret;
     }
 
+    /**
+    * Getter sur le status d'une case en fonction de son chemin
+	* @return le status d'une case
+    */
     public static String getStatuBy(String path)
     {
         String ret="";

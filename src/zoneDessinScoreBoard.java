@@ -5,13 +5,34 @@ import java.util.*;
 import javax.imageio.ImageIO;
 import java.util.regex.*;
 
+/**
+ * Classe de la zone de dessin du scoreboard
+ * @author Eliot Masset & Amimri Anouar
+ * @version 1.0
+ */
 class zoneDessinScoreBoard extends JPanel
 {
+    /**
+    * Taille de la fenetre
+    */
     private int size;
+    /**
+    * texte qui stoque le titre
+    */
     private JLabel titre;
+    /**
+    * texte qui stoque le texte des scores
+    */
     private JTextArea Scores;
+    /**
+    * barre de navigation
+    */
     private JScrollPane scrollPane;
     
+    /**
+	* Constructeur de la zone de dession du scoreboard
+	* @param _size int qui stoque la taille de la fenetre
+    */
 	zoneDessinScoreBoard(int _size)
 	{
         setLayout(null);
@@ -24,6 +45,9 @@ class zoneDessinScoreBoard extends JPanel
         ScorePlayers();
 	}
     
+    /**
+	* Affiche le scoreboard
+    */
     private void affiche_ScoreBoard()
 	{
         Font font1 = new Font("Arial",Font.BOLD,40);
@@ -54,6 +78,9 @@ class zoneDessinScoreBoard extends JPanel
         add(scrollPane);
     }
     
+    /**
+	* Affiche les scores des players
+    */
     public void ScorePlayers()
     {
         File file = new File("ScoreBoard.txt");

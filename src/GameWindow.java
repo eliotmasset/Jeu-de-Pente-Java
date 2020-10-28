@@ -13,13 +13,39 @@ import java.io.IOException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * Classe de la fenetre de jeu
+ * @author Eliot Masset & Amimri Anouar
+ * @version 1.0
+ */
 class GameWindow extends JFrame implements ActionListener
 {
+	/**
+	* fenetre du ScoreBoard
+	* @see ScoreBoardWindow
+    */
 	private ScoreBoardWindow w;
+	/**
+    * zone de dessin de la fenetre de jeu
+	* @see ZoneDessinPente
+    */
 	private ZoneDessinPente zone;
+	/**
+    * Partie en cours
+	* @see Partie
+    */
 	private Partie game;
+	/**
+    * Taille de la fenetre
+    */
 	private int size;
 
+	/**
+    * Constructeur de la fenetre de jeu
+	* @param s qui stoque le nom de la fenetre
+	* @param _game qui stoque la partie en cours
+	* @param _size int qui stoque la taille de la fenetre
+    */
 	GameWindow(String s, Partie _game, int _size)
 	{
 		super(s);
@@ -31,31 +57,40 @@ class GameWindow extends JFrame implements ActionListener
         Init_Menu();
 		zone = new ZoneDessinPente(game,size);
 		setContentPane(zone);
-		FenetrePrincipal();
 		addMouseListener(new Evenement(game));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}
 
+	/**
+    * Getter sur la taille de la fenetre
+	* @return la taille de la fenetre
+    */
 	public int getSizeFenetre()
 	{
 		return size;
 	}
 
+	/**
+    * Getter sur la zone de dessin de la fenetre
+	* @return la zone de dessin de la fenetre
+    */
 	public ZoneDessinPente getZoneDessin()
 	{
 		return zone;
 	}
 	
+	/**
+    * Fonction qui repaint la zone de dessin
+    */
 	public void _repaint()
 	{
 		zone.repaint();
 	}
-    
-    public void FenetrePrincipal()
-    {
-	}
 
+	/**
+    * Fonction qui initialise le menu
+    */
     public void Init_Menu()
     {
         JMenuBar menuBar = new JMenuBar();
@@ -93,6 +128,10 @@ class GameWindow extends JFrame implements ActionListener
 		menuBar.add(menuInfo);
 	}
 
+	/**
+    * fonction qui detecte un evenement sur la fenetre
+    * @param evenement ActionEvent qui stoque l'évenement capté
+    */
     public void actionPerformed(ActionEvent evenement)
 	{
 		if (evenement.getActionCommand().equals("menu_quitter"))
@@ -157,7 +196,7 @@ class GameWindow extends JFrame implements ActionListener
 				JOptionPane.QUESTION_MESSAGE,
 				null,
 				game.getThemes(),
-				game.getThemesAt(0));
+				game.getTheme());
 			if(rep != null)
 			{
 				game.setTheme(rep);

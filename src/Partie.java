@@ -4,26 +4,90 @@ import java.net.URL;
 import java.io.*;
 import java.lang.Math;
 
-
+/**
+ * Classe d'une partie
+ * @author Eliot Masset & Amimri Anouar
+ * @version 1.0
+ */
 class Partie
 {  
+    /**
+    * plateau de jeu
+    * @see Plateau
+    */
     private Plateau plate;
+    /**
+	* position x et y de la souris
+    */
     private int eventMouseX,eventMouseY;
+    /**
+	* décalage liée à la présence du menu
+    */
     private final int decalMenu=25;
+    /**
+    * joueur 1 et 2
+    * @see Joueur
+    */
     private Joueur joueur1, joueur2;
+    /**
+	* nom du joueur qui est entrain de joueur
+    */
     private String current_Joueur;
+    /**
+    * fenetre de jeu
+    * @see GameWindow
+    */
     private GameWindow fenetre;
+    /**
+	* Boolean pour savoir si la partie est terminée
+    */
     private boolean finPartie;
+    /**
+	* nombre de points pour gagner
+    */
     private int pointToWin;
+    /**
+	* nombre de pion de même couleurs côte à côte pour gagner
+    */
     private int NbSameColorToWin;
+    /**
+	* theme d'affichage
+    */
     private String theme;
+    /**
+	* nombre de cases du plateau
+    */
     private int nbCase;
+    /**
+	* liste des themes
+    */
     private String[] themes;
+    /**
+	* nombre de tours effectués
+    */
     private int nbTour;
+    /**
+    * différens sons de partie
+    * @see Sons
+    */
     private Sons bruit1,bruit2,son;
+    /**
+	* boolean pour savoir si des pions ont été capturés
+    */
     private boolean capture;
     
 
+    /**
+    * Constructeur d'une partie
+	* @param _themes qui stoque la liste de themes
+    * @param size qui stoque la taille de la fenetre
+    * @param _nbCase qui stoque le nombre de case du plateau
+    * @param _pointToWin qui stoque le nombre de poins pour gagner
+    * @param _NbSameColorToWin qui stoque le nombre de pion de même couleurs côte à côte pour gagner
+    * @param _theme qui stoque le theme d'affichage
+    * @param _son qui stoque la musique de fond
+    * @see Sons
+    */
 	Partie(String[] _themes,int size, int _nbCase, int _pointToWin, int _NbSameColorToWin, String _theme, Sons _son)
 	{
         themes=_themes;
@@ -51,16 +115,28 @@ class Partie
         plate.getCaseAt(fenetre.getSizeFenetre()/2, fenetre.getSizeFenetre()/2+25).setPath(plate.getPathBy(theme, "clair"));
     }
 
+    /**
+    * Getter sur la musique de fond
+	* @return la musique de fond
+    */
     public Sons getSons()
     {
         return son;
     }
 
+    /**
+    * Getter sur le theme
+	* @return le theme
+    */
     public String getTheme()
     {
         return theme;
     }
 
+    /**
+    * Getter sur le chemin d'un son en fonction du theme et d'un index
+	* @return le chemin d'un son
+    */
     public static String getPathByTheme(String Theme, int index)
     {
         String rep="";
@@ -136,16 +212,29 @@ class Partie
         return rep;
     }
 
+    /**
+    * Getter sur la liste des themes
+	* @return la liste des themes
+    */
     public String[] getThemes()
     {
         return themes;
     }
 
+    /**
+    * Getter sur un theme de la liste des themes à un X index
+    * @param index int qui stoque l'index vers un X theme
+	* @return le theme à l'index X
+    */
     public String getThemesAt(int index)
     {
         return themes[index];
     }
 
+    /**
+    * Setter sur le theme
+	* @param _theme String qui stoque le nouveau theme à mettre à jour
+    */
     public void setTheme(String _theme)
     {
         theme=_theme;
@@ -157,6 +246,11 @@ class Partie
         fenetre.repaint();
     }
 
+    /**
+    * Getter sur le joueur à un index X
+    * @param i int qui stoque l'index X d'u joueur
+	* @return le joueur X
+    */
     public Joueur getJoueur(int i)
     {
         if(i==1)
@@ -165,41 +259,75 @@ class Partie
             return joueur2;
     }
 
+    /**
+    * Getter sur la fenetre de jeu
+    * @return la fenetre de jeu
+    * @see GameWindow
+    */
     public GameWindow getFenetre()
     {
         return fenetre;
     }
 
+    /**
+    * Getter sur le plateau
+    * @return le plateau
+    * @see Plateau
+    */
     public Plateau getPlateau()
     {
         return plate;
     }
 
+    /**
+    * Getter sur le nom du joueur entrain de jouer
+    * @return le nom d'un joueur
+    */
     public String getCurrentJoueur()
     {
         return current_Joueur;
     }
 
+    /**
+    * Setter sur le nom du joueur entrain de jouer
+    * @param c String qui stoque le nom d'un joueur
+    */
     public void setCurrentJoueur(String c)
     {
         current_Joueur=c;
     }
 
+    /**
+    * Getter sur le nombre de point pour gagner
+    * @return le nombre de point pour gagner
+    */
     public int getNbPointToWin()
     {
         return pointToWin;
     }
 
+    /**
+    * Getter sur un boolean indiquant si la partie est terminer
+    * @return si la partie est terminer
+    */
     public boolean isFinish()
     {
         return finPartie;
     }
 
+    /**
+    * Getter sur le nombre de tours effectué
+    * @return le nombre de tours effectué
+    */
     public int getNbTour()
     {
         return nbTour;
     }
 
+    /**
+    * Fonction qui gère un tour de jeu
+    * @param j Joueur qui stoque le joueur qui doit jouer
+    */
     private void tourdejeu(Joueur j)
     {
         nbTour++;
@@ -223,6 +351,10 @@ class Partie
         }
     }
 
+    /**
+    * Foncion indiquant si un joueur à gagner
+    * @return le joueur qui à gagner ou null si aucun n'a gagné
+    */
     private Joueur isWin()
     {
         if(joueur1.getNbPoint()>=pointToWin)
@@ -233,6 +365,9 @@ class Partie
             return null;
     }
 
+    /**
+    * Fonction qui lance l'algo de calcul sur tout les vecteurs autour d'un pions
+    */
     private void algo()
     {
         capture=false;
@@ -252,6 +387,11 @@ class Partie
         th.start();
     }
     
+    /**
+    * Fonction qui lance les calculs sur les vecteurs
+    * @param i int qui stoque la coordonée X du vecteur
+    * @param j int qui stoque la coordonée Y du vecteur
+    */
     private void vecteur(int i, int j)
     {
 		String ColorAdversaire;
@@ -307,6 +447,11 @@ class Partie
         }
     }
 
+    /**
+    * Fonction qui sauvegarde le score d'un joueur
+    * @param j Joueur qui stoque le joueur qui à gagné
+    * @see Joueur
+    */
     public void saveScorePlayer(Joueur j)
     {
         File file = new File("ScoreBoard.txt");
@@ -355,6 +500,12 @@ class Partie
         
     }
 
+    /**
+    * Fonction qui se lance au clique d'une souris(lancé par la classe Evenement)
+    * @see Evenement
+    * @param x int qui stoque la coordonée X de la position de la souris
+    * @param y int qui stoque la coordonée Y de la position de la souris
+    */
     public void clicEvent(int x,int y)
     {
         this.eventMouseX=x;
