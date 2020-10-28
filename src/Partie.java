@@ -404,8 +404,8 @@ class Partie
 		else
             ColorAdversaire=plate.getPathBy(theme, "sombre");
         
-        if(eventMouseY+(3*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))<decalMenu || eventMouseX+(3*i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))<0 
-        || eventMouseX+(3*i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(3*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))>fenetre.getSizeFenetre()+decalMenu)
+        if(eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))<decalMenu || eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX()))<0 
+        || eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))>fenetre.getSizeFenetre()+decalMenu)
         {}
         else 
         {
