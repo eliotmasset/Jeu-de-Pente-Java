@@ -297,7 +297,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 			JLabel lab4 = new JLabel("Taille de la fenetre de jeu : ");
 			JSpinner tailleFenetre = new JSpinner(new SpinnerNumberModel(Integer.parseInt(paramPartie[4]),400,1200,100));
 			JLabel lab5 = new JLabel("Son : ");
-			JSpinner choixson = new JSpinner(new SpinnerNumberModel((int)(Math.round(son.getVolume())),0,100,1));
+			JSlider choixson = new JSlider(JSlider.HORIZONTAL,0, 100, (int)(Math.round(son.getVolume())));
 			panel.add(lab0);
 			panel.add(themes);
 			panel.add(lab1);
