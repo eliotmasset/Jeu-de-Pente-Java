@@ -163,6 +163,114 @@ class Plateau
                     default:
                 }
                 break;
+            case "noel":
+                switch(statu)
+                {
+                    case "vide":
+                        ret="../img/theme_noel_case_vide.png";
+                        break;
+                    case "sombre":
+                        ret="../img/theme_noel_case_sombre.png";
+                        break;
+                    case "clair":
+                        ret="../img/theme_noel_case_clair.png";
+                        break;
+                    case "pion_sombre":
+                        ret="../img/theme_noel_case_sombre.png";
+                        break;
+                    case "pion_clair":
+                        ret="../img/theme_noel_case_clair.png";
+                        break;
+                    case "fin_sombre":
+                        ret="../img/image_fin_cadeau.jpg";
+                        break;
+                    case "fin_clair":
+                        ret="../img/image_fin_pere_noel.jpg";
+                        break;
+                    default:
+                }
+                break;
+            case "zelda":
+                switch(statu)
+                {
+                    case "vide":
+                        ret="../img/theme_zelda_case_vide.png";
+                        break;
+                    case "sombre":
+                        ret="../img/theme_zelda_case_sombre.png";
+                        break;
+                    case "clair":
+                        ret="../img/theme_zelda_case_clair.png";
+                        break;
+                    case "pion_sombre":
+                        ret="../img/theme_zelda_case_sombre.png";
+                        break;
+                    case "pion_clair":
+                        ret="../img/theme_zelda_case_clair.png";
+                        break;
+                    case "fin_sombre":
+                        ret="../img/image_fin_link_dead.jpg";
+                        break;
+                    case "fin_clair":
+                        ret="../img/image_fin_link.jpg";
+                        break;
+                    default:
+                }
+                break;
+            case "harry potter":
+                switch(statu)
+                {
+                    case "vide":
+                        ret="../img/theme_harry_potter_case_vide.png";
+                        break;
+                    case "sombre":
+                        ret="../img/theme_harry_potter_case_sombre.png";
+                        break;
+                    case "clair":
+                        ret="../img/theme_harry_potter_case_clair.png";
+                        break;
+                    case "pion_sombre":
+                        ret="../img/theme_harry_potter_case_sombre.png";
+                        break;
+                    case "pion_clair":
+                        ret="../img/theme_harry_potter_case_clair.png";
+                        break;
+                    case "fin_sombre":
+                        ret="../img/image_fin_serpentar.jpg";
+                        break;
+                    case "fin_clair":
+                        ret="../img/image_fin_pouffsoufle.jpg";
+                        break;
+                    default:
+                }
+                break;
+            case "os":
+                switch(statu)
+                {
+                    case "vide":
+                        ret="../img/theme_os_case_vide.png";
+                        break;
+                    case "sombre":
+                        ret="../img/theme_os_case_sombre.png";
+                        break;
+                    case "clair":
+                        ret="../img/theme_os_case_clair.png";
+                        break;
+                    case "pion_sombre":
+                        ret="../img/theme_os_case_sombre.png";
+                        break;
+                    case "pion_clair":
+                        ret="../img/theme_os_case_clair.png";
+                        break;
+                    case "fin_sombre":
+                        ret="../img/image_fin_linux.jpg";
+                        break;
+                    case "fin_clair":
+                        ret="../img/image_fin_windows.jpg";
+                        break;
+                    default:
+                }
+                break;
             default:
                 ret="../img/case_vide.jpg";
                 break;
@@ -173,9 +281,9 @@ class Plateau
     public static String getStatuBy(String path)
     {
         String ret="";
-        if(path==getPathBy("normal", "vide") || path==getPathBy("sombre", "vide") || path==getPathBy("clair", "vide") || path==getPathBy("halloween", "vide"))
+        if(path==getPathBy("normal", "vide") || path==getPathBy("sombre", "vide") || path==getPathBy("clair", "vide") || path==getPathBy("halloween", "vide") || path==getPathBy("noel", "vide") || path==getPathBy("zelda", "vide") || path==getPathBy("harry potter", "vide") || path==getPathBy("os", "vide"))
             ret="vide";
-        else if(path==getPathBy("normal", "clair") || path==getPathBy("sombre", "clair") || path==getPathBy("clair", "clair") || path==getPathBy("halloween", "clair"))
+        else if(path==getPathBy("normal", "clair") || path==getPathBy("sombre", "clair") || path==getPathBy("clair", "clair") || path==getPathBy("halloween", "clair") || path==getPathBy("noel", "clair") || path==getPathBy("zelda", "clair") || path==getPathBy("harry potter", "clair") || path==getPathBy("os", "clair"))
             ret="clair";
         else
             ret="sombre";

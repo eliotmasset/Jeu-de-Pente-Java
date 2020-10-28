@@ -31,6 +31,7 @@ class Partie
         NbSameColorToWin=_NbSameColorToWin;
         nbCase=_nbCase;
         theme=_theme;
+		System.out.println(theme);
         son=_son;
         nbTour=0;
         joueur1 = new Joueur("joueur 1", "noir");
@@ -96,6 +97,38 @@ class Partie
                     rep="../son/bruitage1.wav";
                 else if(index==2)
                     rep="../son/bruitage2.wav";
+                break;
+            case "noel":
+                if(index==0)
+                    rep="../son/noel.wav";
+                else if(index==1)
+                    rep="../son/bruitage1.wav";
+                else if(index==2)
+                    rep="../son/bruitage2.wav";
+                break;
+            case "zelda":
+                if(index==0)
+                    rep="../son/link.wav";
+                else if(index==1)
+                    rep="../son/bruitage1.wav";
+                else if(index==2)
+                    rep="../son/bruitage2.wav";
+                break;
+            case "harry potter":
+                if(index==0)
+                    rep="../son/harry.wav";
+                else if(index==1)
+                    rep="../son/bruitage1.wav";
+                else if(index==2)
+                    rep="../son/bruitage2.wav";
+                break;
+            case "os":
+                if(index==0)
+                    rep="../son/os.wav";
+                else if(index==1)
+                    rep="../son/bruitage2-os.wav";
+                else if(index==2)
+                    rep="../son/bruitage1-os.wav";
                 break;
             default:
                 break;

@@ -31,11 +31,15 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		paramPartie[2]="5";
 		paramPartie[3]="normal";
 		paramPartie[4]=String.valueOf(size);
-		themes = new String[4];
+		themes = new String[8];
         themes[0]="normal";
         themes[1]="sombre";
 		themes[2]="clair";
 		themes[3]="halloween";
+		themes[4]="noel";
+		themes[5]="zelda";
+		themes[6]="harry potter";
+		themes[7]="os";
 		setButtons();
 	}
 
@@ -195,6 +199,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 				son.setPath(game.getPathByTheme(paramPartie[3],0));
 			if(game==null)
 			{
+				System.out.println(paramPartie[3]);
 				game = new Partie(themes,Integer.parseInt(paramPartie[4]),Integer.parseInt(paramPartie[0]),Integer.parseInt(paramPartie[1]),Integer.parseInt(paramPartie[2]),paramPartie[3],son);
 			}
 			else if(!game.getFenetre().isVisible())

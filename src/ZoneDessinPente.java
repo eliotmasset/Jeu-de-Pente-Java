@@ -58,6 +58,38 @@ class ZoneDessinPente extends JPanel
 			game.getJoueur(1).setCouleur("citrouille");
 			game.getJoueur(2).setCouleur("fantome");
 		}
+		else if(game.getTheme()=="noel")
+		{
+			setBackground(new Color(255,255,255));
+			joueur.setForeground(new Color(255,0,0));
+			joueurs_score.setForeground(new Color(255,0,0));
+			game.getJoueur(1).setCouleur("cadeau");
+			game.getJoueur(2).setCouleur("pere noel");
+		}
+		else if(game.getTheme()=="zelda")
+		{
+			setBackground(new Color(0,255,0));
+			joueur.setForeground(new Color(255,255,0));
+			joueurs_score.setForeground(new Color(255,255,0));
+			game.getJoueur(1).setCouleur("monstre");
+			game.getJoueur(2).setCouleur("link");
+		}
+		else if(game.getTheme()=="harry potter")
+		{
+			setBackground(new Color(0,0,0));
+			joueur.setForeground(new Color(0,0,255));
+			joueurs_score.setForeground(new Color(0,0,255));
+			game.getJoueur(1).setCouleur("serpentar");
+			game.getJoueur(2).setCouleur("poufsouffle");
+		}
+		else if(game.getTheme()=="os")
+		{
+			setBackground(new Color(0,0,0));
+			joueur.setForeground(new Color(0,255,0));
+			joueurs_score.setForeground(new Color(0,255,0));
+			game.getJoueur(1).setCouleur("linux");
+			game.getJoueur(2).setCouleur("windows");
+		}
 		joueur.setOpaque(false);
 		Font font1 = new Font("Arial",Font.BOLD,size/40);
 		joueur.setFont(font1);
