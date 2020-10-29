@@ -1,13 +1,14 @@
 import java.util.*;
 import javax.swing.*;
 import java.lang.Math;
+import java.io.*;
 
 /**
  * Classe d'une case de plateau
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class Case
+class Case implements Serializable
 {
     /**
     * cordonnées x et y

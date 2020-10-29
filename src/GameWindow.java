@@ -18,7 +18,7 @@ import java.awt.event.MouseEvent;
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class GameWindow extends JFrame implements ActionListener
+class GameWindow extends JFrame implements ActionListener, Serializable
 {
 	/**
 	* fenetre du ScoreBoard
@@ -57,7 +57,9 @@ class GameWindow extends JFrame implements ActionListener
         Init_Menu();
 		zone = new ZoneDessinPente(game,size);
 		setContentPane(zone);
-		addMouseListener(new Evenement(game));
+		Evenement e = new Evenement(game);
+		addMouseListener(e);
+		addMouseMotionListener(e);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}

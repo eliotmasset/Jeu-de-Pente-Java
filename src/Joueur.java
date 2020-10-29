@@ -1,6 +1,7 @@
 import java.util.*;
 import javax.swing.*;
 import java.lang.Math;
+import java.io.*;
 
 
 /**
@@ -8,7 +9,7 @@ import java.lang.Math;
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class Joueur
+class Joueur implements Serializable
 {
     /**
 	* nom du joueur

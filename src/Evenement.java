@@ -1,12 +1,13 @@
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 /**
  * Classe de gestion des evenements
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-public class Evenement implements MouseListener
+public class Evenement implements MouseListener, MouseMotionListener
 {  
     /**
     * game qui stoque la partie en cours
@@ -55,7 +56,8 @@ public class Evenement implements MouseListener
     * @param e   Evenement qui stoque l'evenement d'entrée
     */
     @Override
-    public void mouseEntered(MouseEvent e) {}
+    public void mouseEntered(MouseEvent e) 
+    {}
 
     /**
     * Fonction qui se lance à la sortie de la souris dans une zone
@@ -63,4 +65,21 @@ public class Evenement implements MouseListener
     */
     @Override
     public void mouseExited(MouseEvent e) {}
+
+    /**
+    * Fonction qui se lance au déplacement de la souris
+    * @param e   Evenement qui stoque l'evenement de sortie
+    */
+    @Override
+    public void mouseMoved(MouseEvent e) 
+    {
+        game.getFenetre().getZoneDessin().selection(e.getX(),e.getY());
+    }
+
+    /**
+    * Fonction qui se lance lorsque la souris attrape un élément
+    * @param e   Evenement qui stoque l'evenement de sortie
+    */
+    @Override
+    public void mouseDragged(MouseEvent e) {}
 }

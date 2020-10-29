@@ -110,9 +110,12 @@ public class Sons implements Runnable
                         sourceLine = (SourceDataLine) AudioSystem.getLine(info);
                         sourceLine.open(audioFormat);
                         sourceLine.start();
-                        volume = (FloatControl) sourceLine.getControl( FloatControl.Type.MASTER_GAIN );
-                        volume.setValue(20.0f * (float) Math.log10( vol / 100.0 ));
-                        int nBytesRead = 0;
+                        if(loop)
+                        {
+                                volume = (FloatControl) sourceLine.getControl( FloatControl.Type.MASTER_GAIN );
+                                volume.setValue(20.0f * (float) Math.log10( vol / 100.0 ));
+                        }
+                       int nBytesRead = 0;
                         byte[] abData = new byte[BUFFER_SIZE];
                         while (nBytesRead != -1 && savePath==path) {
                                 try {

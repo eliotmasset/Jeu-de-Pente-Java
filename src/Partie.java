@@ -9,7 +9,7 @@ import java.lang.Math;
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class Partie
+class Partie implements Serializable
 {  
     /**
     * plateau de jeu
@@ -23,7 +23,7 @@ class Partie
     /**
 	* décalage liée à la présence du menu
     */
-    private int decalMenu=0;
+    private final int decalMenu=23;
     /**
     * joueur 1 et 2
     * @see Joueur
@@ -70,7 +70,7 @@ class Partie
     * différens sons de partie
     * @see Sons
     */
-    private Sons bruit1,bruit2,son;
+    private transient Sons bruit1,bruit2,son;
     /**
 	* boolean pour savoir si des pions ont été capturés
     */
@@ -90,7 +90,6 @@ class Partie
     */
 	Partie(String[] _themes,int size, int _nbCase, int _pointToWin, int _NbSameColorToWin, String _theme, Sons _son)
 	{
-        decalMenu=23;
         themes=_themes;
         pointToWin=_pointToWin;
         NbSameColorToWin=_NbSameColorToWin;
@@ -346,12 +345,14 @@ class Partie
         if(j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
         {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
+            fenetre._repaint();
             algo();
             fenetre._repaint();
         }
         else if(j==joueur2 && !(eventMouseX==0 && eventMouseY==0))
         {
             plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
+            fenetre._repaint();
             algo();
             fenetre._repaint();
         }
@@ -412,8 +413,8 @@ class Partie
 		else
             ColorAdversaire=plate.getPathBy(theme, "sombre");
         
-        if(eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))<decalMenu || eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX()))<0 
-        || eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))+decalMenu>fenetre.getSizeFenetre())
+        if(eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))<0 || eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX()))<0 
+        || eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))>fenetre.getSizeFenetre())
         {}
         else 
         {
@@ -434,8 +435,8 @@ class Partie
         int nbPions=0;
         for(int d=2+(-1*(NbSameColorToWin));d<NbSameColorToWin;d++)
         {
-            if(eventMouseY+(d*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))<decalMenu || eventMouseX+(d*i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))<0 
-            || eventMouseX+(d*i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(d*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))+decalMenu>fenetre.getSizeFenetre())
+            if(eventMouseY+(d*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))<0 || eventMouseX+(d*i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))<0 
+            || eventMouseX+(d*i*(fenetre.getSizeFenetre()/plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(d*j*(fenetre.getSizeFenetre()/plate.getNbCaseY()))>fenetre.getSizeFenetre())
             {}
             else
             {
@@ -542,13 +543,13 @@ class Partie
                 tourdejeu(joueur2);
 
         }
-        else if(current_Joueur==joueur2.getNom()
-        && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))
+        else if(current_Joueur.equalsIgnoreCase(joueur2.getNom())
+        && plate.getCaseAt(eventMouseX, eventMouseY).getPath().equalsIgnoreCase(plate.getPathBy(theme, "vide")))
         {
             tourdejeu(joueur1);
         }
-        else if (current_Joueur==joueur1.getNom()
-        && plate.getCaseAt(eventMouseX, eventMouseY).getPath()==plate.getPathBy(theme, "vide"))
+        else if (current_Joueur.equalsIgnoreCase(joueur1.getNom())
+        && plate.getCaseAt(eventMouseX, eventMouseY).getPath().equalsIgnoreCase(plate.getPathBy(theme, "vide")))
         {
             tourdejeu(joueur2);
         }

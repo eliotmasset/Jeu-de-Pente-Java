@@ -4,14 +4,20 @@ import java.io.File;
 import java.util.*;
 import javax.imageio.ImageIO;
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Classe de la zone de dessin de la fenetre de jeu
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class ZoneDessinPente extends JPanel
+class ZoneDessinPente extends JPanel implements Serializable
 {
+
+	/**
+    * Coordonnées x et y  de la selections
+    */
+	private int XSelect,YSelect;
 	/**
     * Partie en jeu
     */
@@ -27,7 +33,7 @@ class ZoneDessinPente extends JPanel
 	/**
     * taille de la fenetre
     */
-	private int size;
+	public int size;
 	/**
     * boolean pour savoir si la partie est terminee
     */
@@ -41,6 +47,8 @@ class ZoneDessinPente extends JPanel
     */
 	ZoneDessinPente(Partie _game, int _size)
 	{
+		XSelect=0;
+		YSelect=0;
 		finPartie = false;
 		game = _game;
 		size=_size;
@@ -158,7 +166,7 @@ class ZoneDessinPente extends JPanel
 	* Affiche les pions des joueurs à leurs positions
 	* @param g Graphics2D qui permet de dessiner sur la fenetre
     */
-	public void affichePionsJoueur(Graphics2D g)
+	private void affichePionsJoueur(Graphics2D g)
 	{
 		Image img;
 		img=null;
@@ -201,7 +209,23 @@ class ZoneDessinPente extends JPanel
 	{
 		finPartie=true;
 	}
+
+	public void selection(int x, int y)
+	{
+		XSelect=x;
+		YSelect=y-2*game.getDecalMenu();
+	}
 	
+	public void afficheSelection(Graphics2D g)
+	{
+		g.setColor(new Color(0,255,0));
+		if(XSelect>0 && YSelect>0 && XSelect<size && YSelect<size && !game.isFinish())
+			g.drawRect(	game.getPlateau().getCaseAt(XSelect, YSelect).getX(), 
+						game.getPlateau().getCaseAt(XSelect, YSelect).getY(),
+						size/game.getPlateau().getNbCaseX(), 
+						size/game.getPlateau().getNbCaseY());
+	}
+
 	/**
 	* fonction qui met à jour l'affichage
 	* @param g Graphics qui permet de dessiner sur la fenetre
@@ -214,6 +238,8 @@ class ZoneDessinPente extends JPanel
 		affiche_plateau(g2);
 		affichePionsJoueur(g2);
 		bottomPanel();
+		afficheSelection(g2);
+		repaint();
 	}
 	
 	/**

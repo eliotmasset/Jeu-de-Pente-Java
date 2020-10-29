@@ -1,13 +1,14 @@
 import java.util.*;
 import javax.swing.*;
 import java.lang.Math;
+import java.io.*;
 
 /**
  * Classe d'un plateau
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class Plateau
+class Plateau implements Serializable
 {
     /**
     * nombre de case sur l'axe X et l'axe Y
