@@ -9,7 +9,7 @@ import java.io.*;
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class Joueur implements Serializable
+class Joueur
 {
     /**
 	* nom du joueur

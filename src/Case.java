@@ -8,7 +8,7 @@ import java.io.*;
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class Case implements Serializable
+class Case
 {
     /**
     * cordonnées x et y

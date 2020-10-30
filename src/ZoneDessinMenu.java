@@ -122,7 +122,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		if(game==null || !game.getFenetre().isVisible())
 			son.setPath("../son/start.wav");
 		else
-			son.setPath(game.getPathByTheme(paramPartie[3],0));
+			son.setPath(Partie.getPathByTheme(paramPartie[3],0));
 	}
 	
 	/**
@@ -244,7 +244,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		if (evenement.getSource()==lancerPartie)
 		{
 			if(son!=null)
-				son.setPath(game.getPathByTheme(paramPartie[3],0));
+				son.setPath(Partie.getPathByTheme(paramPartie[3],0));
 			if(game==null)
 			{
 				System.out.println(paramPartie[3]);

@@ -8,7 +8,7 @@ import java.io.*;
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class Plateau implements Serializable
+class Plateau
 {
     /**
     * nombre de case sur l'axe X et l'axe Y

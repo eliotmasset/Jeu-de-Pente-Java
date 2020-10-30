@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class ZoneDessinPente extends JPanel implements Serializable
+class ZoneDessinPente extends JPanel
 {
 
 	/**
@@ -210,12 +210,21 @@ class ZoneDessinPente extends JPanel implements Serializable
 		finPartie=true;
 	}
 
+	/**
+	* indique les coordonnées de lasouris pour afficher la selection
+	* @param x int qui stoque la coordonnée X
+	* @param y int qui stoque la coordonnée Y
+    */
 	public void selection(int x, int y)
 	{
 		XSelect=x;
 		YSelect=y-2*game.getDecalMenu();
 	}
 	
+	/**
+	* Affiche la sélection
+	* @param g Graphics qui permet de dessiner sur la fenetre
+    */
 	public void afficheSelection(Graphics2D g)
 	{
 		g.setColor(new Color(0,255,0));
@@ -280,9 +289,9 @@ class ZoneDessinPente extends JPanel implements Serializable
 			try 
 			{
 				if(game.getCurrentJoueur()==game.getJoueur(1).getNom())
-					img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"fin_sombre")));
+					img = ImageIO.read(new File(Plateau.getPathBy(game.getTheme(),"fin_sombre")));
 				else
-					img = ImageIO.read(new File(game.getPlateau().getPathBy(game.getTheme(),"fin_clair")));
+					img = ImageIO.read(new File(Plateau.getPathBy(game.getTheme(),"fin_clair")));
 			} 
 			catch (IOException e) 
 			{

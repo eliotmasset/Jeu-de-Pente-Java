@@ -9,7 +9,7 @@ import java.lang.Math;
  * @author Eliot Masset et Amimri Anouar
  * @version 1.0
  */
-class Partie implements Serializable
+class Partie
 {  
     /**
     * plateau de jeu
@@ -111,7 +111,7 @@ class Partie implements Serializable
         bruit2.setPath(getPathByTheme(theme, 1));
         bruit2.setLoop(false);
         current_Joueur=joueur2.getNom();
-        plate.getCaseAt(fenetre.getSizeFenetre()/2, fenetre.getSizeFenetre()/2).setPath(plate.getPathBy(theme, "clair"));
+        plate.getCaseAt(fenetre.getSizeFenetre()/2, fenetre.getSizeFenetre()/2).setPath(Plateau.getPathBy(theme, "clair"));
     }
 
     /**
@@ -251,7 +251,7 @@ class Partie implements Serializable
         plate.setThemePlate(theme);
         for(Case c : plate.getCases())
         {
-            c.setPath(plate.getPathBy(theme, plate.getStatuBy(c.getPath())));
+            c.setPath(Plateau.getPathBy(theme, plate.getStatuBy(c.getPath())));
         }
         fenetre.repaint();
     }
@@ -344,14 +344,14 @@ class Partie implements Serializable
         current_Joueur=j.getNom();
         if(j==joueur1 && !(eventMouseX==0 && eventMouseY==0))
         {
-            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "sombre"));
+            plate.getCaseAt(eventMouseX, eventMouseY).setPath(Plateau.getPathBy(theme, "sombre"));
             fenetre._repaint();
             algo();
             fenetre._repaint();
         }
         else if(j==joueur2 && !(eventMouseX==0 && eventMouseY==0))
         {
-            plate.getCaseAt(eventMouseX, eventMouseY).setPath(plate.getPathBy(theme, "clair"));
+            plate.getCaseAt(eventMouseX, eventMouseY).setPath(Plateau.getPathBy(theme, "clair"));
             fenetre._repaint();
             algo();
             fenetre._repaint();
@@ -408,10 +408,10 @@ class Partie implements Serializable
     {
 		String ColorAdversaire;
 		String Color=plate.getCaseAt(eventMouseX, eventMouseY).getPath();
-		if(Color==plate.getPathBy(theme, "sombre"))
-			ColorAdversaire=plate.getPathBy(theme, "clair");
+		if(Color==Plateau.getPathBy(theme, "sombre"))
+			ColorAdversaire=Plateau.getPathBy(theme, "clair");
 		else
-            ColorAdversaire=plate.getPathBy(theme, "sombre");
+            ColorAdversaire=Plateau.getPathBy(theme, "sombre");
         
         if(eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))<0 || eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX()))<0 
         || eventMouseX+(3*i*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseX()))>fenetre.getSizeFenetre()  || eventMouseY+(3*j*Math.round((float)fenetre.getSizeFenetre()/(float)plate.getNbCaseY()))>fenetre.getSizeFenetre())
@@ -544,12 +544,12 @@ class Partie implements Serializable
 
         }
         else if(current_Joueur.equalsIgnoreCase(joueur2.getNom())
-        && plate.getCaseAt(eventMouseX, eventMouseY).getPath().equalsIgnoreCase(plate.getPathBy(theme, "vide")))
+        && plate.getCaseAt(eventMouseX, eventMouseY).getPath().equalsIgnoreCase(Plateau.getPathBy(theme, "vide")))
         {
             tourdejeu(joueur1);
         }
         else if (current_Joueur.equalsIgnoreCase(joueur1.getNom())
-        && plate.getCaseAt(eventMouseX, eventMouseY).getPath().equalsIgnoreCase(plate.getPathBy(theme, "vide")))
+        && plate.getCaseAt(eventMouseX, eventMouseY).getPath().equalsIgnoreCase(Plateau.getPathBy(theme, "vide")))
         {
             tourdejeu(joueur2);
         }
