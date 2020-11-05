@@ -5,6 +5,7 @@ import java.util.*;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.io.Serializable;
+import java.awt.event.*;
 
 /**
  * Classe de la zone de dessin de la fenetre de jeu
@@ -50,6 +51,9 @@ class ZoneDessinPente extends JPanel
 		XSelect=0;
 		YSelect=0;
 		finPartie = false;
+        Evenement e = new Evenement(_game);
+		addMouseListener(e);
+		addMouseMotionListener(e);
 		game = _game;
 		size=_size;
 		setSize(size,size);
@@ -218,7 +222,7 @@ class ZoneDessinPente extends JPanel
 	public void selection(int x, int y)
 	{
 		XSelect=x;
-		YSelect=y-2*game.getDecalMenu();
+		YSelect=y;
 	}
 	
 	/**

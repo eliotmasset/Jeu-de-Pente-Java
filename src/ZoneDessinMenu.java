@@ -140,7 +140,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		{
 			e.printStackTrace();
 		}
-        g.drawImage(img,0,0,size,size,this);
+        g.drawImage(img,0,0,size,size-25,this);
 	}
 
 	/**
@@ -156,7 +156,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 			remove(quitter);
 		}
 		lancerPartie = new JButton("");
-		lancerPartie.setBounds(size/8, (23*size)/64, (3*size)/4, size/10);
+		lancerPartie.setBounds(size/8, (23*size)/64-12, (3*size)/4, size/10);
 		lancerPartie.setOpaque(false);
 		lancerPartie.setContentAreaFilled(false);
 		lancerPartie.setBorderPainted(false);
@@ -165,7 +165,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		add(lancerPartie);
 
 		scoreboard = new JButton("");
-		scoreboard.setBounds(size/8, (59*size)/128, size/2, size/10);
+		scoreboard.setBounds(size/8, (59*size)/128-12, size/2, size/10);
 		scoreboard.setOpaque(false);
 		scoreboard.setContentAreaFilled(false);
 		scoreboard.setBorderPainted(false);
@@ -174,7 +174,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		add(scoreboard);
 
 		options = new JButton("");
-		options.setBounds(size/8, (73*size)/128, size/2, size/10);
+		options.setBounds(size/8, (73*size)/128-12, size/2, size/10);
 		options.setOpaque(false);
 		options.setContentAreaFilled(false);
 		options.setBorderPainted(false);
@@ -183,7 +183,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		add(options);
 
 		quitter = new JButton("");
-		quitter.setBounds(size/3, (87*size)/128, (5*size)/12, size/10);
+		quitter.setBounds(size/3, (87*size)/128-12, (5*size)/12, size/10);
 		quitter.setOpaque(false);
 		quitter.setContentAreaFilled(false);
 		quitter.setBorderPainted(false);

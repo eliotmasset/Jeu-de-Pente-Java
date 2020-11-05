@@ -57,9 +57,6 @@ class GameWindow extends JFrame implements ActionListener
         Init_Menu();
 		zone = new ZoneDessinPente(game,size);
 		setContentPane(zone);
-		Evenement e = new Evenement(game);
-		addMouseListener(e);
-		addMouseMotionListener(e);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}

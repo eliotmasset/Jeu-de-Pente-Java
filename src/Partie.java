@@ -21,10 +21,6 @@ class Partie
     */
     private int eventMouseX,eventMouseY;
     /**
-	* décalage liée à la présence du menu
-    */
-    private final int decalMenu=23;
-    /**
     * joueur 1 et 2
     * @see Joueur
     */
@@ -130,15 +126,6 @@ class Partie
     public String getTheme()
     {
         return theme;
-    }
-
-    /**
-    * Getter sur le decalage du menu
-	* @return le decalage du menu
-    */
-    public int getDecalMenu()
-    {
-        return decalMenu;
     }
 
     /**
@@ -521,7 +508,7 @@ class Partie
     public void clicEvent(int x,int y)
     {
         this.eventMouseX=x;
-        this.eventMouseY=y-(decalMenu*2);
+        this.eventMouseY=y;
         if(finPartie)
         {
             if(current_Joueur==joueur1.getNom())

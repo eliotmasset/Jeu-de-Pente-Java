@@ -29,9 +29,9 @@ public class Evenement implements MouseListener, MouseMotionListener
     * @param e   Evenement qui stoque l'evenement de click
     */
     @Override
-    public void mouseClicked(MouseEvent e) 
+    public void mouseClicked(MouseEvent e)
     {
-        if (e.getButton()==MouseEvent.BUTTON1 && e.getX()>=0 && e.getX()<=game.getFenetre().getSizeFenetre() && e.getY()>=game.getDecalMenu()*2 && e.getY()<=game.getFenetre().getSizeFenetre()+(game.getDecalMenu()*2))
+        if (((e.getX()*game.getPlateau().getNbCaseX())/game.getFenetre().getSizeFenetre())+(((e.getY())*game.getPlateau().getNbCaseY())/game.getFenetre().getSizeFenetre())*game.getPlateau().getNbCaseY()<game.getPlateau().getNbCaseX()*game.getPlateau().getNbCaseY()) 
         {
             game.clicEvent(e.getX(),e.getY());
         }
