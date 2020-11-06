@@ -51,12 +51,12 @@ class GameWindow extends JFrame implements ActionListener
 		super(s);
 		game=_game;
 		size=_size;
-		setSize(size,size+100);
         setLocationRelativeTo(null);
 		setResizable(false);
         Init_Menu();
 		zone = new ZoneDessinPente(game,size);
 		setContentPane(zone);
+		pack();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}

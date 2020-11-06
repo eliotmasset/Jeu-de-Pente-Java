@@ -37,7 +37,7 @@ class MenuWindow extends JFrame
 	{
 		super(s);
 		size=_size;
-		setSize(size,size);
+		setSize(size,size+25);
         setLocationRelativeTo(null);
 		setResizable(false);
 		son = new Sons();
