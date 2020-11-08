@@ -57,7 +57,7 @@ class ZoneDessinPente extends JPanel
 		game = _game;
 		size=_size;
 		setSize(size,size+100);
-		setPreferredSize(new Dimension(size, size+100));
+		setPreferredSize(new Dimension(size, size+size/8));
 		joueur = new JLabel("Joueur 1(noir) : A toi de jouer");
 		joueurs_score = new JLabel("<html><pre>Score :<br>    joueur 1(noir)  : 0 pions capturés<br>    joueur 2(blanc) : 0 pions capturés</pre></html>");
 		bottomPanel();

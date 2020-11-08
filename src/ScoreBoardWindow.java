@@ -41,6 +41,7 @@ class ScoreBoardWindow extends JFrame
         zone = new zoneDessinScoreBoard(size);
 		setContentPane(zone);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		pack();
 		setVisible(true);
     }
 }

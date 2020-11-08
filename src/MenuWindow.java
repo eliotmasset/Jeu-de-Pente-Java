@@ -37,8 +37,6 @@ class MenuWindow extends JFrame
 	{
 		super(s);
 		size=_size;
-		setSize(size,size+25);
-        setLocationRelativeTo(null);
 		setResizable(false);
 		son = new Sons();
 		son.setPath("../son/start.wav");
@@ -47,6 +45,8 @@ class MenuWindow extends JFrame
 		zone = new ZoneDessinMenu(size,son,this);
 		setContentPane(zone);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pack();
+        setLocationRelativeTo(null);
 		setVisible(true);
 	}
 

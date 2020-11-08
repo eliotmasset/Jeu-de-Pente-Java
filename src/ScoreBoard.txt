@@ -1,4 +1,4 @@
 a    |    1
 Eliot    |    4
-joueur 2    |    63
+joueur 2    |    64
 joueur 1    |    21

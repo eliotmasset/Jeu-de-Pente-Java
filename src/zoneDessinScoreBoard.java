@@ -38,6 +38,7 @@ class zoneDessinScoreBoard extends JPanel
         setLayout(null);
 		size=_size;
         setSize(size,size);
+        setPreferredSize(new Dimension(size,size));
         titre = new JLabel("ScoreBoard : ");
         Scores = new JTextArea("");
         scrollPane = new JScrollPane(Scores);

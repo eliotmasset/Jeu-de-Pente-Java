@@ -10,8 +10,6 @@ import javax.swing.text.html.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.imageio.ImageIO;
 import java.io.IOException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * Classe de la fenetre de jeu
@@ -51,12 +49,12 @@ class GameWindow extends JFrame implements ActionListener
 		super(s);
 		game=_game;
 		size=_size;
-        setLocationRelativeTo(null);
 		setResizable(false);
         Init_Menu();
 		zone = new ZoneDessinPente(game,size);
 		setContentPane(zone);
 		pack();
+        setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
 	}

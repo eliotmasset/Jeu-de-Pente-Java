@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.net.URL;
 import java.io.*;
 import java.lang.Math;
+import java.nio.file.Files; 
+import java.nio.file.*;
 
 /**
  * Classe d'une partie
@@ -487,10 +489,10 @@ class Partie
             if(!trouve)
                 bw.write(j.getNom()+"    |    1\n");
             bw.close();
-            file.delete();
-            fileTemp.renameTo(file);
             br.close();
-            
+            Path p= Paths.get(file.getPath());
+            Files.delete(p);
+            fileTemp.renameTo(file);
         }
         catch(IOException ioe)
         {
