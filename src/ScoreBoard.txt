@@ -1,4 +1,5 @@
 a    |    1
 Eliot    |    4
 joueur 2    |    64
-joueur 1    |    21
+joueur 1    |    22
+scary    |    1

@@ -250,9 +250,9 @@ class ZoneDessinPente extends JPanel
 		Graphics2D g2 = (Graphics2D) g;
 		super.paintComponent(g);
 		affiche_plateau(g2);
+		afficheSelection(g2);
 		affichePionsJoueur(g2);
 		bottomPanel();
-		afficheSelection(g2);
 		repaint();
 	}
 	

@@ -523,7 +523,7 @@ class Partie
         {
             tourdejeu(joueur1);
         }
-        else if(nbTour==1)
+        else if(nbTour==1 && plate.getCaseAt(eventMouseX, eventMouseY).getPath().equalsIgnoreCase(Plateau.getPathBy(theme, "vide")))
         {
             if((eventMouseX>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
             || (eventMouseX<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)

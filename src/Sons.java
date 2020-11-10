@@ -48,6 +48,10 @@ public class Sons implements Runnable
         */
         private boolean loop=true;
 
+        Sons()
+        {
+                loop=true;
+        }
         /**
         * Fonction qui se lance quand un thread démarre
         */
