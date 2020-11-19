@@ -204,10 +204,10 @@ class Plateau
                         ret="../img/theme_halloween_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_halloween_case_sombre.png";
+                        ret="../img/theme_halloween_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_halloween_case_clair.png";
+                        ret="../img/theme_halloween_pion_clair.png";
                         break;
                     case "fin_sombre":
                         ret="../img/image_fin_citrouille.jpg";
@@ -231,10 +231,10 @@ class Plateau
                         ret="../img/theme_noel_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_noel_case_sombre.png";
+                        ret="../img/theme_noel_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_noel_case_clair.png";
+                        ret="../img/theme_noel_pion_clair.png";
                         break;
                     case "fin_sombre":
                         ret="../img/image_fin_cadeau.jpg";
@@ -258,10 +258,10 @@ class Plateau
                         ret="../img/theme_zelda_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_zelda_case_sombre.png";
+                        ret="../img/theme_zelda_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_zelda_case_clair.png";
+                        ret="../img/theme_zelda_pion_clair.png";
                         break;
                     case "fin_sombre":
                         ret="../img/image_fin_link_dead.jpg";
@@ -285,10 +285,10 @@ class Plateau
                         ret="../img/theme_harry_potter_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_harry_potter_case_sombre.png";
+                        ret="../img/theme_harry_potter_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_harry_potter_case_clair.png";
+                        ret="../img/theme_harry_potter_pion_clair.png";
                         break;
                     case "fin_sombre":
                         ret="../img/image_fin_serpentar.jpg";
@@ -312,10 +312,10 @@ class Plateau
                         ret="../img/theme_os_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_os_case_sombre.png";
+                        ret="../img/theme_os_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_os_case_clair.png";
+                        ret="../img/theme_os_pion_clair.png";
                         break;
                     case "fin_sombre":
                         ret="../img/image_fin_linux.jpg";

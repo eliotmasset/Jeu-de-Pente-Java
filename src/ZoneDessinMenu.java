@@ -121,9 +121,13 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 	private void reloadSong()
 	{
 		if(game==null || !game.getFenetre().isVisible())
+		{
 			son.setPath("../son/start.wav");
+		}
 		else if(game==null)
+		{
 			son.setPath(Partie.getPathByTheme(paramPartie[3],0));
+		}
 	}
 	
 	/**

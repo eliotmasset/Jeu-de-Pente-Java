@@ -509,6 +509,8 @@ class Partie
     */
     public void clicEvent(int x,int y)
     {
+        bruit2.setPath(getPathByTheme(theme, 1));
+        bruit1.setPath(getPathByTheme(theme, 2));
         this.eventMouseX=x;
         this.eventMouseY=y;
         if(finPartie)
@@ -525,10 +527,10 @@ class Partie
         }
         else if(nbTour==1 && plate.getCaseAt(eventMouseX, eventMouseY).getPath().equalsIgnoreCase(Plateau.getPathBy(theme, "vide")))
         {
-            if((eventMouseX>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
-            || (eventMouseX<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
-            || (eventMouseY>=fenetre.getSizeFenetre()/2+((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2)
-            || (eventMouseY<=fenetre.getSizeFenetre()/2-((fenetre.getSizeFenetre()/plate.getNbCaseX())*7)/2))
+            if((eventMouseX>Math.round((float)fenetre.getSizeFenetre()/(float)2+(float)((float)((float)((float)fenetre.getSizeFenetre()*(float)7)/(float)plate.getNbCaseX())/2)))
+            || (eventMouseX<Math.round((float)fenetre.getSizeFenetre()/(float)2-(float)((float)((float)((float)fenetre.getSizeFenetre()*(float)7)/(float)plate.getNbCaseX())/2)))
+            || (eventMouseY>Math.round((float)fenetre.getSizeFenetre()/(float)2+(float)((float)((float)((float)fenetre.getSizeFenetre()*(float)7)/(float)plate.getNbCaseX())/2)))
+            || (eventMouseY<Math.round((float)fenetre.getSizeFenetre()/(float)2-(float)((float)((float)((float)fenetre.getSizeFenetre()*(float)7)/(float)plate.getNbCaseX())/2))))
                 tourdejeu(joueur2);
 
         }
