@@ -39,7 +39,7 @@ class MenuWindow extends JFrame
 		size=_size;
 		setResizable(false);
 		son = new Sons();
-		son.setPath("../son/start.wav");
+		son.setPath("son/start.wav");
 		Thread thread = new Thread(son);
 		thread.start();
 		zone = new ZoneDessinMenu(size,son,this);

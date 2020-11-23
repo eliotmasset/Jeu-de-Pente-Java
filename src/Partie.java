@@ -143,67 +143,67 @@ class Partie
         {
             case "normal":
                 if(index==0)
-                    rep="../son/partie1.wav";
+                    rep="son/partie1.wav";
                 else if(index==1)
-                    rep="../son/bruitage1.wav";
+                    rep="son/bruitage1.wav";
                 else if(index==2)
-                    rep="../son/bruitage2.wav";
+                    rep="son/bruitage2.wav";
                 break;
             case "sombre":
                 if(index==0)
-                    rep="../son/partie1.wav";
+                    rep="son/partie1.wav";
                 else if(index==1)
-                    rep="../son/bruitage1.wav";
+                    rep="son/bruitage1.wav";
                 else if(index==2)
-                    rep="../son/bruitage2.wav";
+                    rep="son/bruitage2.wav";
                 break;
             case "clair":
                 if(index==0)
-                    rep="../son/partie1.wav";
+                    rep="son/partie1.wav";
                 else if(index==1)
-                    rep="../son/bruitage1.wav";
+                    rep="son/bruitage1.wav";
                 else if(index==2)
-                    rep="../son/bruitage2.wav";
+                    rep="son/bruitage2.wav";
                 break;
             case "halloween":
                 if(index==0)
-                    rep="../son/halloween.wav";
+                    rep="son/halloween.wav";
                 else if(index==1)
-                    rep="../son/bruitage1.wav";
+                    rep="son/bruitage1.wav";
                 else if(index==2)
-                    rep="../son/bruitage2.wav";
+                    rep="son/bruitage2.wav";
                 break;
             case "noel":
                 if(index==0)
-                    rep="../son/noel.wav";
+                    rep="son/noel.wav";
                 else if(index==1)
-                    rep="../son/bruitage1.wav";
+                    rep="son/bruitage1.wav";
                 else if(index==2)
-                    rep="../son/bruitage2.wav";
+                    rep="son/bruitage2.wav";
                 break;
             case "zelda":
                 if(index==0)
-                    rep="../son/link.wav";
+                    rep="son/link.wav";
                 else if(index==1)
-                    rep="../son/bruitage1.wav";
+                    rep="son/bruitage1.wav";
                 else if(index==2)
-                    rep="../son/bruitage2.wav";
+                    rep="son/bruitage2.wav";
                 break;
             case "harry potter":
                 if(index==0)
-                    rep="../son/harry.wav";
+                    rep="son/harry.wav";
                 else if(index==1)
-                    rep="../son/bruitage1.wav";
+                    rep="son/bruitage1.wav";
                 else if(index==2)
-                    rep="../son/bruitage2.wav";
+                    rep="son/bruitage2.wav";
                 break;
             case "os":
                 if(index==0)
-                    rep="../son/os.wav";
+                    rep="son/os.wav";
                 else if(index==1)
-                    rep="../son/bruitage2-os.wav";
+                    rep="son/bruitage2-os.wav";
                 else if(index==2)
-                    rep="../son/bruitage1-os.wav";
+                    rep="son/bruitage1-os.wav";
                 break;
             default:
                 break;

@@ -59,7 +59,7 @@ public class Sons implements Runnable
         public void run() {
                 vol=50;
                 if(path==null)
-                        path="../son/start.wav";
+                        path="son/start.wav";
                 playSong();
         }
 

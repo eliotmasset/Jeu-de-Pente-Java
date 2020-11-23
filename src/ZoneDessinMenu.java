@@ -122,7 +122,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 	{
 		if(game==null || !game.getFenetre().isVisible())
 		{
-			son.setPath("../son/start.wav");
+			son.setPath("son/start.wav");
 		}
 		else if(game==null)
 		{
@@ -139,7 +139,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 		Image img=null;
 		try 
 		{
-			img = ImageIO.read(new File("../img/Menu-Pente.jpg"));
+			img = ImageIO.read(new File("img/Menu-Pente.jpg"));
 		} 
 		catch (IOException e) 
 		{
@@ -204,7 +204,7 @@ class ZoneDessinMenu extends JPanel implements ActionListener
 				{
 					try {
 						JButton temp = (JButton)evenement.getSource();
-						Image img = ImageIO.read(new File("../img/select.png"));
+						Image img = ImageIO.read(new File("img/select.png"));
 						img = img.getScaledInstance(size/16, size/16, Image.SCALE_DEFAULT);
 						temp.setIcon(new ImageIcon(img));
 						temp.setHorizontalAlignment(SwingConstants.LEFT);

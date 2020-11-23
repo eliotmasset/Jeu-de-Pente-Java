@@ -114,25 +114,25 @@ class Plateau
                 switch(statu)
                 {
                     case "vide":
-                        ret="../img/case_vide.jpg";
+                        ret="img/case_vide.jpg";
                         break;
                     case "sombre":
-                        ret="../img/case_noir.jpg";
+                        ret="img/case_noir.jpg";
                         break;
                     case "clair":
-                        ret="../img/case_blanc.jpg";
+                        ret="img/case_blanc.jpg";
                         break;
                     case "pion_sombre":
-                        ret="../img/pion_noir.jpg";
+                        ret="img/pion_noir.jpg";
                         break;
                     case "pion_clair":
-                        ret="../img/pion_blanc.jpg";
+                        ret="img/pion_blanc.jpg";
                         break;
                     case "fin_sombre":
-                        ret="../img/image_fin.jpg";
+                        ret="img/image_fin.jpg";
                         break;
                     case "fin_clair":
-                        ret="../img/image_fin.jpg";
+                        ret="img/image_fin.jpg";
                         break;
                     default:
                 }
@@ -141,25 +141,25 @@ class Plateau
                 switch(statu)
                 {
                     case "vide":
-                        ret="../img/theme_sombre_case_vide.jpg";
+                        ret="img/theme_sombre_case_vide.jpg";
                         break;
                     case "sombre":
-                        ret="../img/theme_sombre_case_sombre.jpg";
+                        ret="img/theme_sombre_case_sombre.jpg";
                         break;
                     case "clair":
-                        ret="../img/theme_sombre_case_clair.jpg";
+                        ret="img/theme_sombre_case_clair.jpg";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_sombre_pion_sombre.jpg";
+                        ret="img/theme_sombre_pion_sombre.jpg";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_sombre_pion_clair.jpg";
+                        ret="img/theme_sombre_pion_clair.jpg";
                         break;
                     case "fin_sombre":
-                        ret="../img/image_fin.jpg";
+                        ret="img/image_fin.jpg";
                         break;
                     case "fin_clair":
-                        ret="../img/image_fin.jpg";
+                        ret="img/image_fin.jpg";
                         break;
                     default:
                 }
@@ -168,25 +168,25 @@ class Plateau
                 switch(statu)
                 {
                     case "vide":
-                        ret="../img/theme_clair_case_vide.jpg";
+                        ret="img/theme_clair_case_vide.jpg";
                         break;
                     case "sombre":
-                        ret="../img/theme_clair_case_sombre.jpg";
+                        ret="img/theme_clair_case_sombre.jpg";
                         break;
                     case "clair":
-                        ret="../img/theme_clair_case_clair.jpg";
+                        ret="img/theme_clair_case_clair.jpg";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_clair_pion_sombre.jpg";
+                        ret="img/theme_clair_pion_sombre.jpg";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_clair_pion_clair.jpg";
+                        ret="img/theme_clair_pion_clair.jpg";
                         break;
                     case "fin_sombre":
-                        ret="../img/image_fin.jpg";
+                        ret="img/image_fin.jpg";
                         break;
                     case "fin_clair":
-                        ret="../img/image_fin.jpg";
+                        ret="img/image_fin.jpg";
                         break;
                     default:
                 }
@@ -195,25 +195,25 @@ class Plateau
                 switch(statu)
                 {
                     case "vide":
-                        ret="../img/theme_halloween_case_vide.png";
+                        ret="img/theme_halloween_case_vide.png";
                         break;
                     case "sombre":
-                        ret="../img/theme_halloween_case_sombre.png";
+                        ret="img/theme_halloween_case_sombre.png";
                         break;
                     case "clair":
-                        ret="../img/theme_halloween_case_clair.png";
+                        ret="img/theme_halloween_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_halloween_pion_sombre.png";
+                        ret="img/theme_halloween_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_halloween_pion_clair.png";
+                        ret="img/theme_halloween_pion_clair.png";
                         break;
                     case "fin_sombre":
-                        ret="../img/image_fin_citrouille.jpg";
+                        ret="img/image_fin_citrouille.jpg";
                         break;
                     case "fin_clair":
-                        ret="../img/image_fin_fantome.jpg";
+                        ret="img/image_fin_fantome.jpg";
                         break;
                     default:
                 }
@@ -222,25 +222,25 @@ class Plateau
                 switch(statu)
                 {
                     case "vide":
-                        ret="../img/theme_noel_case_vide.png";
+                        ret="img/theme_noel_case_vide.png";
                         break;
                     case "sombre":
-                        ret="../img/theme_noel_case_sombre.png";
+                        ret="img/theme_noel_case_sombre.png";
                         break;
                     case "clair":
-                        ret="../img/theme_noel_case_clair.png";
+                        ret="img/theme_noel_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_noel_pion_sombre.png";
+                        ret="img/theme_noel_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_noel_pion_clair.png";
+                        ret="img/theme_noel_pion_clair.png";
                         break;
                     case "fin_sombre":
-                        ret="../img/image_fin_cadeau.jpg";
+                        ret="img/image_fin_cadeau.jpg";
                         break;
                     case "fin_clair":
-                        ret="../img/image_fin_pere_noel.jpg";
+                        ret="img/image_fin_pere_noel.jpg";
                         break;
                     default:
                 }
@@ -249,25 +249,25 @@ class Plateau
                 switch(statu)
                 {
                     case "vide":
-                        ret="../img/theme_zelda_case_vide.png";
+                        ret="img/theme_zelda_case_vide.png";
                         break;
                     case "sombre":
-                        ret="../img/theme_zelda_case_sombre.png";
+                        ret="img/theme_zelda_case_sombre.png";
                         break;
                     case "clair":
-                        ret="../img/theme_zelda_case_clair.png";
+                        ret="img/theme_zelda_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_zelda_pion_sombre.png";
+                        ret="img/theme_zelda_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_zelda_pion_clair.png";
+                        ret="img/theme_zelda_pion_clair.png";
                         break;
                     case "fin_sombre":
-                        ret="../img/image_fin_link_dead.jpg";
+                        ret="img/image_fin_link_dead.jpg";
                         break;
                     case "fin_clair":
-                        ret="../img/image_fin_link.jpg";
+                        ret="img/image_fin_link.jpg";
                         break;
                     default:
                 }
@@ -276,25 +276,25 @@ class Plateau
                 switch(statu)
                 {
                     case "vide":
-                        ret="../img/theme_harry_potter_case_vide.png";
+                        ret="img/theme_harry_potter_case_vide.png";
                         break;
                     case "sombre":
-                        ret="../img/theme_harry_potter_case_sombre.png";
+                        ret="img/theme_harry_potter_case_sombre.png";
                         break;
                     case "clair":
-                        ret="../img/theme_harry_potter_case_clair.png";
+                        ret="img/theme_harry_potter_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_harry_potter_pion_sombre.png";
+                        ret="img/theme_harry_potter_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_harry_potter_pion_clair.png";
+                        ret="img/theme_harry_potter_pion_clair.png";
                         break;
                     case "fin_sombre":
-                        ret="../img/image_fin_serpentar.jpg";
+                        ret="img/image_fin_serpentar.jpg";
                         break;
                     case "fin_clair":
-                        ret="../img/image_fin_pouffsoufle.jpg";
+                        ret="img/image_fin_pouffsoufle.jpg";
                         break;
                     default:
                 }
@@ -303,31 +303,31 @@ class Plateau
                 switch(statu)
                 {
                     case "vide":
-                        ret="../img/theme_os_case_vide.png";
+                        ret="img/theme_os_case_vide.png";
                         break;
                     case "sombre":
-                        ret="../img/theme_os_case_sombre.png";
+                        ret="img/theme_os_case_sombre.png";
                         break;
                     case "clair":
-                        ret="../img/theme_os_case_clair.png";
+                        ret="img/theme_os_case_clair.png";
                         break;
                     case "pion_sombre":
-                        ret="../img/theme_os_pion_sombre.png";
+                        ret="img/theme_os_pion_sombre.png";
                         break;
                     case "pion_clair":
-                        ret="../img/theme_os_pion_clair.png";
+                        ret="img/theme_os_pion_clair.png";
                         break;
                     case "fin_sombre":
-                        ret="../img/image_fin_linux.jpg";
+                        ret="img/image_fin_linux.jpg";
                         break;
                     case "fin_clair":
-                        ret="../img/image_fin_windows.jpg";
+                        ret="img/image_fin_windows.jpg";
                         break;
                     default:
                 }
                 break;
             default:
-                ret="../img/case_vide.jpg";
+                ret="img/case_vide.jpg";
                 break;
         }
         return ret;
